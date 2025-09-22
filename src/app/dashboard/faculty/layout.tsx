@@ -1,6 +1,5 @@
 import { Header } from '@/components/layout/header';
 import { FacultySidebar } from '@/components/layout/faculty-sidebar';
-import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 
 export default function FacultyDashboardLayout({
   children,
@@ -8,14 +7,18 @@ export default function FacultyDashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SidebarProvider>
-      <FacultySidebar />
-      <SidebarInset>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1 p-4 sm:p-6">{children}</main>
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+    <div className="flex min-h-screen bg-gray-50">
+      <div className="w-64 flex-shrink-0 bg-white shadow-md">
+        <FacultySidebar />
+      </div>
+      <div className="flex-1 flex flex-col">
+        <Header />
+        <main className="flex-1 overflow-x-auto p-6">
+          <div className="w-full max-w-screen-2xl mx-auto">
+            {children}
+          </div>
+        </main>
+      </div>
+    </div>
   );
 }
