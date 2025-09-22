@@ -14,27 +14,28 @@ import { GraduationCap, LogOut, PanelLeft, User as UserIcon } from 'lucide-react
 import Link from 'next/link';
 import { useSidebar } from '@/components/ui/sidebar';
 import { mockUser } from '@/lib/data';
+import { cn } from '@/lib/utils';
 
 export function Header() {
-  const { isMobile, toggleSidebar } = useSidebar();
+  const { isMobile, toggleSidebar, state: sidebarState } = useSidebar();
   const user = mockUser;
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 w-full items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-md sm:px-6">
+    <header className="sticky top-0 z-30 flex h-14 w-full items-center justify-between border-b bg-background/80 px-4 backdrop-blur-md sm:px-6">
       <div className="flex items-center gap-2">
-        {isMobile && (
-          <Button size="icon" variant="ghost" onClick={toggleSidebar} className="sm:hidden">
-            <PanelLeft className="h-5 w-5" />
-            <span className="sr-only">Toggle Menu</span>
-          </Button>
+        {(isMobile || sidebarState === 'collapsed') && (
+            <Button size="icon" variant="ghost" onClick={toggleSidebar} className={cn(!isMobile && 'hidden sm:flex')}>
+                <PanelLeft className="h-5 w-5" />
+                <span className="sr-only">Toggle Menu</span>
+            </Button>
         )}
-        <div className="flex items-center gap-2 sm:hidden">
+         <div className="flex items-center gap-2 sm:hidden">
             <GraduationCap className="h-6 w-6 text-primary" />
             <span className="font-bold font-headline text-lg">StuHub</span>
         </div>
       </div>
       
-      <div className="ml-auto flex items-center gap-2">
+      <div className="flex items-center gap-2">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
