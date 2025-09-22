@@ -39,7 +39,7 @@ export default function ClassDetailsPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
-              <CardTitle>Class Roster & Attendance</CardTitle>
+              <CardTitle>Class Attendance</CardTitle>
               <CardDescription>View enrolled students and mark attendance for today's class. Current date: {new Date().toLocaleDateString()}</CardDescription>
             </div>
              <Button onClick={handleSaveAttendance}>Save Attendance</Button>
