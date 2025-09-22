@@ -10,7 +10,8 @@ import { generateClassSummaryReport, generateAttendanceReport } from '@/lib/repo
 import toast from 'react-hot-toast';
 
 export default function ClassDetailsPage({ params }: { params: { code: string } }) {
-  const classDetails = mockFacultyClasses.find(c => c.courseCode === params.code);
+  const { code } = params;
+  const classDetails = mockFacultyClasses.find(c => c.courseCode === code);
   const students = mockClassStudents;
 
   if (!classDetails) {
