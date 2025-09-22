@@ -6,6 +6,8 @@ import {
   Upload,
   Wand2,
   Bot,
+  Check,
+  Activity,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -23,6 +25,7 @@ import type { NavItem } from '@/lib/types';
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
   { href: '/dashboard/portfolio', label: 'Portfolio', icon: FileText },
+  { href: '/dashboard/activities', label: 'Activities', icon: Activity },
   { href: '/dashboard/upload', label: 'Upload Records', icon: Upload },
   { href: '/dashboard/career', label: 'Career Guide', icon: Wand2 },
   { href: '/dashboard/assistant', label: 'AI Assistant', icon: Bot },
@@ -35,8 +38,9 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarHeader>
         <div className="flex items-center gap-2">
-            <div className="inline-flex items-center justify-center rounded-lg bg-primary p-2">
-               <Book className="h-6 w-6 text-primary-foreground" />
+            <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
+               <Book className="h-6 w-6" />
+               <Check className="h-4 w-4 -ml-2 -mt-3" />
             </div>
           <span className="font-bold font-headline text-lg">StuHub</span>
         </div>
