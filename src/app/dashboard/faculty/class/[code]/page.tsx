@@ -1,3 +1,4 @@
+'use client';
 import PageHeader from '@/components/common/page-header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -5,6 +6,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { mockFacultyClasses, mockClassStudents } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { FileDown } from 'lucide-react';
+import { generateClassSummaryReport, generateAttendanceReport } from '@/lib/reports';
 
 export default function ClassDetailsPage({ params }: { params: { code: string } }) {
   const classDetails = mockFacultyClasses.find(c => c.courseCode === params.code);
@@ -70,11 +72,11 @@ export default function ClassDetailsPage({ params }: { params: { code: string } 
             <CardDescription>Generate and download reports for this class.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
-            <Button variant="outline">
+            <Button variant="outline" onClick={() => generateClassSummaryReport(classDetails)}>
               <FileDown className="mr-2 h-4 w-4" />
               Download Class Summary
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" onClick={() => generateAttendanceReport(classDetails)}>
                <FileDown className="mr-2 h-4 w-4" />
               Download Attendance Report
             </Button>

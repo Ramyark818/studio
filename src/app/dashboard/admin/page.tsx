@@ -1,8 +1,10 @@
+'use client';
 import PageHeader from '@/components/common/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import ApprovalQueue from '@/components/admin/approval-queue';
 import { FileDown } from 'lucide-react';
+import { generateNaacReport, generateAicteReport, generateNirfReport } from '@/lib/reports';
 
 export default function AdminPage() {
   return (
@@ -21,15 +23,15 @@ export default function AdminPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
-            <Button variant="outline">
+            <Button variant="outline" onClick={generateNaacReport}>
               <FileDown className="mr-2 h-4 w-4" />
               Generate NAAC Report
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" onClick={generateAicteReport}>
               <FileDown className="mr-2 h-4 w-4" />
               Generate AICTE Report
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" onClick={generateNirfReport}>
               <FileDown className="mr-2 h-4 w-4" />
               Generate NIRF Report
             </Button>
