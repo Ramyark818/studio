@@ -3,7 +3,7 @@ import { useParams } from 'next/navigation';
 import PageHeader from '@/components/common/page-header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Switch } from '@/components/ui/switch';
 import { mockFacultyClasses, mockClassStudents } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { FileDown } from 'lucide-react';
@@ -52,7 +52,6 @@ export default function ClassDetailsPage() {
                     <TableHead>Student ID</TableHead>
                     <TableHead>Student Name</TableHead>
                     <TableHead className="text-center w-[100px]">Present</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -61,10 +60,7 @@ export default function ClassDetailsPage() {
                       <TableCell className="font-medium">{student.id}</TableCell>
                       <TableCell>{student.name}</TableCell>
                       <TableCell className="text-center">
-                        <Checkbox id={`attendance-${student.id}`} aria-label={`Mark ${student.name} as present`} />
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <Button variant="link" size="sm">View Profile</Button>
+                        <Switch id={`attendance-${student.id}`} aria-label={`Mark ${student.name} as present`} defaultChecked />
                       </TableCell>
                     </TableRow>
                   ))}
