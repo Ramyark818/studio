@@ -1,6 +1,6 @@
 
 'use client';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import PageHeader from '@/components/common/page-header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -9,9 +9,12 @@ import type { Placement } from '@/lib/types';
 import EditPlacementDialog from '@/components/admin/edit-placement-dialog';
 import { Badge } from '@/components/ui/badge';
 import AddPlacementDialog from '@/components/admin/add-placement-dialog';
+import { Input } from '@/components/ui/input';
+import { Search } from 'lucide-react';
 
 export default function PlacementsPage() {
   const [placements, setPlacements] = useState<Placement[]>(mockPlacements);
+  const [companySearch, setCompanySearch] = useState('');
 
   const handleUpdatePlacement = (updatedPlacement: Placement) => {
     setPlacements(prev => prev.map(p => p.id === updatedPlacement.id ? updatedPlacement : p));
@@ -21,6 +24,12 @@ export default function PlacementsPage() {
     const newId = `PLC${(placements.length + 1).toString().padStart(3, '0')}`;
     setPlacements(prev => [...prev, { ...newPlacement, id: newId }]);
   };
+  
+  const filteredPlacements = useMemo(() => {
+    return placements.filter(placement => 
+      placement.companyName.toLowerCase().includes(companySearch.toLowerCase())
+    );
+  }, [placements, companySearch]);
 
   return (
     <>
@@ -34,7 +43,19 @@ export default function PlacementsPage() {
               <CardTitle>Upcoming Placement Drives</CardTitle>
               <CardDescription>View and manage all scheduled placement drives.</CardDescription>
             </div>
-            <AddPlacementDialog onAddPlacement={handleAddPlacement} />
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                <div className="relative sm:w-64">
+                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <Input 
+                        type="search" 
+                        placeholder="Search by company..."
+                        className="pl-8"
+                        value={companySearch}
+                        onChange={(e) => setCompanySearch(e.target.value)}
+                    />
+                </div>
+                <AddPlacementDialog onAddPlacement={handleAddPlacement} />
+            </div>
         </CardHeader>
         <CardContent>
             <div className="rounded-lg border overflow-x-auto">
@@ -54,7 +75,7 @@ export default function PlacementsPage() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {placements.map(placement => (
+                        {filteredPlacements.map(placement => (
                             <TableRow key={placement.id}>
                                 <TableCell className="font-medium whitespace-nowrap">{placement.companyName}</TableCell>
                                 <TableCell className="whitespace-nowrap">{placement.jobDescription}</TableCell>
@@ -74,6 +95,13 @@ export default function PlacementsPage() {
                                 </TableCell>
                             </TableRow>
                         ))}
+                         {filteredPlacements.length === 0 && (
+                            <TableRow>
+                                <TableCell colSpan={10} className="text-center">
+                                    No placements found for your search.
+                                </TableCell>
+                            </TableRow>
+                        )}
                     </TableBody>
                 </Table>
             </div>
