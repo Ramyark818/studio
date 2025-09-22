@@ -13,7 +13,7 @@ export type ActivityStatus = 'Approved' | 'Pending' | 'Rejected';
 export type Activity = {
   id: string;
   title: string;
-  category: 'Conference' | 'Workshop' | 'Certification' | 'Internship' | 'Club Activity' | 'Competition' | 'Volunteering';
+  category: 'Conference' | 'Workshop' | 'Certification' | 'Internship' | 'Club Activity' | 'Competition' | 'Volunteering' | 'Other';
   date: string;
   credits: number;
   status: ActivityStatus;
@@ -30,7 +30,7 @@ export type PerformanceData = {
 export type NavItem = {
   href: string;
   label: string;
-  icon: LucideIcon;
+  icon: React.ElementType;
   active?: boolean;
 };
 
@@ -77,6 +77,24 @@ export type ClassStudent = {
   id: string;
   name: string;
 };
+
+export type Student = ClassStudent & {
+    course: string;
+    dateOfBirth: string;
+    feesPaid: boolean;
+    caste: string;
+    gender: 'Male' | 'Female' | 'Other';
+    documentsSubmitted: boolean;
+    tenthMarks: string;
+    twelfthMarks: string;
+}
+
+export type Faculty = {
+    id: string;
+    name: string;
+    department: string;
+}
+
 
 export type Placement = {
     id: string;

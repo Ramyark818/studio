@@ -6,7 +6,7 @@ import {
   Upload,
   Wand2,
   Bot,
-  Check,
+  GraduationCap,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -38,8 +38,7 @@ export function AppSidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2">
             <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
-               <Book className="h-6 w-6" />
-               <Check className="h-4 w-4 -ml-2 -mt-3" />
+               <GraduationCap className="h-6 w-6" />
             </div>
           <span className="font-bold font-headline text-lg">StuHub</span>
         </div>
@@ -51,7 +50,7 @@ export function AppSidebar() {
                <SidebarMenuButton
                 asChild
                 isActive={item.href === '/dashboard' ? pathname === item.href : pathname.startsWith(item.href)}
-                icon={item.icon}
+                icon={<item.icon />}
               >
                 <Link href={item.href}>
                   {item.label}
