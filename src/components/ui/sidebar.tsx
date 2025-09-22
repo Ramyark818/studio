@@ -569,8 +569,10 @@ const SidebarMenuButton = React.forwardRef<
         className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
         {...props}
       >
-        {icon}
-        <span>{children}</span>
+        <div className="flex items-center gap-2">
+            {icon}
+            <span>{children}</span>
+        </div>
        </Comp>
     )
 
