@@ -9,21 +9,10 @@ import { Button } from '@/components/ui/button';
 import { FileDown } from 'lucide-react';
 import { generateClassSummaryReport, generateAttendanceReport } from '@/lib/reports';
 import toast from 'react-hot-toast';
+import type { FacultyClass } from '@/lib/types';
 
-export default function ClassDetailsPage() {
-  const params = useParams();
-  const code = params.code as string;
-  const classDetails = mockFacultyClasses.find(c => c.courseCode === code);
+function ClassDetails({ classDetails }: { classDetails: FacultyClass }) {
   const students = mockClassStudents;
-
-  if (!classDetails) {
-    return (
-      <>
-        <PageHeader title="Class Not Found" description="The class you are looking for does not exist." />
-        <p>Please check the course code and try again.</p>
-      </>
-    );
-  }
 
   const handleSaveAttendance = () => {
     toast.success("Attendance for today has been saved successfully!");
@@ -89,4 +78,21 @@ export default function ClassDetailsPage() {
       </div>
     </>
   );
+}
+
+export default function ClassDetailsPage() {
+  const params = useParams();
+  const code = params.code as string;
+  const classDetails = mockFacultyClasses.find(c => c.courseCode === code);
+
+  if (!classDetails) {
+    return (
+      <>
+        <PageHeader title="Class Not Found" description="The class you are looking for does not exist." />
+        <p>Please check the course code and try again.</p>
+      </>
+    );
+  }
+
+  return <ClassDetails classDetails={classDetails} />;
 }
