@@ -11,9 +11,17 @@ import AddFacultyDialog from '@/components/admin/add-faculty-dialog';
 import EditStudentDialog from '@/components/admin/edit-student-dialog';
 import EditFacultyDialog from '@/components/admin/edit-faculty-dialog';
 import type { ClassStudent } from '@/lib/types';
+import { Badge } from '@/components/ui/badge';
 
-interface Student extends ClassStudent {
+export interface Student extends ClassStudent {
     course: string;
+    dateOfBirth: string;
+    feesPaid: boolean;
+    caste: string;
+    gender: 'Male' | 'Female' | 'Other';
+    documentsSubmitted: boolean;
+    tenthMarks: string;
+    twelfthMarks: string;
 }
 interface Faculty {
     id: string;
@@ -22,7 +30,18 @@ interface Faculty {
 }
 
 export default function UserManagementPage() {
-    const [students, setStudents] = useState<Student[]>(mockClassStudents.slice(0, 3).map(s => ({...s, course: 'B.Tech CS'})));
+    const [students, setStudents] = useState<Student[]>(mockClassStudents.slice(0, 3).map((s, i) => ({
+        ...s,
+        course: 'B.Tech CS',
+        dateOfBirth: ['1998-05-12', '1999-02-20', '1998-11-30'][i],
+        feesPaid: [true, false, true][i],
+        caste: ['General', 'OBC', 'SC'][i],
+        gender: ['Male', 'Female', 'Male'][i] as 'Male' | 'Female' | 'Other',
+        documentsSubmitted: [true, true, false][i],
+        tenthMarks: ['92%', '88%', '95%'][i],
+        twelfthMarks: ['90%', '85%', '93%'][i],
+    })));
+    
     const [faculty, setFaculty] = useState<Faculty[]>([
         {id: 'FAC001', name: mockFacultyProfile.name, department: 'Computer Science' }
     ]);
@@ -73,9 +92,15 @@ export default function UserManagementPage() {
                      <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>Student ID</TableHead>
+                                <TableHead>ID</TableHead>
                                 <TableHead>Name</TableHead>
-                                <TableHead>Course</TableHead>
+                                <TableHead>DOB</TableHead>
+                                <TableHead>Fees</TableHead>
+                                <TableHead>Caste</TableHead>
+                                <TableHead>Gender</TableHead>
+                                <TableHead>Docs</TableHead>
+                                <TableHead>10th</TableHead>
+                                <TableHead>12th</TableHead>
                                 <TableHead className="text-right">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
@@ -84,7 +109,21 @@ export default function UserManagementPage() {
                                 <TableRow key={student.id}>
                                     <TableCell>{student.id}</TableCell>
                                     <TableCell>{student.name}</TableCell>
-                                    <TableCell>{student.course}</TableCell>
+                                    <TableCell>{student.dateOfBirth}</TableCell>
+                                    <TableCell>
+                                        <Badge variant={student.feesPaid ? 'default' : 'destructive'}>
+                                            {student.feesPaid ? 'Paid' : 'Due'}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell>{student.caste}</TableCell>
+                                    <TableCell>{student.gender}</TableCell>
+                                    <TableCell>
+                                        <Badge variant={student.documentsSubmitted ? 'default' : 'secondary'}>
+                                            {student.documentsSubmitted ? 'Yes' : 'No'}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell>{student.tenthMarks}</TableCell>
+                                    <TableCell>{student.twelfthMarks}</TableCell>
                                     <TableCell className="text-right">
                                         <EditStudentDialog student={student} onUpdateStudent={handleUpdateStudent} />
                                     </TableCell>

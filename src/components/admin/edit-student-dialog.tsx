@@ -15,11 +15,9 @@ import { Label } from '@/components/ui/label';
 import { FilePenLine } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
-import type { ClassStudent } from '@/lib/types';
-
-interface Student extends ClassStudent {
-    course: string;
-}
+import type { Student } from '@/app/(admin)/dashboard/admin/users/page';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Checkbox } from '../ui/checkbox';
 
 interface EditStudentDialogProps {
     student: Student;
@@ -36,9 +34,16 @@ export default function EditStudentDialog({ student, onUpdateStudent }: EditStud
         ...student,
         name: formData.get('name') as string,
         course: formData.get('course') as string,
+        dateOfBirth: formData.get('dateOfBirth') as string,
+        feesPaid: formData.get('feesPaid') === 'on',
+        caste: formData.get('caste') as string,
+        gender: formData.get('gender') as 'Male' | 'Female' | 'Other',
+        documentsSubmitted: formData.get('documentsSubmitted') === 'on',
+        tenthMarks: formData.get('tenthMarks') as string,
+        twelfthMarks: formData.get('twelfthMarks') as string,
     };
 
-    if (updatedStudent.name && updatedStudent.course) {
+    if (Object.values(updatedStudent).every(field => field !== null && field !== '')) {
         onUpdateStudent(updatedStudent);
         toast.success('Student updated successfully!');
         setOpen(false);
@@ -55,7 +60,7 @@ export default function EditStudentDialog({ student, onUpdateStudent }: EditStud
             Edit
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Edit Student</DialogTitle>
           <DialogDescription>
@@ -63,30 +68,61 @@ export default function EditStudentDialog({ student, onUpdateStudent }: EditStud
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="studentId" className="text-right">
-                Student ID
-              </Label>
-              <Input id="studentId" defaultValue={student.id} className="col-span-3" disabled />
+            <div className="grid grid-cols-2 gap-4 py-4">
+                <div className="space-y-2">
+                    <Label htmlFor="studentId">Student ID</Label>
+                    <Input id="studentId" defaultValue={student.id} disabled />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input id="name" name="name" defaultValue={student.name} required />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="course">Course</Label>
+                    <Input id="course" name="course" defaultValue={student.course} required />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="dateOfBirth">Date of Birth</Label>
+                    <Input id="dateOfBirth" name="dateOfBirth" type="date" defaultValue={student.dateOfBirth} required />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="caste">Caste</Label>
+                    <Input id="caste" name="caste" defaultValue={student.caste} required />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="gender">Gender</Label>
+                    <Select name="gender" defaultValue={student.gender} required>
+                    <SelectTrigger id="gender">
+                        <SelectValue placeholder="Select gender" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="Male">Male</SelectItem>
+                        <SelectItem value="Female">Female</SelectItem>
+                        <SelectItem value="Other">Other</SelectItem>
+                    </SelectContent>
+                    </Select>
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="tenthMarks">10th Marks</Label>
+                    <Input id="tenthMarks" name="tenthMarks" defaultValue={student.tenthMarks} required />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="twelfthMarks">12th Marks</Label>
+                    <Input id="twelfthMarks" name="twelfthMarks" defaultValue={student.twelfthMarks} required />
+                </div>
+                 <div className="flex items-center space-x-2 pt-4">
+                    <Checkbox id="feesPaid" name="feesPaid" defaultChecked={student.feesPaid} />
+                    <Label htmlFor="feesPaid">Fees Paid</Label>
+                </div>
+                <div className="flex items-center space-x-2 pt-4">
+                    <Checkbox id="documentsSubmitted" name="documentsSubmitted" defaultChecked={student.documentsSubmitted} />
+                    <Label htmlFor="documentsSubmitted">Documents Submitted</Label>
+                </div>
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
-                Name
-              </Label>
-              <Input id="name" name="name" defaultValue={student.name} className="col-span-3" required />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="course" className="text-right">
-                Course
-              </Label>
-              <Input id="course" name="course" defaultValue={student.course} className="col-span-3" required />
-            </div>
-          </div>
-          <DialogFooter>
-             <Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
-            <Button type="submit">Save Changes</Button>
-          </DialogFooter>
+            <DialogFooter>
+                <Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+                <Button type="submit">Save Changes</Button>
+            </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
