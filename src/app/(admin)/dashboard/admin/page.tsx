@@ -2,7 +2,6 @@
 import PageHeader from '@/components/common/page-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import ApprovalQueue from '@/components/admin/approval-queue';
 import { FileDown, Users, UserCheck, UserX } from 'lucide-react';
 import { generateNaacReport, generateAicteReport, generateNirfReport } from '@/lib/reports';
 import OverviewCard from '@/components/dashboard/overview-card';
@@ -56,18 +55,6 @@ export default function AdminPage() {
               </Card>
             </div>
         </div>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="font-headline">Activity Approval Queue</CardTitle>
-            <CardDescription>
-              Review and approve pending submissions from students.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ApprovalQueue />
-          </CardContent>
-        </Card>
       </div>
     </>
   );
