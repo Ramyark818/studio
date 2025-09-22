@@ -1,64 +1,124 @@
 import PageHeader from '@/components/common/page-header';
-import { Button } from '@/components/ui/button';
-import { Download, Share2 } from 'lucide-react';
-import { mockUser, mockActivities } from '@/lib/data';
+import {
+  Briefcase,
+  Code,
+  Heart,
+  Linkedin,
+  Github,
+  Award,
+  BookOpen,
+  Users,
+} from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Card, CardContent } from '@/components/ui/card';
-import type { Activity } from '@/lib/types';
-import PortfolioSection from '@/components/portfolio/portfolio-section';
+import { mockPortfolio } from '@/lib/data';
+import PortfolioInfoCard from '@/components/portfolio/portfolio-info-card';
 
 export default function PortfolioPage() {
-  const user = mockUser;
-  const approvedActivities = mockActivities.filter(a => a.status === 'Approved');
-
-  const categorizedActivities = approvedActivities.reduce((acc, activity) => {
-    const category = activity.category;
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-    acc[category].push(activity);
-    return acc;
-  }, {} as Record<string, Activity[]>);
+  const portfolio = mockPortfolio;
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
-        <PageHeader
-          title="Digital Portfolio"
-          description="A verified summary of your achievements, ready to be shared."
-        />
-        <div className="flex gap-2">
-          <Button variant="outline">
-            <Share2 className="mr-2 h-4 w-4" />
-            Copy Shareable Link
-          </Button>
-          <Button>
-            <Download className="mr-2 h-4 w-4" />
-            Download as PDF
-          </Button>
-        </div>
-      </div>
-      
-      <div className="space-y-6">
-        <Card>
+      <PageHeader
+        title="Student Portfolio"
+        description="A comprehensive showcase of academic and professional achievements."
+      />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left Column */}
+        <div className="lg:col-span-1 space-y-6">
+          <Card className="bg-primary text-primary-foreground text-center">
             <CardContent className="p-6">
-                <div className="flex items-center gap-6">
-                    <Avatar className="h-24 w-24 border-2 border-primary">
-                        <AvatarImage src={user.avatarUrl} alt={user.name} data-ai-hint="woman portrait" />
-                        <AvatarFallback className="text-3xl">{user.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                        <h2 className="text-3xl font-bold font-headline">{user.name}</h2>
-                        <p className="text-muted-foreground">{user.course}</p>
-                        <p className="text-sm text-muted-foreground">{user.department}</p>
-                    </div>
-                </div>
+              <Avatar className="h-32 w-32 mx-auto mb-4 border-4 border-primary-foreground/50">
+                <AvatarImage
+                  src={portfolio.user.avatarUrl}
+                  alt={portfolio.user.name}
+                  data-ai-hint="man portrait"
+                />
+                <AvatarFallback className="text-5xl bg-primary-foreground text-primary">
+                  {portfolio.user.name.charAt(0)}
+                </AvatarFallback>
+              </Avatar>
+              <h2 className="text-2xl font-bold font-headline">
+                {portfolio.user.name}
+              </h2>
+              <p>{portfolio.user.major}</p>
+              <p className="text-sm opacity-80">{portfolio.user.degree}</p>
             </CardContent>
-        </Card>
+          </Card>
+          <PortfolioInfoCard
+            icon={Linkedin}
+            title="Contact & Links"
+            items={portfolio.contact}
+            renderItem={(item) => (
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 hover:underline"
+              >
+                {item.type === 'LinkedIn' && <Linkedin />}
+                {item.type === 'GitHub' && <Github />}
+                <span>{item.handle}</span>
+              </a>
+            )}
+          />
 
-        {Object.entries(categorizedActivities).map(([category, activities]) => (
-            <PortfolioSection key={category} title={category} activities={activities} />
-        ))}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Heart />
+                Interests
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-2">
+              {portfolio.interests.map((interest) => (
+                <Badge key={interest} variant="secondary">
+                  {interest}
+                </Badge>
+              ))}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Right Column */}
+        <div className="lg:col-span-2 space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Code />
+                Professional Skills
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-2">
+              {portfolio.skills.map((skill) => (
+                <Badge key={skill} variant="secondary">
+                  {skill}
+                </Badge>
+              ))}
+            </CardContent>
+          </Card>
+          <PortfolioInfoCard
+            icon={Award}
+            title="Achievements"
+            items={portfolio.achievements}
+          />
+          <PortfolioInfoCard
+            icon={Briefcase}
+            title="Projects"
+            items={portfolio.projects}
+          />
+          <PortfolioInfoCard
+            icon={BookOpen}
+            title="Publications"
+            items={portfolio.publications}
+          />
+          <PortfolioInfoCard
+            icon={Users}
+            title="Voluntary Work"
+            items={portfolio.voluntaryWork}
+          />
+        </div>
       </div>
     </>
   );

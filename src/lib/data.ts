@@ -1,4 +1,4 @@
-import type { User, Activity, PerformanceData } from './types';
+import type { User, Activity, PerformanceData, Portfolio } from './types';
 
 export const mockUser: User = {
   name: 'Jane Doe',
@@ -93,3 +93,30 @@ export const mockPerformance: PerformanceData[] = [
   { semester: 'Sem 5', sgpa: 9.3, cgpa: 8.92 },
   { semester: 'Sem 6', sgpa: 9.5, cgpa: 9.01 },
 ];
+
+export const mockPortfolio: Portfolio = {
+  user: {
+    name: 'Demo Student',
+    avatarUrl: 'https://picsum.photos/seed/avatar2/200/200',
+    major: 'Computer Science Major',
+    degree: 'Bachelor of Science in Computer Science',
+  },
+  contact: [
+    {
+      type: 'LinkedIn',
+      handle: 'linkedin.com/in/demostudent',
+      url: 'https://linkedin.com/in/demostudent',
+    },
+    {
+      type: 'GitHub',
+      handle: 'github.com/demostudent',
+      url: 'https://github.com/demostudent',
+    },
+  ],
+  interests: ['AI in Education', 'Hiking', 'Chess'],
+  skills: ['React', 'Next.js', 'TypeScript', 'Node.js'],
+  achievements: ["Hackathon Winner: Best Use of AI", "Dean's List 2023"],
+  projects: ['Community Food Bank App'],
+  publications: ['The Future of AI in Higher Education, J. of EdTech'],
+  voluntaryWork: ['Local Animal Shelter Volunteer'],
+};

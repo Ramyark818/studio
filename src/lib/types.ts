@@ -33,3 +33,23 @@ export type NavItem = {
   icon: LucideIcon;
   active?: boolean;
 };
+
+export type Portfolio = {
+    user: {
+        name: string;
+        avatarUrl: string;
+        major: string;
+        degree: string;
+    },
+    contact: {
+        type: 'LinkedIn' | 'GitHub';
+        handle: string;
+        url: string;
+    }[];
+    interests: string[];
+    skills: string[];
+    achievements: string[];
+    projects: string[];
+    publications: string[];
+    voluntaryWork: string[];
+}
