@@ -1,4 +1,4 @@
-import type { User, Activity, PerformanceData, Portfolio, FacultyClass, FacultyProfile, ClassStudent } from './types';
+import type { User, Activity, PerformanceData, Portfolio, FacultyClass, FacultyProfile, ClassStudent, Placement } from './types';
 
 export const mockUser: User = {
   name: 'Jane Doe',
@@ -160,4 +160,31 @@ export const mockFacultyList = [
     { id: 'FAC003', name: 'Dr. Ian Malcolm', department: 'Electrical Engineering' },
     { id: 'FAC004', name: 'Dr. John Hammond', department: 'Civil Engineering' },
     { id: 'FAC005', name: 'Dr. Henry Wu', department: 'Business' },
+];
+
+export const mockPlacements: Placement[] = [
+    {
+      id: 'PLC001',
+      companyName: 'Tech Innovators Inc.',
+      jobDescription: 'Software Development Engineer',
+      recruitingBranches: 'CS, IT, ECE',
+      vacancies: 5,
+      requiredSkills: ['React', 'Node.js', 'Python'],
+      recruitmentProcess: 'Online Test, Technical Interview, HR Interview',
+      requiredCgpa: 7.5,
+      backlogsAllowed: false,
+      driveDate: '2024-10-15',
+    },
+    {
+      id: 'PLC002',
+      companyName: 'Data Solutions LLC',
+      jobDescription: 'Data Analyst',
+      recruitingBranches: 'All Branches',
+      vacancies: 3,
+      requiredSkills: ['SQL', 'Tableau', 'Statistics'],
+      recruitmentProcess: 'Aptitude Test, Group Discussion, Interview',
+      requiredCgpa: 6.5,
+      backlogsAllowed: true,
+      driveDate: '2024-10-20',
+    },
 ];

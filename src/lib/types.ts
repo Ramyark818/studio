@@ -77,3 +77,16 @@ export type ClassStudent = {
   id: string;
   name: string;
 };
+
+export type Placement = {
+    id: string;
+    companyName: string;
+    jobDescription: string;
+    recruitingBranches: string;
+    vacancies: number;
+    requiredSkills: string[];
+    recruitmentProcess: string;
+    requiredCgpa: number;
+    backlogsAllowed: boolean;
+    driveDate: string;
+};
