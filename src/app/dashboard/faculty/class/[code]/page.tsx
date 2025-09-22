@@ -7,6 +7,7 @@ import { mockFacultyClasses, mockClassStudents } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { FileDown } from 'lucide-react';
 import { generateClassSummaryReport, generateAttendanceReport } from '@/lib/reports';
+import toast from 'react-hot-toast';
 
 export default function ClassDetailsPage({ params }: { params: { code: string } }) {
   const classDetails = mockFacultyClasses.find(c => c.courseCode === params.code);
@@ -21,6 +22,10 @@ export default function ClassDetailsPage({ params }: { params: { code: string } 
     );
   }
 
+  const handleSaveAttendance = () => {
+    toast.success("Attendance for today has been saved successfully!");
+  }
+
   return (
     <>
       <PageHeader
@@ -32,9 +37,9 @@ export default function ClassDetailsPage({ params }: { params: { code: string } 
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
               <CardTitle>Class Roster & Attendance</CardTitle>
-              <CardDescription>Mark attendance for today's class. Current date: {new Date().toLocaleDateString()}</CardDescription>
+              <CardDescription>View enrolled students and mark attendance for today's class. Current date: {new Date().toLocaleDateString()}</CardDescription>
             </div>
-             <Button>Save Attendance</Button>
+             <Button onClick={handleSaveAttendance}>Save Attendance</Button>
           </CardHeader>
           <CardContent>
             <div className="rounded-lg border">
@@ -43,7 +48,7 @@ export default function ClassDetailsPage({ params }: { params: { code: string } 
                   <TableRow>
                     <TableHead>Student ID</TableHead>
                     <TableHead>Student Name</TableHead>
-                    <TableHead className="text-center">Present</TableHead>
+                    <TableHead className="text-center w-[100px]">Present</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -53,7 +58,7 @@ export default function ClassDetailsPage({ params }: { params: { code: string } 
                       <TableCell className="font-medium">{student.id}</TableCell>
                       <TableCell>{student.name}</TableCell>
                       <TableCell className="text-center">
-                        <Checkbox id={`attendance-${student.id}`} />
+                        <Checkbox id={`attendance-${student.id}`} aria-label={`Mark ${student.name} as present`} />
                       </TableCell>
                       <TableCell className="text-right">
                         <Button variant="link" size="sm">View Profile</Button>
