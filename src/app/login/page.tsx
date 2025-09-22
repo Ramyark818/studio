@@ -23,11 +23,20 @@ export default function LoginPage() {
   const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState<Role>('student');
+  const [role, setRole] = useState<Role | ''>('');
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
+    if (!role) {
+      toast({
+        variant: "destructive",
+        title: "Login Failed",
+        description: "Please select a role.",
+      });
+      return;
+    }
+
     const user = dummyCredentials[role];
 
     if (user && user.email === email && user.password === password) {
@@ -52,41 +61,45 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
-      <div className="w-full max-w-md space-y-6">
-        <div className="text-center">
-            <div className="inline-flex items-center justify-center rounded-full bg-primary p-3 mb-4">
-               <GraduationCap className="h-8 w-8 text-primary-foreground" />
+    <div className="w-full max-w-md space-y-6">
+        <Card className="shadow-2xl">
+          <CardHeader className="text-center">
+            <div className="mx-auto mb-4">
+              <GraduationCap className="h-10 w-10 text-primary" />
             </div>
-            <h1 className="text-4xl font-bold font-headline text-foreground">
-              Welcome to StuHub
-            </h1>
-            <p className="mt-2 text-muted-foreground">
-              Your centralized hub for academic and co-curricular excellence.
-            </p>
-        </div>
-        <Card>
-          <CardHeader>
-            <CardTitle className="font-headline text-2xl">Login</CardTitle>
-            <CardDescription>Select your role and enter your credentials.</CardDescription>
+            <CardTitle className="text-2xl font-bold">Sign In to StuHub</CardTitle>
+            <CardDescription>Enter your credentials to access your account.</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-wrap gap-2 mb-4">
-                <Button variant="outline" size="sm" onClick={() => autofillForm('student')}>
-                  Login as Student
-                </Button>
-                <Button variant="outline" size="sm" onClick={() => autofillForm('admin')}>
-                  Login as Admin
-                </Button>
-                <Button variant="outline" size="sm" onClick={() => autofillForm('faculty')}>
-                  Login as Faculty
-                </Button>
-            </div>
             <form className="space-y-4" onSubmit={handleLogin}>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email Address</Label>
+                <Input 
+                  id="email" 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  required 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-muted/50 focus:bg-background"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input 
+                  id="password" 
+                  type="password" 
+                  placeholder="Enter your password"
+                  required 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="bg-muted/50 focus:bg-background"
+                />
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="role">Role</Label>
                 <Select value={role} onValueChange={(value) => setRole(value as Role)}>
-                  <SelectTrigger id="role">
+                  <SelectTrigger id="role" className="bg-muted/50 focus:bg-background">
                     <SelectValue placeholder="Select a role" />
                   </SelectTrigger>
                   <SelectContent>
@@ -96,34 +109,29 @@ export default function LoginPage() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input 
-                  id="email" 
-                  type="email" 
-                  placeholder="user@example.edu" 
-                  required 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input 
-                  id="password" 
-                  type="password" 
-                  required 
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
               <Button type="submit" className="w-full">
-                Login
+                Sign In
               </Button>
             </form>
           </CardContent>
         </Card>
+
+        <Card>
+            <CardHeader>
+                <CardTitle className="text-xl font-semibold">Demo Accounts</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap justify-center gap-2">
+                <Button variant="outline" size="sm" onClick={() => autofillForm('student')}>
+                  Student
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => autofillForm('faculty')}>
+                  Faculty
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => autofillForm('admin')}>
+                  Admin
+                </Button>
+            </CardContent>
+        </Card>
       </div>
-    </div>
   );
 }
