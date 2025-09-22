@@ -53,3 +53,10 @@ export type Portfolio = {
     publications: string[];
     voluntaryWork: string[];
 }
+
+export type FacultyClass = {
+  courseCode: string;
+  courseName: string;
+  enrolledStudents: number;
+  semester: string;
+};

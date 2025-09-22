@@ -15,7 +15,7 @@ type Role = 'student' | 'admin' | 'faculty';
 const dummyCredentials = {
   student: { email: 'student@stuhub.com', password: 'student123', path: '/dashboard' },
   admin: { email: 'admin@stuhub.com', password: 'admin123', path: '/dashboard/admin' },
-  faculty: { email: 'faculty@stuhub.com', password: 'faculty123', path: '/dashboard' },
+  faculty: { email: 'faculty@stuhub.com', password: 'faculty123', path: '/dashboard/faculty' },
 };
 
 export default function LoginPage() {

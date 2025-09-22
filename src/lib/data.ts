@@ -1,4 +1,4 @@
-import type { User, Activity, PerformanceData, Portfolio } from './types';
+import type { User, Activity, PerformanceData, Portfolio, FacultyClass } from './types';
 
 export const mockUser: User = {
   name: 'Jane Doe',
@@ -120,3 +120,10 @@ export const mockPortfolio: Portfolio = {
   publications: ['The Future of AI in Higher Education, J. of EdTech'],
   voluntaryWork: ['Local Animal Shelter Volunteer'],
 };
+
+export const mockFacultyClasses: FacultyClass[] = [
+  { courseCode: 'CS 450', courseName: 'Advanced Algorithms', enrolledStudents: 35, semester: 'Fall 2024' },
+  { courseCode: 'CS 210', courseName: 'Data Structures', enrolledStudents: 42, semester: 'Fall 2024' },
+  { courseCode: 'CS 555', courseName: 'Machine Learning', enrolledStudents: 20, semester: 'Fall 2024' },
+  { courseCode: 'CS 101', courseName: 'Intro to Programming', enrolledStudents: 15, semester: 'Fall 2024' },
+];
