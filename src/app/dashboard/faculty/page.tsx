@@ -1,10 +1,11 @@
+'use client';
 import Link from 'next/link';
 import PageHeader from '@/components/common/page-header';
 import OverviewCard from '@/components/dashboard/overview-card';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { mockFacultyClasses, mockUser } from '@/lib/data';
-import { Book, Users, Calendar, Percent, BarChart } from 'lucide-react';
+import { mockFacultyClasses } from '@/lib/data';
+import { Book, Users, Percent, BarChart } from 'lucide-react';
 import AttendanceChart from '@/components/faculty/attendance-chart';
 import MarksDistributionChart from '@/components/faculty/marks-distribution-chart';
 
@@ -49,22 +50,22 @@ export default function FacultyDashboardPage() {
               {facultyClasses.map((cls) => (
                  <TableRow key={cls.courseCode} className="cursor-pointer hover:bg-muted/50">
                    <TableCell className="font-medium">
-                     <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block">
+                     <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full">
                        {cls.courseCode}
                      </Link>
                    </TableCell>
                    <TableCell>
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block">
+                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full">
                         {cls.courseName}
                       </Link>
                    </TableCell>
                    <TableCell>
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block">
+                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full">
                         {cls.enrolledStudents}
                       </Link>
                    </TableCell>
                    <TableCell>
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block">
+                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full">
                         {cls.semester}
                       </Link>
                    </TableCell>
