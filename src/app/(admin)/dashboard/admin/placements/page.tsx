@@ -8,12 +8,18 @@ import { mockPlacements } from '@/lib/data';
 import type { Placement } from '@/lib/types';
 import EditPlacementDialog from '@/components/admin/edit-placement-dialog';
 import { Badge } from '@/components/ui/badge';
+import AddPlacementDialog from '@/components/admin/add-placement-dialog';
 
 export default function PlacementsPage() {
   const [placements, setPlacements] = useState<Placement[]>(mockPlacements);
 
   const handleUpdatePlacement = (updatedPlacement: Placement) => {
     setPlacements(prev => prev.map(p => p.id === updatedPlacement.id ? updatedPlacement : p));
+  };
+
+  const handleAddPlacement = (newPlacement: Omit<Placement, 'id'>) => {
+    const newId = `PLC${(placements.length + 1).toString().padStart(3, '0')}`;
+    setPlacements(prev => [...prev, { ...newPlacement, id: newId }]);
   };
 
   return (
@@ -23,9 +29,12 @@ export default function PlacementsPage() {
         description="Manage placement drives and student placements."
       />
       <Card>
-        <CardHeader>
-            <CardTitle>Upcoming Placement Drives</CardTitle>
-            <CardDescription>View and manage all scheduled placement drives.</CardDescription>
+        <CardHeader className="flex flex-row items-center justify-between">
+            <div>
+              <CardTitle>Upcoming Placement Drives</CardTitle>
+              <CardDescription>View and manage all scheduled placement drives.</CardDescription>
+            </div>
+            <AddPlacementDialog onAddPlacement={handleAddPlacement} />
         </CardHeader>
         <CardContent>
             <div className="rounded-lg border">
