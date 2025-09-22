@@ -4,16 +4,25 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { mockFacultyProfile } from '@/lib/data';
 import { Mail, Phone, Building, GraduationCap, BookOpen, Award } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import EditFacultyProfileDialog from '@/components/faculty/edit-faculty-profile-dialog';
 
 export default function FacultyProfilePage() {
   const profile = mockFacultyProfile;
 
   return (
     <>
-      <PageHeader
-        title="Faculty Profile"
-        description="Your professional and academic information."
-      />
+      <div className="flex justify-between items-start mb-6">
+        <div>
+          <h1 className="text-3xl font-bold font-headline tracking-tight">
+            Faculty Profile
+          </h1>
+          <p className="text-muted-foreground">
+            Your professional and academic information.
+          </p>
+        </div>
+        <EditFacultyProfileDialog profile={profile} />
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1 space-y-6">
           <Card>
