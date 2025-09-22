@@ -1,9 +1,10 @@
 'use client';
 import {
   LayoutDashboard,
-  FileCheck2,
   Users,
-  User,
+  BookCopy,
+  CalendarCheck,
+  Briefcase,
   Shield,
 } from 'lucide-react';
 import {
@@ -19,7 +20,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { href: '/dashboard/admin', label: 'Admin Panel', icon: LayoutDashboard },
+  { href: '/dashboard/admin', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/dashboard/admin/users', label: 'User Management', icon: Users },
+  { href: '/dashboard/admin/classes', label: 'Class Management', icon: BookCopy },
+  { href: '/dashboard/admin/attendance', label: 'Faculty Attendance', icon: CalendarCheck },
+  { href: '/dashboard/admin/placements', label: 'Placements', icon: Briefcase },
 ];
 
 export function AdminSidebar() {
