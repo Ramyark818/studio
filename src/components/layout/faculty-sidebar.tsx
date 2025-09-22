@@ -44,7 +44,7 @@ export function FacultySidebar() {
                <SidebarMenuButton
                 asChild
                 isActive={item.href === '/dashboard/faculty' ? pathname === item.href : pathname.startsWith(item.href)}
-                icon={item.icon}
+                icon={<item.icon />}
               >
                 <Link href={item.href}>
                   {item.label}

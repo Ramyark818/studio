@@ -47,7 +47,7 @@ export function AdminSidebar() {
                <SidebarMenuButton
                 asChild
                 isActive={item.href === '/dashboard/admin' ? pathname === item.href : pathname.startsWith(item.href)}
-                icon={item.icon}
+                icon={<item.icon />}
               >
                 <Link href={item.href}>
                   {item.label}
