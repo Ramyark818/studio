@@ -7,7 +7,6 @@ import {
   Wand2,
   Bot,
   Check,
-  Activity,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -25,7 +24,6 @@ import type { NavItem } from '@/lib/types';
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
   { href: '/dashboard/portfolio', label: 'Portfolio', icon: FileText },
-  { href: '/dashboard/activities', label: 'Activities', icon: Activity },
   { href: '/dashboard/upload', label: 'Upload Records', icon: Upload },
   { href: '/dashboard/career', label: 'Career Guide', icon: Wand2 },
   { href: '/dashboard/assistant', label: 'AI Assistant', icon: Bot },
