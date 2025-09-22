@@ -6,10 +6,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Switch } from '@/components/ui/switch';
 import { mockFacultyClasses, mockClassStudents } from '@/lib/data';
 import { Button } from '@/components/ui/button';
-import { FileDown } from 'lucide-react';
+import { FileDown, Users, UserCheck, UserX } from 'lucide-react';
 import { generateClassSummaryReport, generateAttendanceReport } from '@/lib/reports';
 import toast from 'react-hot-toast';
 import type { FacultyClass } from '@/lib/types';
+import OverviewCard from '@/components/dashboard/overview-card';
 
 function ClassDetails({ classDetails }: { classDetails: FacultyClass }) {
   const students = mockClassStudents;
@@ -17,6 +18,11 @@ function ClassDetails({ classDetails }: { classDetails: FacultyClass }) {
   const handleSaveAttendance = () => {
     toast.success("Attendance for today has been saved successfully!");
   }
+  
+  // Dummy percentages for display
+  const presentPercentage = 95; 
+  const absentPercentage = 5;
+  const totalStudents = classDetails.enrolledStudents;
 
   return (
     <>
@@ -24,6 +30,13 @@ function ClassDetails({ classDetails }: { classDetails: FacultyClass }) {
         title={`${classDetails.courseCode}: ${classDetails.courseName}`}
         description={`Manage attendance, view student profiles, and generate reports for your class.`}
       />
+      
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
+        <OverviewCard icon={Users} title="Total Students" value={totalStudents} description="Enrolled in this class" />
+        <OverviewCard icon={UserCheck} title="Present Today" value={`${presentPercentage}%`} description="Students marked as present" />
+        <OverviewCard icon={UserX} title="Absent Today" value={`${absentPercentage}%`} description="Students marked as absent" />
+      </div>
+
       <div className="grid gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
