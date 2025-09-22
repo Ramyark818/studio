@@ -8,22 +8,33 @@ import {
   Award,
   BookOpen,
   Users,
+  FilePenLine,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { mockPortfolio } from '@/lib/data';
 import PortfolioInfoCard from '@/components/portfolio/portfolio-info-card';
+import EditPortfolioDialog from '@/components/portfolio/edit-portfolio-dialog';
+import { Button } from '@/components/ui/button';
 
 export default function PortfolioPage() {
   const portfolio = mockPortfolio;
 
   return (
     <>
-      <PageHeader
-        title="Portfolio"
-        description="A comprehensive showcase of academic and professional achievements."
-      />
+      <div className="flex justify-between items-start mb-6">
+        <div>
+          <h1 className="text-3xl font-bold font-headline tracking-tight">
+            Portfolio
+          </h1>
+          <p className="text-muted-foreground">
+            A comprehensive showcase of academic and professional achievements.
+          </p>
+        </div>
+        <EditPortfolioDialog portfolio={portfolio} />
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column */}
         <div className="lg:col-span-1 space-y-6">
