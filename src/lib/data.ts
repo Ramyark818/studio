@@ -153,3 +153,11 @@ export const mockClassStudents: ClassStudent[] = [
   { id: 'STU004', name: 'Diana Miller' },
   { id: 'STU005', name: 'Ethan Davis' },
 ];
+
+export const mockFacultyList = [
+    { id: 'FAC001', name: 'Dr. Alan Grant', department: 'Computer Science' },
+    { id: 'FAC002', name: 'Dr. Ellie Sattler', department: 'Mechanical Engineering' },
+    { id: 'FAC003', name: 'Dr. Ian Malcolm', department: 'Electrical Engineering' },
+    { id: 'FAC004', name: 'Dr. John Hammond', department: 'Civil Engineering' },
+    { id: 'FAC005', name: 'Dr. Henry Wu', department: 'Business' },
+];
