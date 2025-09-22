@@ -1,6 +1,6 @@
 'use client';
 import {
-  GraduationCap,
+  Book,
   FileText,
   LayoutGrid,
   Upload,
@@ -19,7 +19,6 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { NavItem } from '@/lib/types';
-import { Button } from '../ui/button';
 
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
@@ -37,7 +36,7 @@ export function AppSidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2">
             <div className="inline-flex items-center justify-center rounded-lg bg-primary p-2">
-               <GraduationCap className="h-6 w-6 text-primary-foreground" />
+               <Book className="h-6 w-6 text-primary-foreground" />
             </div>
           <span className="font-bold font-headline text-lg">StuHub</span>
         </div>
@@ -48,7 +47,7 @@ export function AppSidebar() {
             <SidebarMenuItem key={item.href}>
                <SidebarMenuButton
                 asChild
-                isActive={pathname.startsWith(item.href)}
+                isActive={item.href === '/dashboard' ? pathname === item.href : pathname.startsWith(item.href)}
                 icon={item.icon}
               >
                 <Link href={item.href}>

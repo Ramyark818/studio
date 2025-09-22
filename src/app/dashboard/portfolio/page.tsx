@@ -21,7 +21,7 @@ export default function PortfolioPage() {
   return (
     <>
       <PageHeader
-        title="Student Portfolio"
+        title="Portfolio"
         description="A comprehensive showcase of academic and professional achievements."
       />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
