@@ -2,8 +2,7 @@
 import {
   LayoutDashboard,
   FileCheck2,
-  Book,
-  Check,
+  BookCopy,
   User
 } from 'lucide-react';
 import {
@@ -20,6 +19,7 @@ import { usePathname } from 'next/navigation';
 
 const navItems = [
   { href: '/dashboard/faculty', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/dashboard/faculty/classes', label: 'My Classes', icon: BookCopy },
   { href: '/dashboard/faculty/approvals', label: 'Document Approvals', icon: FileCheck2 },
   { href: '/dashboard/faculty/profile', label: 'Profile', icon: User },
 ];
@@ -32,10 +32,9 @@ export function FacultySidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2">
             <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
-               <Book className="h-6 w-6" />
-               <Check className="h-4 w-4 -ml-2 -mt-3" />
+               <BookCopy className="h-6 w-6" />
             </div>
-          <span className="font-bold font-headline text-lg">StuHub</span>
+          <span className="font-bold font-headline text-lg">StuHub Faculty</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
