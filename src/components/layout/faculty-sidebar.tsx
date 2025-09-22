@@ -13,6 +13,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarFooter,
+  useSidebar,
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -26,6 +27,13 @@ const navItems = [
 
 export function FacultySidebar() {
   const pathname = usePathname();
+  const { setOpenMobile, isMobile } = useSidebar();
+
+  const handleLinkClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
 
   return (
     <Sidebar>
@@ -45,6 +53,7 @@ export function FacultySidebar() {
                 asChild
                 isActive={item.href === '/dashboard/faculty' ? pathname === item.href : pathname.startsWith(item.href)}
                 icon={<item.icon />}
+                onClick={handleLinkClick}
               >
                 <Link href={item.href}>
                   {item.label}

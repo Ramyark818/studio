@@ -15,6 +15,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarFooter,
+  useSidebar,
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -29,6 +30,13 @@ const navItems = [
 
 export function AdminSidebar() {
   const pathname = usePathname();
+  const { setOpenMobile, isMobile } = useSidebar();
+
+  const handleLinkClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
 
   return (
     <Sidebar>
@@ -48,6 +56,7 @@ export function AdminSidebar() {
                 asChild
                 isActive={item.href === '/dashboard/admin' ? pathname === item.href : pathname.startsWith(item.href)}
                 icon={<item.icon />}
+                onClick={handleLinkClick}
               >
                 <Link href={item.href}>
                   {item.label}
