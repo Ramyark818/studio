@@ -4,6 +4,7 @@ import {
   FileCheck2,
   Book,
   Check,
+  User
 } from 'lucide-react';
 import {
   Sidebar,
@@ -20,6 +21,7 @@ import { usePathname } from 'next/navigation';
 const navItems = [
   { href: '/dashboard/faculty', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/dashboard/faculty/approvals', label: 'Document Approvals', icon: FileCheck2 },
+  { href: '/dashboard/faculty/profile', label: 'Profile', icon: User },
 ];
 
 export function FacultySidebar() {

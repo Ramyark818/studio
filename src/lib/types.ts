@@ -60,3 +60,20 @@ export type FacultyClass = {
   enrolledStudents: number;
   semester: string;
 };
+
+export type FacultyProfile = {
+  name: string;
+  title: string;
+  avatarUrl: string;
+  email: string;
+  phone: string;
+  office: string;
+  expertise: string[];
+  publications: string[];
+  awards: string[];
+};
+
+export type ClassStudent = {
+  id: string;
+  name: string;
+};

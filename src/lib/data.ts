@@ -1,4 +1,4 @@
-import type { User, Activity, PerformanceData, Portfolio, FacultyClass } from './types';
+import type { User, Activity, PerformanceData, Portfolio, FacultyClass, FacultyProfile, ClassStudent } from './types';
 
 export const mockUser: User = {
   name: 'Jane Doe',
@@ -122,8 +122,34 @@ export const mockPortfolio: Portfolio = {
 };
 
 export const mockFacultyClasses: FacultyClass[] = [
-  { courseCode: 'CS 450', courseName: 'Advanced Algorithms', enrolledStudents: 35, semester: 'Fall 2024' },
-  { courseCode: 'CS 210', courseName: 'Data Structures', enrolledStudents: 42, semester: 'Fall 2024' },
-  { courseCode: 'CS 555', courseName: 'Machine Learning', enrolledStudents: 20, semester: 'Fall 2024' },
-  { courseCode: 'CS 101', courseName: 'Intro to Programming', enrolledStudents: 15, semester: 'Fall 2024' },
+  { courseCode: 'CS450', courseName: 'Advanced Algorithms', enrolledStudents: 35, semester: 'Fall 2024' },
+  { courseCode: 'CS210', courseName: 'Data Structures', enrolledStudents: 42, semester: 'Fall 2024' },
+  { courseCode: 'CS555', courseName: 'Machine Learning', enrolledStudents: 20, semester: 'Fall 2024' },
+  { courseCode: 'CS101', courseName: 'Intro to Programming', enrolledStudents: 15, semester: 'Fall 2024' },
+];
+
+export const mockFacultyProfile: FacultyProfile = {
+  name: 'Dr. Alan Grant',
+  title: 'Professor, Department of Computer Science',
+  avatarUrl: 'https://picsum.photos/seed/faculty1/200/200',
+  email: 'alan.grant@university.edu',
+  phone: '123-456-7890',
+  office: 'Building 4, Room 301',
+  expertise: ['Algorithms', 'Data Structures', 'Computational Theory', 'Machine Learning'],
+  publications: [
+    'A New Approach to Dynamic Programming, Journal of CS, 2023',
+    'Complexity Theory Revisited, ACM Transactions, 2022',
+  ],
+  awards: [
+    'Excellence in Teaching Award, 2021',
+    'Best Paper Award, Int. Conference on Algorithms, 2020',
+  ],
+};
+
+export const mockClassStudents: ClassStudent[] = [
+  { id: 'STU001', name: 'Alice Johnson' },
+  { id: 'STU002', name: 'Bob Williams' },
+  { id: 'STU003', name: 'Charlie Brown' },
+  { id: 'STU004', name: 'Diana Miller' },
+  { id: 'STU005', name: 'Ethan Davis' },
 ];
