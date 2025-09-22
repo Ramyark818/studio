@@ -10,11 +10,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { BookOpenCheck, LogOut, PanelLeft, User as UserIcon } from 'lucide-react';
+import { GraduationCap, LogOut, PanelLeft, User as UserIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useSidebar } from '@/components/ui/sidebar';
 import { mockUser } from '@/lib/data';
-import { cn } from '@/lib/utils';
 
 export function Header() {
   const { isMobile, toggleSidebar } = useSidebar();
@@ -29,7 +28,7 @@ export function Header() {
         </Button>
       )}
       <div className="flex items-center gap-2 sm:hidden">
-        <BookOpenCheck className="h-6 w-6 text-primary" />
+        <GraduationCap className="h-6 w-6 text-primary" />
         <span className="font-bold font-headline text-lg">StuHub</span>
       </div>
       <div className="flex-1" />

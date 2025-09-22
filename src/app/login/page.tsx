@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { BookOpenCheck } from 'lucide-react';
+import { GraduationCap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -56,7 +56,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
             <div className="inline-flex items-center justify-center rounded-full bg-primary p-3 mb-4">
-               <BookOpenCheck className="h-8 w-8 text-primary-foreground" />
+               <GraduationCap className="h-8 w-8 text-primary-foreground" />
             </div>
             <h1 className="text-4xl font-bold font-headline text-foreground">
               Welcome to StuHub

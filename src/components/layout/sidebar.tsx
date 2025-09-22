@@ -1,6 +1,6 @@
 'use client';
 import {
-  BookOpenCheck,
+  GraduationCap,
   FileText,
   LayoutDashboard,
   ListChecks,
@@ -35,7 +35,7 @@ export function AppSidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2">
             <div className="inline-flex items-center justify-center rounded-lg bg-primary p-2">
-               <BookOpenCheck className="h-6 w-6 text-primary-foreground" />
+               <GraduationCap className="h-6 w-6 text-primary-foreground" />
             </div>
           <span className="font-bold font-headline text-lg">StuHub</span>
         </div>
@@ -44,7 +44,7 @@ export function AppSidebar() {
         <SidebarMenu>
           {navItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-              <SidebarMenuButton
+               <SidebarMenuButton
                 asChild
                 isActive={pathname === item.href}
                 icon={item.icon}
