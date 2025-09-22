@@ -48,27 +48,11 @@ export default function FacultyDashboardPage() {
             </TableHeader>
             <TableBody>
               {facultyClasses.map((cls) => (
-                 <TableRow key={cls.courseCode} className="cursor-pointer hover:bg-muted/50">
-                   <TableCell className="font-medium p-0">
-                     <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
-                       {cls.courseCode}
-                     </Link>
-                   </TableCell>
-                   <TableCell className="p-0">
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
-                        {cls.courseName}
-                      </Link>
-                   </TableCell>
-                   <TableCell className="p-0">
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
-                        {cls.enrolledStudents}
-                      </Link>
-                   </TableCell>
-                   <TableCell className="p-0">
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
-                        {cls.semester}
-                      </Link>
-                   </TableCell>
+                 <TableRow key={cls.courseCode}>
+                   <TableCell className="font-medium">{cls.courseCode}</TableCell>
+                   <TableCell>{cls.courseName}</TableCell>
+                   <TableCell>{cls.enrolledStudents}</TableCell>
+                   <TableCell>{cls.semester}</TableCell>
                  </TableRow>
               ))}
             </TableBody>
