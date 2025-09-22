@@ -1,15 +1,25 @@
+
 'use client';
+import { useState } from 'react';
 import PageHeader from '@/components/common/page-header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
 import { mockFacultyClasses } from '@/lib/data';
-import { PlusCircle } from 'lucide-react';
 import AddClassDialog from '@/components/admin/add-class-dialog';
+import type { FacultyClass } from '@/lib/types';
+import EditClassDialog from '@/components/admin/edit-class-dialog';
 
 export default function ClassManagementPage() {
-  const classes = mockFacultyClasses;
+  const [classes, setClasses] = useState<FacultyClass[]>(mockFacultyClasses);
   
+  const handleAddClass = (newClass: Omit<FacultyClass, 'enrolledStudents'>) => {
+    setClasses(prev => [...prev, { ...newClass, enrolledStudents: 0 }]);
+  };
+
+  const handleUpdateClass = (updatedClass: FacultyClass) => {
+    setClasses(prev => prev.map(c => c.courseCode === updatedClass.courseCode ? updatedClass : c));
+  };
+
   return (
     <>
       <PageHeader
@@ -22,7 +32,7 @@ export default function ClassManagementPage() {
             <CardTitle>All Classes</CardTitle>
             <CardDescription>View, edit, or add new classes.</CardDescription>
           </div>
-          <AddClassDialog />
+          <AddClassDialog onAddClass={handleAddClass} />
         </CardHeader>
         <CardContent>
           <div className="rounded-lg border">
@@ -44,7 +54,7 @@ export default function ClassManagementPage() {
                     <TableCell>{cls.enrolledStudents}</TableCell>
                     <TableCell>{cls.semester}</TableCell>
                     <TableCell className="text-right">
-                      <Button variant="outline" size="sm">Edit</Button>
+                      <EditClassDialog classData={cls} onUpdateClass={handleUpdateClass} />
                     </TableCell>
                   </TableRow>
                 ))}

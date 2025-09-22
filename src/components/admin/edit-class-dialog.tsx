@@ -12,30 +12,32 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { PlusCircle } from 'lucide-react';
+import { FilePenLine } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
+import type { FacultyClass } from '@/lib/types';
 
-interface AddClassDialogProps {
-    onAddClass: (newClass: { courseCode: string; courseName: string; semester: string }) => void;
+interface EditClassDialogProps {
+    classData: FacultyClass;
+    onUpdateClass: (updatedClass: FacultyClass) => void;
 }
 
-export default function AddClassDialog({ onAddClass }: AddClassDialogProps) {
+export default function EditClassDialog({ classData, onUpdateClass }: EditClassDialogProps) {
   const [open, setOpen] = useState(false);
+  
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const newClass = {
-        courseCode: formData.get('courseCode') as string,
+    const updatedClass = {
+        ...classData,
         courseName: formData.get('courseName') as string,
         semester: formData.get('semester') as string,
     };
 
-    if (newClass.courseCode && newClass.courseName && newClass.semester) {
-        onAddClass(newClass);
-        toast.success('New class added successfully!');
+    if (updatedClass.courseName && updatedClass.semester) {
+        onUpdateClass(updatedClass);
+        toast.success('Class updated successfully!');
         setOpen(false);
-        e.currentTarget.reset();
     } else {
         toast.error('Please fill out all fields.');
     }
@@ -44,16 +46,16 @@ export default function AddClassDialog({ onAddClass }: AddClassDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Add Class
+        <Button variant="outline" size="sm">
+          <FilePenLine className="mr-2 h-4 w-4" />
+          Edit
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add New Class</DialogTitle>
+          <DialogTitle>Edit Class</DialogTitle>
           <DialogDescription>
-            Enter the details for the new class. Click save when you're done.
+            Make changes to the class details. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
@@ -62,24 +64,24 @@ export default function AddClassDialog({ onAddClass }: AddClassDialogProps) {
               <Label htmlFor="courseCode" className="text-right">
                 Course Code
               </Label>
-              <Input id="courseCode" name="courseCode" placeholder="e.g., CS501" className="col-span-3" required />
+              <Input id="courseCode" defaultValue={classData.courseCode} className="col-span-3" disabled />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="courseName" className="text-right">
                 Course Name
               </Label>
-              <Input id="courseName" name="courseName" placeholder="e.g., Advanced AI" className="col-span-3" required />
+              <Input id="courseName" name="courseName" defaultValue={classData.courseName} className="col-span-3" required />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="semester" className="text-right">
                 Semester
               </Label>
-              <Input id="semester" name="semester" placeholder="e.g., Fall 2024" className="col-span-3" required />
+              <Input id="semester" name="semester" defaultValue={classData.semester} className="col-span-3" required />
             </div>
           </div>
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
-            <Button type="submit">Save Class</Button>
+             <Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+            <Button type="submit">Save Changes</Button>
           </DialogFooter>
         </form>
       </DialogContent>
