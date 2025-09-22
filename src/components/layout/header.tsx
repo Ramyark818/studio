@@ -10,31 +10,31 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { GraduationCap, LogOut, PanelLeft, User as UserIcon } from 'lucide-react';
+import { GraduationCap, LogOut, Menu, User as UserIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useSidebar } from '@/components/ui/sidebar';
 import { mockUser } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 export function Header() {
-  const { isMobile, toggleSidebar, state: sidebarState } = useSidebar();
+  const { isMobile, toggleSidebar } = useSidebar();
   const user = mockUser;
 
   return (
     <header className="sticky top-0 z-30 flex h-14 w-full items-center justify-between border-b bg-background/80 px-4 backdrop-blur-md sm:px-6">
-      <div className="flex items-center gap-2">
-        {(isMobile || sidebarState === 'collapsed') && (
-            <Button size="icon" variant="ghost" onClick={toggleSidebar} className={cn(!isMobile && 'hidden sm:flex')}>
-                <PanelLeft className="h-5 w-5" />
-                <span className="sr-only">Toggle Menu</span>
-            </Button>
+      <div className="flex items-center gap-4">
+        {isMobile && (
+          <Button size="icon" variant="ghost" onClick={toggleSidebar}>
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Toggle Menu</span>
+          </Button>
         )}
-         <div className="flex items-center gap-2 sm:hidden">
-            <GraduationCap className="h-6 w-6 text-primary" />
-            <span className="font-bold font-headline text-lg">StuHub</span>
+        <div className={cn('flex items-center gap-2', !isMobile && 'hidden')}>
+          <GraduationCap className="h-6 w-6 text-primary" />
+          <span className="font-bold font-headline text-lg">StuHub</span>
         </div>
       </div>
-      
+
       <div className="flex items-center gap-2">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
