@@ -1,4 +1,5 @@
 'use client';
+import { useParams } from 'next/navigation';
 import PageHeader from '@/components/common/page-header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -9,8 +10,9 @@ import { FileDown } from 'lucide-react';
 import { generateClassSummaryReport, generateAttendanceReport } from '@/lib/reports';
 import toast from 'react-hot-toast';
 
-export default function ClassDetailsPage({ params }: { params: { code: string } }) {
-  const { code } = params;
+export default function ClassDetailsPage() {
+  const params = useParams();
+  const code = params.code as string;
   const classDetails = mockFacultyClasses.find(c => c.courseCode === code);
   const students = mockClassStudents;
 
