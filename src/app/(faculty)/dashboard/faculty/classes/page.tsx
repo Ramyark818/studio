@@ -40,7 +40,7 @@ export default function FacultyClassesPage() {
                     <TableCell>{cls.enrolledStudents}</TableCell>
                     <TableCell>{cls.semester}</TableCell>
                     <TableCell className="text-right">
-                      <Button asChild variant="outline" size="sm">
+                      <Button asChild size="sm">
                         <Link href={`/dashboard/faculty/class/${cls.courseCode}`}>
                           View Class
                         </Link>
