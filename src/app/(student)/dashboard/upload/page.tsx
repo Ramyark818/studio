@@ -9,14 +9,27 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import toast from 'react-hot-toast';
 import { UploadCloud } from 'lucide-react';
+import { useState } from 'react';
 
 export default function UploadPage() {
+  const [fileName, setFileName] = useState<string | null>(null);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     toast.success("Your document has been sent for faculty approval.");
-    // Reset form logic would go here
+    // Reset form logic
     (e.target as HTMLFormElement).reset();
+    setFileName(null);
   };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFileName(e.target.files[0].name);
+    } else {
+      setFileName(null);
+    }
+  };
+
 
   return (
     <>
@@ -59,14 +72,15 @@ export default function UploadPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="file-upload">File</Label>
-              <div className="flex items-center gap-2 p-2 rounded-md border border-input bg-muted/50">
-                 <UploadCloud className="h-5 w-5 text-muted-foreground" />
-                 <Label htmlFor="file-upload" className="cursor-pointer text-sm text-muted-foreground hover:text-foreground">
-                    Choose File
-                 </Label>
-                 <span className="text-sm text-muted-foreground">No file chosen</span>
-                 <Input id="file-upload" type="file" className="sr-only" />
-              </div>
+              <Label htmlFor="file-upload" className="cursor-pointer">
+                <div className="flex items-center gap-2 p-2 rounded-md border border-input bg-muted/50 hover:bg-muted">
+                  <UploadCloud className="h-5 w-5 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">
+                      {fileName || 'Choose File'}
+                  </span>
+                  <Input id="file-upload" type="file" className="sr-only" onChange={handleFileChange} />
+                </div>
+              </Label>
             </div>
             <div className="space-y-2">
               <Label htmlFor="comments">Comments (Optional)</Label>

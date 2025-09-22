@@ -29,7 +29,7 @@ export default function PlacementsPage() {
         description="Manage placement drives and student placements."
       />
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
+        <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-4">
             <div>
               <CardTitle>Upcoming Placement Drives</CardTitle>
               <CardDescription>View and manage all scheduled placement drives.</CardDescription>
@@ -37,7 +37,7 @@ export default function PlacementsPage() {
             <AddPlacementDialog onAddPlacement={handleAddPlacement} />
         </CardHeader>
         <CardContent>
-            <div className="rounded-lg border">
+            <div className="rounded-lg border overflow-x-auto">
                 <Table>
                     <TableHeader>
                         <TableRow>
@@ -56,19 +56,19 @@ export default function PlacementsPage() {
                     <TableBody>
                         {placements.map(placement => (
                             <TableRow key={placement.id}>
-                                <TableCell className="font-medium">{placement.companyName}</TableCell>
-                                <TableCell>{placement.jobDescription}</TableCell>
+                                <TableCell className="font-medium whitespace-nowrap">{placement.companyName}</TableCell>
+                                <TableCell className="whitespace-nowrap">{placement.jobDescription}</TableCell>
                                 <TableCell>{placement.recruitingBranches}</TableCell>
                                 <TableCell>{placement.vacancies}</TableCell>
                                 <TableCell>{placement.requiredSkills.join(', ')}</TableCell>
-                                <TableCell>{placement.recruitmentProcess}</TableCell>
+                                <TableCell className="whitespace-nowrap">{placement.recruitmentProcess}</TableCell>
                                 <TableCell>{placement.requiredCgpa}</TableCell>
                                 <TableCell>
                                      <Badge variant={placement.backlogsAllowed ? 'default' : 'secondary'}>
                                         {placement.backlogsAllowed ? 'Yes' : 'No'}
                                     </Badge>
                                 </TableCell>
-                                <TableCell>{placement.driveDate}</TableCell>
+                                <TableCell className="whitespace-nowrap">{placement.driveDate}</TableCell>
                                 <TableCell className="text-right">
                                     <EditPlacementDialog placement={placement} onUpdatePlacement={handleUpdatePlacement} />
                                 </TableCell>

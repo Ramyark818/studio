@@ -77,7 +77,7 @@ export default function UserManagementPage() {
         </CardHeader>
         <CardContent>
             <Tabs defaultValue="students">
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <TabsList>
                         <TabsTrigger value="students">Students</TabsTrigger>
                         <TabsTrigger value="faculty">Faculty</TabsTrigger>
@@ -88,7 +88,7 @@ export default function UserManagementPage() {
                     </div>
                 </div>
                 <TabsContent value="students">
-                   <div className="rounded-lg border mt-4">
+                   <div className="rounded-lg border mt-4 overflow-x-auto">
                      <Table>
                         <TableHeader>
                             <TableRow>
@@ -107,9 +107,9 @@ export default function UserManagementPage() {
                         <TableBody>
                             {students.map(student => (
                                 <TableRow key={student.id}>
-                                    <TableCell>{student.id}</TableCell>
-                                    <TableCell>{student.name}</TableCell>
-                                    <TableCell>{student.dateOfBirth}</TableCell>
+                                    <TableCell className="whitespace-nowrap">{student.id}</TableCell>
+                                    <TableCell className="whitespace-nowrap">{student.name}</TableCell>
+                                    <TableCell className="whitespace-nowrap">{student.dateOfBirth}</TableCell>
                                     <TableCell>
                                         <Badge variant={student.feesPaid ? 'default' : 'destructive'}>
                                             {student.feesPaid ? 'Paid' : 'Due'}
@@ -134,7 +134,7 @@ export default function UserManagementPage() {
                    </div>
                 </TabsContent>
                 <TabsContent value="faculty">
-                  <div className="rounded-lg border mt-4">
+                  <div className="rounded-lg border mt-4 overflow-x-auto">
                     <Table>
                         <TableHeader>
                             <TableRow>
@@ -147,9 +147,9 @@ export default function UserManagementPage() {
                         <TableBody>
                             {faculty.map(fac => (
                                 <TableRow key={fac.id}>
-                                    <TableCell>{fac.id}</TableCell>
-                                    <TableCell>{fac.name}</TableCell>
-                                    <TableCell>{fac.department}</TableCell>
+                                    <TableCell className="whitespace-nowrap">{fac.id}</TableCell>
+                                    <TableCell className="whitespace-nowrap">{fac.name}</TableCell>
+                                    <TableCell className="whitespace-nowrap">{fac.department}</TableCell>
                                     <TableCell className="text-right">
                                         <EditFacultyDialog faculty={fac} onUpdateFaculty={handleUpdateFaculty} />
                                     </TableCell>
