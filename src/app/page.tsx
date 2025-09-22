@@ -1,41 +1,48 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { GraduationCap } from 'lucide-react';
-import { SVGProps } from 'react';
+import {
+  GraduationCap,
+  Users,
+  UploadCloud,
+  Bot,
+  ShieldCheck,
+  UserCog,
+  FileText,
+} from 'lucide-react';
 
 const features = [
   {
-    icon: <IconFeature01 />,
+    icon: <Users className="w-10 h-10 text-primary" />,
     title: 'Role-Based Dashboards',
     description:
       'Custom dashboards for Students, Faculty, and Admins with relevant quick stats and overviews.',
   },
   {
-    icon: <IconFeature02 />,
+    icon: <UploadCloud className="w-10 h-10 text-primary" />,
     title: 'Data Upload & Management',
     description:
       'Easily upload and manage academic records and related documentation.',
   },
   {
-    icon: <IconFeature03 />,
+    icon: <Bot className="w-10 h-10 text-primary" />,
     title: 'AI Student Assistant',
     description:
       'Get instant help with our AI-powered chat agent for all your inquiries.',
   },
   {
-    icon: <IconFeature04 />,
+    icon: <ShieldCheck className="w-10 h-10 text-primary" />,
     title: 'Certificate Verification',
     description:
       'A secure and reliable way to verify the authenticity of student certificates.',
   },
   {
-    icon: <IconFeature05 />,
+    icon: <UserCog className="w-10 h-10 text-primary" />,
     title: 'User & Class Control',
     description:
       'Comprehensive tools for administrators to manage users, classes, and permissions.',
   },
   {
-    icon: <IconFeature06 />,
+    icon: <FileText className="w-10 h-10 text-primary" />,
     title: 'Profile Management',
     description:
       'Students can easily update and maintain their academic and personal profiles.',
@@ -129,141 +136,5 @@ export default function LandingPage() {
         </nav>
       </footer>
     </div>
-  );
-}
-
-function IconFeature01(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-10 h-10 text-primary"
-    >
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  );
-}
-
-function IconFeature02(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-10 h-10 text-primary"
-    >
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="17 8 12 3 7 8" />
-      <line x1="12" x2="12" y1="3" y2="15" />
-    </svg>
-  );
-}
-
-function IconFeature03(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-10 h-10 text-primary"
-    >
-      <path d="M12 8V4H8" />
-      <rect width="16" height="12" x="4" y="8" rx="2" />
-      <path d="M2 14h2" />
-      <path d="M20 14h2" />
-      <path d="M15 13v2" />
-      <path d="M9 13v2" />
-    </svg>
-  );
-}
-
-function IconFeature04(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-10 h-10 text-primary"
-    >
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
-  );
-}
-
-function IconFeature05(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-10 h-10 text-primary"
-    >
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-      <path d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-      <path d="M12 15.5A6.5 6.5 0 0 0 5.5 22" />
-    </svg>
-  );
-}
-
-function IconFeature06(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-10 h-10 text-primary"
-    >
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
   );
 }
