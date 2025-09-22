@@ -49,23 +49,23 @@ export default function FacultyDashboardPage() {
             <TableBody>
               {facultyClasses.map((cls) => (
                  <TableRow key={cls.courseCode} className="cursor-pointer hover:bg-muted/50">
-                   <TableCell className="font-medium">
-                     <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full">
+                   <TableCell className="font-medium p-0">
+                     <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
                        {cls.courseCode}
                      </Link>
                    </TableCell>
-                   <TableCell>
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full">
+                   <TableCell className="p-0">
+                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
                         {cls.courseName}
                       </Link>
                    </TableCell>
-                   <TableCell>
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full">
+                   <TableCell className="p-0">
+                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
                         {cls.enrolledStudents}
                       </Link>
                    </TableCell>
-                   <TableCell>
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full">
+                   <TableCell className="p-0">
+                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
                         {cls.semester}
                       </Link>
                    </TableCell>
