@@ -8,11 +8,13 @@ export default function AuthLayout({
 }) {
   return (
     <div className="flex flex-col min-h-screen bg-muted/30">
-      <header className="px-4 lg:px-6 h-16 flex items-center bg-background border-b">
-        <Link href="/" className="flex items-center justify-center gap-2">
-          <GraduationCap className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold font-headline">StuHub</span>
-        </Link>
+      <header className="px-4 lg:px-6 h-16 flex items-center bg-background border-b w-full">
+        <div className="w-full max-w-screen-xl mx-auto flex items-center">
+            <Link href="/" className="flex items-center justify-center gap-2">
+              <GraduationCap className="h-6 w-6 text-primary" />
+              <span className="text-xl font-bold font-headline">StuHub</span>
+            </Link>
+        </div>
       </header>
       <main className="flex-1 flex items-center justify-center p-4">
         {children}
