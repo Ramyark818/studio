@@ -2,9 +2,10 @@
 import {
   GraduationCap,
   FileText,
-  LayoutDashboard,
-  ListChecks,
-  ShieldCheck,
+  LayoutGrid,
+  Upload,
+  Wand2,
+  Bot,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -21,10 +22,11 @@ import type { NavItem } from '@/lib/types';
 import { Button } from '../ui/button';
 
 const navItems: NavItem[] = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/dashboard/activities', label: 'Activities', icon: ListChecks },
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
   { href: '/dashboard/portfolio', label: 'Portfolio', icon: FileText },
-  { href: '/dashboard/admin', label: 'Admin Panel', icon: ShieldCheck },
+  { href: '/dashboard/upload', label: 'Upload Records', icon: Upload },
+  { href: '/dashboard/career', label: 'Career Guide', icon: Wand2 },
+  { href: '/dashboard/assistant', label: 'AI Assistant', icon: Bot },
 ];
 
 export function AppSidebar() {
@@ -46,7 +48,7 @@ export function AppSidebar() {
             <SidebarMenuItem key={item.href}>
                <SidebarMenuButton
                 asChild
-                isActive={pathname === item.href}
+                isActive={pathname.startsWith(item.href)}
                 icon={item.icon}
               >
                 <Link href={item.href}>
@@ -58,15 +60,6 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter>
-         <div className="p-2">
-            <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 text-center">
-                <p className="text-sm font-medium mb-2">Need Help?</p>
-                <p className="text-xs text-muted-foreground mb-4">
-                    Contact support for any questions or issues.
-                </p>
-                <Button size="sm" className="w-full">Contact Support</Button>
-            </div>
-         </div>
       </SidebarFooter>
     </Sidebar>
   );
