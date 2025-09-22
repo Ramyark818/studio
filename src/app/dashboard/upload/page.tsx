@@ -7,19 +7,15 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
+import toast from 'react-hot-toast';
 import { UploadCloud } from 'lucide-react';
 
 export default function UploadPage() {
-  const { toast } = useToast();
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast({
-        title: "Document Submitted",
-        description: "Your document has been sent for faculty approval.",
-    });
+    toast.success("Your document has been sent for faculty approval.");
     // Reset form logic would go here
+    (e.target as HTMLFormElement).reset();
   };
 
   return (

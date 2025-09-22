@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { GraduationCap } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import toast from 'react-hot-toast';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 type Role = 'student' | 'admin' | 'faculty';
@@ -20,7 +20,6 @@ const dummyCredentials = {
 
 export default function LoginPage() {
   const router = useRouter();
-  const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<Role | ''>('');
@@ -29,28 +28,17 @@ export default function LoginPage() {
     e.preventDefault();
     
     if (!role) {
-      toast({
-        variant: "destructive",
-        title: "Login Failed",
-        description: "Please select a role.",
-      });
+      toast.error("Please select a role.");
       return;
     }
 
     const user = dummyCredentials[role];
 
     if (user && user.email === email && user.password === password) {
-      toast({
-        title: "Login Successful",
-        description: `Redirecting to ${role} dashboard...`,
-      });
+      toast.success(`Redirecting to ${role} dashboard...`);
       router.push(user.path);
     } else {
-      toast({
-        variant: "destructive",
-        title: "Login Failed",
-        description: "Invalid credentials for the selected role. Please try again.",
-      });
+      toast.error("Invalid credentials for the selected role. Please try again.");
     }
   };
 
