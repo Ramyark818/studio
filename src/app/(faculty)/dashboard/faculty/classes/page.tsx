@@ -4,6 +4,7 @@ import PageHeader from '@/components/common/page-header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { mockFacultyClasses } from '@/lib/data';
+import { Button } from '@/components/ui/button';
 
 export default function FacultyClassesPage() {
   const facultyClasses = mockFacultyClasses;
@@ -20,42 +21,36 @@ export default function FacultyClassesPage() {
           <CardDescription>Select a class to manage attendance and view student details.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Course Code</TableHead>
-                <TableHead>Course Name</TableHead>
-                <TableHead>Enrolled Students</TableHead>
-                <TableHead>Semester</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {facultyClasses.map((cls) => (
-                 <TableRow key={cls.courseCode} className="cursor-pointer hover:bg-muted/50">
-                   <TableCell className="font-medium p-0">
-                     <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
-                       {cls.courseCode}
-                     </Link>
-                   </TableCell>
-                   <TableCell className="p-0">
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
-                        {cls.courseName}
-                      </Link>
-                   </TableCell>
-                   <TableCell className="p-0">
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
-                        {cls.enrolledStudents}
-                      </Link>
-                   </TableCell>
-                   <TableCell className="p-0">
-                      <Link href={`/dashboard/faculty/class/${cls.courseCode}`} className="block w-full h-full p-4">
-                        {cls.semester}
-                      </Link>
-                   </TableCell>
-                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <div className="rounded-lg border">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Course Code</TableHead>
+                  <TableHead>Course Name</TableHead>
+                  <TableHead>Enrolled Students</TableHead>
+                  <TableHead>Semester</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {facultyClasses.map((cls) => (
+                  <TableRow key={cls.courseCode}>
+                    <TableCell className="font-medium">{cls.courseCode}</TableCell>
+                    <TableCell>{cls.courseName}</TableCell>
+                    <TableCell>{cls.enrolledStudents}</TableCell>
+                    <TableCell>{cls.semester}</TableCell>
+                    <TableCell className="text-right">
+                      <Button asChild variant="outline" size="sm">
+                        <Link href={`/dashboard/faculty/class/${cls.courseCode}`}>
+                          View Class
+                        </Link>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
     </>
