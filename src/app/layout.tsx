@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { Inter } from 'next/font/google';
 
 export const metadata: Metadata = {
-  title: 'StuHub',
+  title: 'SANKALAN',
   description: 'A centralized platform for student profiles and achievements.',
 };
 

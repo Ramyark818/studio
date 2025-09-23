@@ -37,7 +37,7 @@ export function Header() {
         )}
         <div className={cn('flex items-center gap-2', !isMobile && 'hidden')}>
           <GraduationCap className="h-6 w-6 text-primary" />
-          <span className="font-bold font-headline text-lg">StuHub</span>
+          <span className="font-bold font-headline text-lg">SANKALAN</span>
         </div>
       </div>
 

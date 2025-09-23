@@ -56,7 +56,7 @@ export default function LandingPage() {
         <div className="w-full max-w-screen-xl mx-auto flex items-center">
           <Link href="#" className="flex items-center justify-center">
             <GraduationCap className="h-6 w-6 text-primary" />
-            <span className="ml-2 text-xl font-bold font-headline">StuHub</span>
+            <span className="ml-2 text-xl font-bold font-headline">SANKALAN</span>
           </Link>
           <nav className="ml-auto flex items-center gap-2 sm:gap-4">
             <Button variant="ghost" asChild>
@@ -121,7 +121,7 @@ export default function LandingPage() {
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <p className="text-xs text-muted-foreground">
-          &copy; 2024 StuHub. All rights reserved.
+          &copy; 2024 SANKALAN. All rights reserved.
         </p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link

@@ -13,9 +13,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 type Role = 'student' | 'admin' | 'faculty';
 
 const dummyCredentials = {
-  student: { email: 'student@stuhub.com', password: 'student123', path: '/dashboard' },
-  admin: { email: 'admin@stuhub.com', password: 'admin123', path: '/dashboard/admin' },
-  faculty: { email: 'faculty@stuhub.com', password: 'faculty123', path: '/dashboard/faculty' },
+  student: { email: 'student@sankalan.com', password: 'student123', path: '/dashboard' },
+  admin: { email: 'admin@sankalan.com', password: 'admin123', path: '/dashboard/admin' },
+  faculty: { email: 'faculty@sankalan.com', password: 'faculty123', path: '/dashboard/faculty' },
 };
 
 export default function LoginPage() {
@@ -55,7 +55,7 @@ export default function LoginPage() {
             <div className="mx-auto mb-4">
               <GraduationCap className="h-10 w-10 text-primary" />
             </div>
-            <CardTitle className="text-2xl font-bold">Sign In to StuHub</CardTitle>
+            <CardTitle className="text-2xl font-bold">Sign In to SANKALAN</CardTitle>
             <CardDescription>Enter your credentials to access your account.</CardDescription>
           </CardHeader>
           <CardContent>

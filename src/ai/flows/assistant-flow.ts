@@ -19,7 +19,7 @@ export async function askAssistant(promptText: string): Promise<string> {
     },
     async (prompt) => {
       const llmResponse = await ai.generate({
-        prompt: `You are a helpful AI assistant for a university platform called StuHub. Answer the user's question concisely. User's question: ${prompt}`,
+        prompt: `You are a helpful AI assistant for a university platform called SANKALAN. Answer the user's question concisely. User's question: ${prompt}`,
         model: 'googleai/gemini-2.5-flash',
       });
       return llmResponse.text;

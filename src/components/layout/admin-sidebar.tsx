@@ -45,7 +45,7 @@ export function AdminSidebar() {
             <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
                <Shield className="h-6 w-6" />
             </div>
-          <span className="font-bold font-headline text-lg">StuHub Admin</span>
+          <span className="font-bold font-headline text-lg">SANKALAN Admin</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
