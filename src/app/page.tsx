@@ -9,6 +9,7 @@ import {
   UserCog,
   FileText,
 } from 'lucide-react';
+import Image from 'next/image';
 
 const features = [
   {
@@ -119,21 +120,39 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">
-          &copy; 2024 SANKALAN. All rights reserved.
-        </p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link
-            href="#"
-            className="text-xs hover:underline underline-offset-4"
-          >
-            Terms of Service
-          </Link>
-          <Link href="#" className="text-xs hover:underline underline-offset-4">
-            Privacy
-          </Link>
-        </nav>
+      <footer className="bg-gray-800 text-white">
+        <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div className="sm:flex sm:items-center sm:justify-between">
+                <Link href="/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <GraduationCap className="h-8 w-8" />
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap">SANKALAN</span>
+                </Link>
+                <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-300 sm:mb-0">
+                    <li>
+                        <Link href="#" className="hover:underline me-4 md:me-6">Terms & Conditions</Link>
+                    </li>
+                    <li>
+                        <Link href="#" className="hover:underline me-4 md:me-6">Privacy Policy</Link>
+                    </li>
+                    <li>
+                        <Link href="#" className="hover:underline me-4 md:me-6">About</Link>
+                    </li>
+                    <li>
+                        <Link href="#" className="hover:underline">Contact</Link>
+                    </li>
+                </ul>
+            </div>
+            <hr className="my-6 border-gray-600 sm:mx-auto lg:my-8" />
+            <div className="sm:flex sm:items-center sm:justify-between">
+                <span className="text-sm text-gray-400 sm:text-center">© {new Date().getFullYear()} <Link href="/" className="hover:underline">SANKALAN</Link>. All Rights Reserved.
+                </span>
+                <div className="flex mt-4 sm:justify-center sm:mt-0">
+                    <p className="text-sm text-gray-400">
+                        Last Updated: {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                    </p>
+                </div>
+            </div>
+        </div>
       </footer>
     </div>
   );
