@@ -69,8 +69,8 @@ export function Header() {
               <span>Profile</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem asChild onClick={handleLogout}>
-              <Link href="/">
+            <DropdownMenuItem asChild>
+              <Link href="/" onClick={handleLogout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
               </Link>
