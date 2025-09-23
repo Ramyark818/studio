@@ -10,6 +10,7 @@ import {
   FileText,
 } from 'lucide-react';
 import Image from 'next/image';
+import VisitorCounter from '@/components/common/visitor-counter';
 
 const features = [
   {
@@ -146,7 +147,8 @@ export default function LandingPage() {
             <div className="sm:flex sm:items-center sm:justify-between">
                 <span className="text-sm text-gray-400 sm:text-center">© {new Date().getFullYear()} <Link href="/" className="hover:underline">SANKALAN</Link>. All Rights Reserved.
                 </span>
-                <div className="flex mt-4 sm:justify-center sm:mt-0">
+                <div className="flex flex-wrap items-center mt-4 text-sm font-medium text-gray-300 sm:justify-center sm:mt-0 gap-4 sm:gap-6">
+                    <VisitorCounter />
                     <p className="text-sm text-gray-400">
                         Last Updated: {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' })}
                     </p>

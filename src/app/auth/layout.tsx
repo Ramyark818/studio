@@ -1,5 +1,6 @@
 import { GraduationCap } from 'lucide-react';
 import Link from 'next/link';
+import VisitorCounter from '@/components/common/visitor-counter';
 
 export default function AuthLayout({
   children,
@@ -25,9 +26,10 @@ export default function AuthLayout({
             <div className="sm:flex sm:items-center sm:justify-between">
                 <span className="text-sm text-gray-400 sm:text-center">© {new Date().getFullYear()} <Link href="/" className="hover:underline">SANKALAN</Link>. All Rights Reserved.
                 </span>
-                <div className="flex flex-wrap items-center mt-4 text-sm font-medium text-gray-300 sm:justify-center sm:mt-0">
-                    <Link href="#" className="hover:underline me-4 md:me-6">Terms & Conditions</Link>
+                <div className="flex flex-wrap items-center mt-4 text-sm font-medium text-gray-300 sm:justify-center sm:mt-0 gap-4 sm:gap-6">
+                    <Link href="#" className="hover:underline">Terms & Conditions</Link>
                     <Link href="#" className="hover:underline">Privacy Policy</Link>
+                    <VisitorCounter />
                 </div>
             </div>
         </div>
