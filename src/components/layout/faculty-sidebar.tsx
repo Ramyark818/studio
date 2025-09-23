@@ -3,7 +3,8 @@ import {
   LayoutDashboard,
   FileCheck2,
   BookCopy,
-  User
+  User,
+  LogOut,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -14,9 +15,11 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   useSidebar,
+  SidebarSeparator,
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const navItems = [
   { href: '/dashboard/faculty', label: 'Dashboard', icon: LayoutDashboard },
@@ -27,9 +30,18 @@ const navItems = [
 
 export function FacultySidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { setOpenMobile, isMobile } = useSidebar();
 
   const handleLinkClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+  
+  const handleLogout = () => {
+    toast.success('Logged out successfully!');
+    router.push('/');
     if (isMobile) {
       setOpenMobile(false);
     }
@@ -63,7 +75,15 @@ export function FacultySidebar() {
           ))}
         </SidebarMenu>
       </SidebarContent>
-      <SidebarFooter>
+       <SidebarFooter>
+        <SidebarSeparator />
+         <SidebarMenu>
+            <SidebarMenuItem>
+                <SidebarMenuButton onClick={handleLogout} icon={<LogOut />}>
+                    Log Out
+                </SidebarMenuButton>
+            </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
   );

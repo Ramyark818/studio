@@ -7,6 +7,7 @@ import {
   Wand2,
   Bot,
   GraduationCap,
+  LogOut,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -17,10 +18,12 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   useSidebar,
+  SidebarSeparator,
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import type { NavItem } from '@/lib/types';
+import toast from 'react-hot-toast';
 
 const navItems: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
@@ -33,9 +36,18 @@ const navItems: NavItem[] = [
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { setOpenMobile, isMobile } = useSidebar();
 
   const handleLinkClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+  
+  const handleLogout = () => {
+    toast.success('Logged out successfully!');
+    router.push('/');
     if (isMobile) {
       setOpenMobile(false);
     }
@@ -70,6 +82,14 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter>
+        <SidebarSeparator />
+         <SidebarMenu>
+            <SidebarMenuItem>
+                <SidebarMenuButton onClick={handleLogout} icon={<LogOut />}>
+                    Log Out
+                </SidebarMenuButton>
+            </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
   );

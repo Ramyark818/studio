@@ -6,6 +6,7 @@ import {
   CalendarCheck,
   Briefcase,
   Shield,
+  LogOut,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -16,9 +17,12 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   useSidebar,
+  SidebarSeparator,
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
+import { Button } from '../ui/button';
 
 const navItems = [
   { href: '/dashboard/admin', label: 'Dashboard', icon: LayoutDashboard },
@@ -30,9 +34,18 @@ const navItems = [
 
 export function AdminSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { setOpenMobile, isMobile } = useSidebar();
 
   const handleLinkClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+
+  const handleLogout = () => {
+    toast.success('Logged out successfully!');
+    router.push('/');
     if (isMobile) {
       setOpenMobile(false);
     }
@@ -67,6 +80,14 @@ export function AdminSidebar() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter>
+        <SidebarSeparator />
+         <SidebarMenu>
+            <SidebarMenuItem>
+                <SidebarMenuButton onClick={handleLogout} icon={<LogOut />}>
+                    Log Out
+                </SidebarMenuButton>
+            </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
   );
