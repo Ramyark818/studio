@@ -35,7 +35,7 @@ export default function LoginPage() {
     const user = dummyCredentials[role];
 
     if (user && user.email === email && user.password === password) {
-      toast.success(`Redirecting to ${role} dashboard...`);
+      toast.success("Login Sucessful");
       router.push(user.path);
     } else {
       toast.error("Invalid credentials for the selected role. Please try again.");

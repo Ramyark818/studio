@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -15,10 +16,15 @@ import Link from 'next/link';
 import { useSidebar } from '@/components/ui/sidebar';
 import { mockUser } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import toast from 'react-hot-toast';
 
 export function Header() {
   const { isMobile, toggleSidebar } = useSidebar();
   const user = mockUser;
+
+  const handleLogout = () => {
+    toast.success('Logged out successfully!');
+  };
 
   return (
     <header className="sticky top-0 z-30 flex h-14 w-full items-center justify-between border-b bg-background/80 px-4 backdrop-blur-md sm:px-6">
@@ -63,7 +69,7 @@ export function Header() {
               <span>Profile</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
+            <DropdownMenuItem asChild onClick={handleLogout}>
               <Link href="/">
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
