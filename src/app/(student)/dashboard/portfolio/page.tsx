@@ -9,6 +9,10 @@ import {
   BookOpen,
   Users,
   FilePenLine,
+  Mail,
+  Phone,
+  Home,
+  Star,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,7 +20,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { mockPortfolio } from '@/lib/data';
 import PortfolioInfoCard from '@/components/portfolio/portfolio-info-card';
 import EditPortfolioDialog from '@/components/portfolio/edit-portfolio-dialog';
-import { Button } from '@/components/ui/button';
 
 export default function PortfolioPage() {
   const portfolio = mockPortfolio;
@@ -38,9 +41,9 @@ export default function PortfolioPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column */}
         <div className="lg:col-span-1 space-y-6">
-          <Card className="bg-primary text-primary-foreground text-center">
+          <Card className="text-center">
             <CardContent className="p-6">
-              <Avatar className="h-32 w-32 mx-auto mb-4 border-4 border-primary-foreground/50">
+              <Avatar className="h-32 w-32 mx-auto mb-4 border-4 border-primary">
                 <AvatarImage
                   src={portfolio.user.avatarUrl}
                   alt={portfolio.user.name}
@@ -53,12 +56,12 @@ export default function PortfolioPage() {
               <h2 className="text-2xl font-bold font-headline">
                 {portfolio.user.name}
               </h2>
-              <p>{portfolio.user.major}</p>
-              <p className="text-sm opacity-80">{portfolio.user.degree}</p>
+              <p className="text-muted-foreground">{portfolio.user.major}</p>
+              <p className="text-sm text-muted-foreground">{portfolio.user.degree}</p>
             </CardContent>
           </Card>
           <PortfolioInfoCard
-            icon={Linkedin}
+            icon={Users}
             title="Contact & Links"
             items={portfolio.contact}
             renderItem={(item) => (
@@ -68,8 +71,11 @@ export default function PortfolioPage() {
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:underline"
               >
-                {item.type === 'LinkedIn' && <Linkedin />}
-                {item.type === 'GitHub' && <Github />}
+                {item.type === 'LinkedIn' && <Linkedin className="h-4 w-4" />}
+                {item.type === 'GitHub' && <Github className="h-4 w-4" />}
+                {item.type === 'Email' && <Mail className="h-4 w-4" />}
+                {item.type === 'Phone' && <Phone className="h-4 w-4" />}
+                {item.type === 'Address' && <Home className="h-4 w-4" />}
                 <span>{item.handle}</span>
               </a>
             )}
@@ -110,9 +116,14 @@ export default function PortfolioPage() {
             </CardContent>
           </Card>
           <PortfolioInfoCard
+            icon={Star}
+            title="Certifications"
+            items={portfolio.certifications}
+          />
+          <PortfolioInfoCard
             icon={Award}
-            title="Achievements"
-            items={portfolio.achievements}
+            title="Awards"
+            items={portfolio.awards}
           />
           <PortfolioInfoCard
             icon={Briefcase}

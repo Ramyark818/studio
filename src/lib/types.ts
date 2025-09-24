@@ -42,13 +42,14 @@ export type Portfolio = {
         degree: string;
     },
     contact: {
-        type: 'LinkedIn' | 'GitHub';
+        type: 'LinkedIn' | 'GitHub' | 'Email' | 'Phone' | 'Address';
         handle: string;
         url: string;
     }[];
     interests: string[];
     skills: string[];
-    achievements: string[];
+    awards: string[];
+    certifications: string[];
     projects: string[];
     publications: string[];
     voluntaryWork: string[];

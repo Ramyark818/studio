@@ -33,11 +33,15 @@ const portfolioSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   major: z.string().min(1, 'Major is required'),
   degree: z.string().min(1, 'Degree is required'),
+  email: z.string().email().optional().or(z.literal('')),
+  phone: z.string().optional(),
+  address: z.string().optional(),
   linkedin: z.string().url('Must be a valid URL').optional().or(z.literal('')),
   github: z.string().url('Must be a valid URL').optional().or(z.literal('')),
   interests: z.string(),
   skills: z.string(),
-  achievements: z.string(),
+  awards: z.string(),
+  certifications: z.string(),
   projects: z.string(),
   publications: z.string(),
   voluntaryWork: z.string(),
@@ -58,12 +62,16 @@ export default function EditPortfolioDialog({
       name: portfolio.user.name,
       major: portfolio.user.major,
       degree: portfolio.user.degree,
+      email: portfolio.contact.find((c) => c.type === 'Email')?.handle || '',
+      phone: portfolio.contact.find((c) => c.type === 'Phone')?.handle || '',
+      address: portfolio.contact.find((c) => c.type === 'Address')?.handle || '',
       linkedin:
         portfolio.contact.find((c) => c.type === 'LinkedIn')?.url || '',
       github: portfolio.contact.find((c) => c.type === 'GitHub')?.url || '',
       interests: portfolio.interests.join(', '),
       skills: portfolio.skills.join(', '),
-      achievements: portfolio.achievements.join('\n'),
+      awards: portfolio.awards.join('\n'),
+      certifications: portfolio.certifications.join('\n'),
       projects: portfolio.projects.join('\n'),
       publications: portfolio.publications.join('\n'),
       voluntaryWork: portfolio.voluntaryWork.join('\n'),
@@ -143,6 +151,56 @@ export default function EditPortfolioDialog({
                     )}
                   />
                 </div>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                     <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                            <Input
+                                placeholder="your.email@sankalan.com"
+                                {...field}
+                            />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Phone</FormLabel>
+                            <FormControl>
+                            <Input
+                                placeholder="+91-9876543210"
+                                {...field}
+                            />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                        )}
+                    />
+                </div>
+                 <FormField
+                    control={form.control}
+                    name="address"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Address</FormLabel>
+                        <FormControl>
+                        <Input
+                            placeholder="123 University Ave, Tech City"
+                            {...field}
+                        />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormField
                     control={form.control}
@@ -209,15 +267,31 @@ export default function EditPortfolioDialog({
                     </FormItem>
                   )}
                 />
-                <FormField
+                 <FormField
                   control={form.control}
-                  name="achievements"
+                  name="certifications"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Achievements</FormLabel>
+                      <FormLabel>Certifications</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Enter each achievement on a new line"
+                          placeholder="Enter each certification on a new line"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="awards"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Awards</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Enter each award on a new line"
                           {...field}
                         />
                       </FormControl>

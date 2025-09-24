@@ -102,6 +102,21 @@ export const mockPortfolio: Portfolio = {
     degree: 'Bachelor of Science in Computer Science',
   },
   contact: [
+     {
+      type: 'Email',
+      handle: 'demo.student@sankalan.com',
+      url: 'mailto:demo.student@sankalan.com',
+    },
+    {
+      type: 'Phone',
+      handle: '+91-9876543210',
+      url: 'tel:+91-9876543210',
+    },
+    {
+      type: 'Address',
+      handle: '123 University Ave, Tech City',
+      url: '#',
+    },
     {
       type: 'LinkedIn',
       handle: 'linkedin.com/in/demostudent',
@@ -114,11 +129,12 @@ export const mockPortfolio: Portfolio = {
     },
   ],
   interests: ['AI in Education', 'Hiking', 'Chess'],
-  skills: ['React', 'Next.js', 'TypeScript', 'Node.js'],
-  achievements: ["Hackathon Winner: Best Use of AI", "Dean's List 2023"],
-  projects: ['Community Food Bank App'],
+  skills: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'Machine Learning'],
+  awards: ["Hackathon Winner: Best Use of AI", "Dean's List 2023", "Top Performer Award 2022"],
+  certifications: ["Google Cloud Certified - Associate Cloud Engineer", "Certified Kubernetes Application Developer"],
+  projects: ['Community Food Bank App', 'AI-Powered Resume Builder'],
   publications: ['The Future of AI in Higher Education, J. of EdTech'],
-  voluntaryWork: ['Local Animal Shelter Volunteer'],
+  voluntaryWork: ['Local Animal Shelter Volunteer', 'Code for Change Mentor'],
 };
 
 export const mockFacultyClasses: FacultyClass[] = [

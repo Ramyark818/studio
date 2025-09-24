@@ -28,13 +28,10 @@ const PortfolioInfoCard = <T extends any>({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <ul className="space-y-2">
+        <ul className="space-y-2 list-disc list-inside">
           {items.map((item, index) => (
             <li key={index} className="flex items-start gap-2">
-                {renderItem ? renderItem(item) : <>
-                    <span className="text-primary mt-1">•</span>
-                    <span>{item}</span>
-                </>}
+                {renderItem ? renderItem(item) : <span>{item as ReactNode}</span>}
             </li>
           ))}
         </ul>
