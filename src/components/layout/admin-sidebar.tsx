@@ -5,7 +5,7 @@ import {
   BookCopy,
   CalendarCheck,
   Briefcase,
-  Shield,
+  GraduationCap,
   LogOut,
 } from 'lucide-react';
 import {
@@ -56,7 +56,7 @@ export function AdminSidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2">
             <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
-               <Shield className="h-6 w-6" />
+               <GraduationCap className="h-6 w-6" />
             </div>
           <span className="font-bold font-headline text-lg">Admin Panel</span>
         </div>

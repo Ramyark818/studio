@@ -5,6 +5,7 @@ import {
   BookCopy,
   User,
   LogOut,
+  GraduationCap,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -52,7 +53,7 @@ export function FacultySidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2">
             <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
-               <BookCopy className="h-6 w-6" />
+               <GraduationCap className="h-6 w-6" />
             </div>
           <span className="font-bold font-headline text-lg">SANKALAN Faculty</span>
         </div>
