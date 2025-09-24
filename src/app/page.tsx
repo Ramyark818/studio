@@ -61,11 +61,8 @@ export default function LandingPage() {
             <span className="ml-2 text-xl font-bold font-headline">SANKALAN</span>
           </Link>
           <nav className="ml-auto flex items-center gap-2 sm:gap-4">
-            <Button variant="ghost" asChild>
-              <Link href="/login">Login</Link>
-            </Button>
             <Button asChild>
-              <Link href="/login">Sign Up</Link>
+              <Link href="/login">Login</Link>
             </Button>
           </nav>
         </div>
