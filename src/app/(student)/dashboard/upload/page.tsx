@@ -18,7 +18,10 @@ export default function UploadPage() {
     e.preventDefault();
     toast.success("Your document has been sent for faculty approval.");
     // Reset form logic
-    (e.target as HTMLFormElement).reset();
+    const form = e.currentTarget;
+    if (form) {
+      form.reset();
+    }
     setFileName(null);
   };
 

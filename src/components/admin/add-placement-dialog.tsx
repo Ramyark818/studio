@@ -44,7 +44,10 @@ export default function AddPlacementDialog({ onAddPlacement }: AddPlacementDialo
         onAddPlacement(newPlacement);
         toast.success('New placement drive added successfully!');
         setOpen(false);
-        e.currentTarget.reset();
+        const form = e.currentTarget;
+        if (form) {
+          form.reset();
+        }
     } else {
         toast.error('Please fill out all fields correctly.');
     }
