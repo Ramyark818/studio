@@ -13,6 +13,10 @@ import {
   Phone,
   Home,
   Star,
+  User,
+  GraduationCap,
+  Globe,
+  MessageCircle,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -76,6 +80,8 @@ export default function PortfolioPage() {
                 {item.type === 'Email' && <Mail className="h-4 w-4" />}
                 {item.type === 'Phone' && <Phone className="h-4 w-4" />}
                 {item.type === 'Address' && <Home className="h-4 w-4" />}
+                {item.type === 'Website' && <Globe className="h-4 w-4" />}
+                {item.type === 'Other' && <User className="h-4 w-4" />}
                 <span>{item.handle}</span>
               </a>
             )}
@@ -85,7 +91,7 @@ export default function PortfolioPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Heart />
-                Interests
+                Hobbies
               </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
@@ -96,22 +102,74 @@ export default function PortfolioPage() {
               ))}
             </CardContent>
           </Card>
+
+            <PortfolioInfoCard
+                icon={MessageCircle}
+                title="Languages"
+                items={portfolio.languages}
+                renderItem={(lang) => (
+                    <div className="flex justify-between w-full">
+                        <span>{lang.name}</span>
+                        <span className="text-muted-foreground">{lang.proficiency}</span>
+                    </div>
+                )}
+            />
         </div>
 
         {/* Right Column */}
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                    <User />
+                    Summary
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-sm text-muted-foreground">{portfolio.summary}</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+             <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                    <GraduationCap />
+                    Education
+                </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                {portfolio.education.map((edu, index) => (
+                    <div key={index}>
+                        <div className="flex justify-between items-baseline">
+                            <h3 className="font-semibold">{edu.institution}</h3>
+                            <p className="text-xs text-muted-foreground">{edu.period}</p>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{edu.degree}</p>
+                        <p className="text-sm text-muted-foreground">{edu.details}</p>
+                    </div>
+                ))}
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Code />
-                Professional Skills
+                Skills
               </CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-wrap gap-2">
-              {portfolio.skills.map((skill) => (
-                <Badge key={skill} variant="secondary">
-                  {skill}
-                </Badge>
+            <CardContent className="space-y-4">
+              {portfolio.skills.map((skillCategory) => (
+                <div key={skillCategory.category}>
+                    <h3 className="font-semibold text-sm mb-2">{skillCategory.category}</h3>
+                    <div className="flex flex-wrap gap-2">
+                    {skillCategory.skills.map((skill) => (
+                        <Badge key={skill} variant="secondary">
+                        {skill}
+                        </Badge>
+                    ))}
+                    </div>
+                </div>
               ))}
             </CardContent>
           </Card>

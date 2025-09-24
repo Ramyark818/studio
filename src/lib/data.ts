@@ -96,45 +96,98 @@ export const mockPerformance: PerformanceData[] = [
 
 export const mockPortfolio: Portfolio = {
   user: {
-    name: 'Demo Student',
+    name: 'Lakshminarayana BG',
     avatarUrl: 'https://picsum.photos/seed/avatar2/200/200',
-    major: 'Computer Science Major',
-    degree: 'Bachelor of Science in Computer Science',
+    major: 'Electronics and Communication',
+    degree: 'Bachelor of Engineering',
   },
+  summary: "Pursuing a Bachelor's degree in Electronics and Communication at University BDT College of Engineering, with a solid grounding in emerging technologies. Demonstrates proficiency in web development, Industrial IoT, Cloud Computing and Generative AI, complemented by hands-on project experience. Committed to applying technical expertise to develop innovative solutions in fast-paced, technology-focused environments.",
+  education: [
+      {
+          institution: "University BDT College of Engineering",
+          degree: "Bachelor of Engineering",
+          period: "December 2023 - present",
+          details: "Electronics and Communication - 8.033 CGPA"
+      },
+      {
+          institution: "Government Polytechnic College, Harihar",
+          degree: "Diploma",
+          period: "December 2020 - August 2023",
+          details: "Electronics and Communication - 9.2 CGPA"
+      },
+      {
+          institution: "MKET's LK High School, Harihar",
+          degree: "SSLC",
+          period: "May 2017 - September 2020",
+          details: "92.6%"
+      }
+  ],
   contact: [
      {
       type: 'Email',
-      handle: 'demo.student@sankalan.com',
-      url: 'mailto:demo.student@sankalan.com',
+      handle: 'lnbg720@gmail.com',
+      url: 'mailto:lnbg720@gmail.com',
     },
     {
       type: 'Phone',
-      handle: '+91-9876543210',
-      url: 'tel:+91-9876543210',
+      handle: '+91-7204000742',
+      url: 'tel:+917204000742',
     },
     {
       type: 'Address',
-      handle: '123 University Ave, Tech City',
+      handle: 'Harihar, Davangere - 577601',
       url: '#',
     },
     {
       type: 'LinkedIn',
-      handle: 'linkedin.com/in/demostudent',
-      url: 'https://linkedin.com/in/demostudent',
+      handle: 'in/lnbg',
+      url: 'https://linkedin.com/in/lnbg',
     },
     {
       type: 'GitHub',
-      handle: 'github.com/demostudent',
-      url: 'https://github.com/demostudent',
+      handle: 'bgmanu2426',
+      url: 'https://github.com/bgmanu2426',
     },
+     {
+      type: 'Website',
+      handle: 'https://lnbg.in',
+      url: 'https://lnbg.in',
+    },
+    {
+      type: 'Other',
+      handle: 'bgmanu',
+      url: '#',
+    }
   ],
-  interests: ['AI in Education', 'Hiking', 'Chess'],
-  skills: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'Machine Learning'],
-  awards: ["Hackathon Winner: Best Use of AI", "Dean's List 2023", "Top Performer Award 2022"],
-  certifications: ["Google Cloud Certified - Associate Cloud Engineer", "Certified Kubernetes Application Developer"],
-  projects: ['Community Food Bank App', 'AI-Powered Resume Builder'],
-  publications: ['The Future of AI in Higher Education, J. of EdTech'],
-  voluntaryWork: ['Local Animal Shelter Volunteer', 'Code for Change Mentor'],
+  interests: ['Playing Chess', 'Playing video games or E-Sports'],
+  skills: [
+    {
+        category: 'Backend Development',
+        skills: ['Nodejs', 'Expressjs', 'Flask', 'FastAPI', 'MySQL', 'MongoDB', 'Django', 'Redis', 'Bunjs']
+    },
+    {
+        category: 'Frontend Development',
+        skills: ['JavaScript', 'TypeScript', 'Reactjs', 'TailwindCSS', 'ShadCn', 'Nextjs']
+    },
+    {
+        category: 'Generative AI',
+        skills: ['LangChain', 'LangGraph', 'LangFuse', 'MCP', 'OpenAI', 'QdrantDB', 'Neo4j', 'GuardRails']
+    },
+    {
+        category: 'Industrial Internet of Things',
+        skills: ['Arduino', 'Espressif', 'Raspberry Pi', 'Network Protocols', 'AWS', 'Azure']
+    }
+  ],
+  awards: ["Pratibha Puraskara - 2021 (KAVMS)", "Pratibha Puraskara - 2023 (KAVMS)", "VTU Yukti (Quiz) - Winner (VTU Belagavi)"],
+  certifications: ["Generative AI using Python (ChaiCode, May 2025)", "Introduction To Industry 4.0 and Industrial Internet Of Things (NPTEL, May 2025)", "Geoprocessing using Python (Indian Institute of Remote Sensing - ISRO, August 2023)"],
+  projects: ['Smart Library Management System - Developed a Smart Library Management System with RFID authentication, MH-ET3 Live barcode scanning, and an intuitive web interface for streamlined inventory and resource management.', 'AI based SGPA and CGPA calculator - Developed an AI-powered web and mobile app for SGPA calculation under the VTU scheme, utilizing OCR for accurate text extraction and generating detailed, visually appealing reports.'],
+  publications: [],
+  voluntaryWork: ['UBDT College of Engineering - Joint Secretary (Technical) (January 2025 - September 2025)'],
+  languages: [
+      { name: 'Kannada', proficiency: 'Native or bilingual proficiency'},
+      { name: 'English', proficiency: 'Professional working proficiency'},
+      { name: 'Hindi', proficiency: 'Professional working proficiency'},
+  ]
 };
 
 export const mockFacultyClasses: FacultyClass[] = [

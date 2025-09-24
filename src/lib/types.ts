@@ -34,6 +34,23 @@ export type NavItem = {
   active?: boolean;
 };
 
+export type Education = {
+    institution: string;
+    degree: string;
+    period: string;
+    details: string;
+}
+
+export type CategorizedSkills = {
+    category: string;
+    skills: string[];
+}
+
+export type Language = {
+    name: string;
+    proficiency: string;
+}
+
 export type Portfolio = {
     user: {
         name: string;
@@ -41,18 +58,21 @@ export type Portfolio = {
         major: string;
         degree: string;
     },
+    summary: string;
+    education: Education[];
     contact: {
-        type: 'LinkedIn' | 'GitHub' | 'Email' | 'Phone' | 'Address';
+        type: 'LinkedIn' | 'GitHub' | 'Email' | 'Phone' | 'Address' | 'Website' | 'Other';
         handle: string;
         url: string;
     }[];
     interests: string[];
-    skills: string[];
+    skills: CategorizedSkills[];
     awards: string[];
     certifications: string[];
     projects: string[];
     publications: string[];
     voluntaryWork: string[];
+    languages: Language[];
 }
 
 export type FacultyClass = {
