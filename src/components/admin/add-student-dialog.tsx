@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { UserPlus } from 'lucide-react';
+import { UserPlus, Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import type { Student } from '@/app/(admin)/dashboard/admin/users/page';
@@ -21,19 +21,24 @@ import { Checkbox } from '../ui/checkbox';
 import { ScrollArea } from '../ui/scroll-area';
 
 interface AddStudentDialogProps {
-    onAddStudent: (newStudent: Omit<Student, 'id'>) => void;
+    onAddStudent: (newStudentData: any) => Promise<boolean>;
 }
 
 export default function AddStudentDialog({ onAddStudent }: AddStudentDialogProps) {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
+    
     const formData = new FormData(e.currentTarget);
     
-    const newStudent = {
+    const newStudentData = {
         name: formData.get('name') as string,
+        email: `${(formData.get('name') as string).toLowerCase().replace(/\s+/g, '.')}@student.edu`,
         course: formData.get('course') as string,
+        department: formData.get('course') as string, // Use course as department for now
         dateOfBirth: formData.get('dateOfBirth') as string,
         feesPaid: formData.get('feesPaid') === 'on',
         caste: formData.get('caste') as string,
@@ -41,15 +46,31 @@ export default function AddStudentDialog({ onAddStudent }: AddStudentDialogProps
         documentsSubmitted: formData.get('documentsSubmitted') === 'on',
         tenthMarks: formData.get('tenthMarks') as string,
         twelfthMarks: formData.get('twelfthMarks') as string,
+        enrollmentYear: new Date().getFullYear(),
+        semester: '1st',
+        cgpa: 0
     };
 
-    if (Object.values(newStudent).every(field => field !== null && field !== '')) {
-        onAddStudent(newStudent);
-        toast.success('New student added successfully!');
-        setOpen(false);
-        e.currentTarget.reset();
-    } else {
-        toast.error('Please fill out all fields.');
+    // Validate required fields
+    const requiredFields = ['name', 'course', 'dateOfBirth', 'caste', 'gender', 'tenthMarks', 'twelfthMarks'];
+    const missingFields = requiredFields.filter(field => !newStudentData[field as keyof typeof newStudentData]);
+    
+    if (missingFields.length > 0) {
+        toast.error('Please fill out all required fields.');
+        setIsLoading(false);
+        return;
+    }
+
+    try {
+        const success = await onAddStudent(newStudentData);
+        if (success) {
+            setOpen(false); // Close popup immediately on success
+            e.currentTarget.reset();
+        }
+    } catch (error) {
+        console.error('Error adding student:', error);
+    } finally {
+        setIsLoading(false);
     }
   };
 
@@ -119,8 +140,11 @@ export default function AddStudentDialog({ onAddStudent }: AddStudentDialogProps
             </div>
           </ScrollArea>
           <DialogFooter className="pt-4">
-            <Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
-            <Button type="submit">Save Student</Button>
+            <Button type="button" variant="outline" onClick={() => setOpen(false)} disabled={isLoading}>Cancel</Button>
+            <Button type="submit" disabled={isLoading}>
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Save Student
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

@@ -24,10 +24,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { FilePenLine } from 'lucide-react';
+import { FilePenLine, Loader2 } from 'lucide-react';
 import type { Portfolio } from '@/lib/types';
 import toast from 'react-hot-toast';
 import { ScrollArea } from '../ui/scroll-area';
+import { useState } from 'react';
+import { authClient } from '@/lib/auth';
 
 const portfolioSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -54,11 +56,15 @@ type PortfolioFormValues = z.infer<typeof portfolioSchema>;
 
 interface EditPortfolioDialogProps {
   portfolio: Portfolio;
+  onPortfolioUpdate?: (updatedData: any) => void;
 }
 
 export default function EditPortfolioDialog({
   portfolio,
+  onPortfolioUpdate,
 }: EditPortfolioDialogProps) {
+  const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<PortfolioFormValues>({
     resolver: zodResolver(portfolioSchema),
     defaultValues: {
@@ -84,13 +90,50 @@ export default function EditPortfolioDialog({
     },
   });
 
-  const onSubmit = (data: PortfolioFormValues) => {
-    console.log(data);
-    toast.success('Portfolio updated successfully!');
+  const onSubmit = async (data: PortfolioFormValues) => {
+    setIsLoading(true);
+    
+    try {
+      const token = authClient.getToken();
+      
+      if (!token) {
+        toast.error('Authentication required');
+        setIsLoading(false);
+        return;
+      }
+      
+      const response = await fetch('/api/portfolio', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        toast.success('Portfolio updated successfully!');
+        setOpen(false); // Close popup immediately on success
+        
+        // Notify parent component if callback provided
+        if (onPortfolioUpdate) {
+          onPortfolioUpdate(data);
+        }
+      } else {
+        toast.error(result.message || 'Failed to update portfolio');
+      }
+    } catch (error) {
+      console.error('Error updating portfolio:', error);
+      toast.error('Error updating portfolio');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">
           <FilePenLine className="mr-2 h-4 w-4" />
@@ -404,10 +447,18 @@ export default function EditPortfolioDialog({
               </div>
             </ScrollArea>
             <DialogFooter className="pt-6">
-              <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
-              </DialogClose>
-              <Button type="submit">Save Changes</Button>
+              <Button 
+                type="button" 
+                variant="outline" 
+                onClick={() => setOpen(false)}
+                disabled={isLoading}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" disabled={isLoading}>
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Save Changes
+              </Button>
             </DialogFooter>
           </form>
         </Form>

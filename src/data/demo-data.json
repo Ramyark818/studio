@@ -1,0 +1,446 @@
+{
+  "users": [
+    {
+      "name": "Dr. Rajesh Kumar",
+      "email": "admin@sankalan.com",
+      "password": "admin123",
+      "role": "admin",
+      "avatarUrl": "https://picsum.photos/seed/admin1/200/200"
+    },
+    {
+      "name": "Prof. Priya Sharma",
+      "email": "faculty@sankalan.com",
+      "password": "faculty123",
+      "role": "faculty",
+      "avatarUrl": "https://picsum.photos/seed/faculty1/200/200"
+    },
+    {
+      "name": "Dr. Amit Patel",
+      "email": "amit.patel@sankalan.com",
+      "password": "faculty123",
+      "role": "faculty",
+      "avatarUrl": "https://picsum.photos/seed/faculty2/200/200"
+    },
+    {
+      "name": "Jane Doe",
+      "email": "student@sankalan.com",
+      "password": "student123",
+      "role": "student",
+      "avatarUrl": "https://picsum.photos/seed/student1/200/200"
+    },
+    {
+      "name": "Arjun Singh",
+      "email": "arjun.singh@sankalan.com",
+      "password": "student123",
+      "role": "student",
+      "avatarUrl": "https://picsum.photos/seed/student2/200/200"
+    },
+    {
+      "name": "Meera Gupta",
+      "email": "meera.gupta@sankalan.com",
+      "password": "student123",
+      "role": "student",
+      "avatarUrl": "https://picsum.photos/seed/student3/200/200"
+    },
+    {
+      "name": "Rahul Verma",
+      "email": "rahul.verma@sankalan.com",
+      "password": "student123",
+      "role": "student",
+      "avatarUrl": "https://picsum.photos/seed/student4/200/200"
+    },
+    {
+      "name": "Ananya Reddy",
+      "email": "ananya.reddy@sankalan.com",
+      "password": "student123",
+      "role": "student",
+      "avatarUrl": "https://picsum.photos/seed/student5/200/200"
+    }
+  ],
+  "faculty": [
+    {
+      "facultyId": "FAC20240001",
+      "name": "Prof. Priya Sharma",
+      "email": "faculty@sankalan.com",
+      "department": "Computer Science",
+      "designation": "Professor",
+      "expertise": ["Machine Learning", "Data Science", "Artificial Intelligence"],
+      "qualifications": ["Ph.D. Computer Science", "M.Tech Computer Science"],
+      "experience": 12,
+      "contact": {
+        "phone": "+91-9876543210",
+        "office": "CS-301"
+      },
+      "publications": [
+        "Machine Learning in Healthcare: A Comprehensive Review",
+        "Deep Learning for Natural Language Processing",
+        "AI Ethics and Social Implications"
+      ],
+      "awards": ["Best Teacher Award 2023", "Research Excellence Award 2022"],
+      "joiningDate": "2012-07-01T00:00:00.000Z"
+    },
+    {
+      "facultyId": "FAC20240002",
+      "name": "Dr. Amit Patel",
+      "email": "amit.patel@sankalan.com",
+      "department": "Electronics and Communication",
+      "designation": "Associate Professor",
+      "expertise": ["Digital Signal Processing", "VLSI Design", "Embedded Systems"],
+      "qualifications": ["Ph.D. Electronics", "M.E. Electronics"],
+      "experience": 8,
+      "contact": {
+        "phone": "+91-9876543211",
+        "office": "EC-201"
+      },
+      "publications": [
+        "Advanced VLSI Design Techniques",
+        "IoT Applications in Smart Cities"
+      ],
+      "awards": ["Innovation Award 2023"],
+      "joiningDate": "2016-08-15T00:00:00.000Z"
+    }
+  ],
+  "students": [
+    {
+      "studentId": "STU20240001",
+      "name": "Jane Doe",
+      "email": "student@sankalan.com",
+      "course": "B.Tech in Computer Science",
+      "department": "School of Engineering",
+      "dateOfBirth": "2002-05-15T00:00:00.000Z",
+      "gender": "Female",
+      "feesPaid": true,
+      "caste": "General",
+      "documentsSubmitted": true,
+      "tenthMarks": "92%",
+      "twelfthMarks": "89%",
+      "cgpa": 8.7,
+      "semester": "6th Semester",
+      "enrollmentYear": 2021,
+      "address": {
+        "street": "123 Main Street",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "zipCode": "560001"
+      },
+      "contact": {
+        "phone": "+91-8765432109",
+        "emergencyContact": "+91-9876543210"
+      }
+    },
+    {
+      "studentId": "STU20240002",
+      "name": "Arjun Singh",
+      "email": "arjun.singh@sankalan.com",
+      "course": "B.Tech in Computer Science",
+      "department": "School of Engineering",
+      "dateOfBirth": "2001-12-20T00:00:00.000Z",
+      "gender": "Male",
+      "feesPaid": false,
+      "caste": "OBC",
+      "documentsSubmitted": true,
+      "tenthMarks": "88%",
+      "twelfthMarks": "85%",
+      "cgpa": 8.2,
+      "semester": "6th Semester",
+      "enrollmentYear": 2021,
+      "address": {
+        "street": "456 Park Avenue",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "zipCode": "400001"
+      },
+      "contact": {
+        "phone": "+91-8765432108",
+        "emergencyContact": "+91-9876543211"
+      }
+    },
+    {
+      "studentId": "STU20240003",
+      "name": "Meera Gupta",
+      "email": "meera.gupta@sankalan.com",
+      "course": "B.Tech in Electronics and Communication",
+      "department": "School of Engineering",
+      "dateOfBirth": "2002-08-10T00:00:00.000Z",
+      "gender": "Female",
+      "feesPaid": true,
+      "caste": "General",
+      "documentsSubmitted": false,
+      "tenthMarks": "95%",
+      "twelfthMarks": "93%",
+      "cgpa": 9.1,
+      "semester": "6th Semester",
+      "enrollmentYear": 2021,
+      "address": {
+        "street": "789 College Road",
+        "city": "Delhi",
+        "state": "Delhi",
+        "zipCode": "110001"
+      },
+      "contact": {
+        "phone": "+91-8765432107",
+        "emergencyContact": "+91-9876543212"
+      }
+    },
+    {
+      "studentId": "STU20240004",
+      "name": "Rahul Verma",
+      "email": "rahul.verma@sankalan.com",
+      "course": "B.Tech in Mechanical Engineering",
+      "department": "School of Engineering",
+      "dateOfBirth": "2002-03-25T00:00:00.000Z",
+      "gender": "Male",
+      "feesPaid": true,
+      "caste": "SC",
+      "documentsSubmitted": true,
+      "tenthMarks": "87%",
+      "twelfthMarks": "82%",
+      "cgpa": 7.8,
+      "semester": "6th Semester",
+      "enrollmentYear": 2021,
+      "address": {
+        "street": "321 Industrial Area",
+        "city": "Chennai",
+        "state": "Tamil Nadu",
+        "zipCode": "600001"
+      },
+      "contact": {
+        "phone": "+91-8765432106",
+        "emergencyContact": "+91-9876543213"
+      }
+    },
+    {
+      "studentId": "STU20240005",
+      "name": "Ananya Reddy",
+      "email": "ananya.reddy@sankalan.com",
+      "course": "B.Tech in Information Technology",
+      "department": "School of Engineering",
+      "dateOfBirth": "2002-11-18T00:00:00.000Z",
+      "gender": "Female",
+      "feesPaid": true,
+      "caste": "General",
+      "documentsSubmitted": true,
+      "tenthMarks": "94%",
+      "twelfthMarks": "91%",
+      "cgpa": 8.9,
+      "semester": "6th Semester",
+      "enrollmentYear": 2021,
+      "address": {
+        "street": "654 Tech Park",
+        "city": "Hyderabad",
+        "state": "Telangana",
+        "zipCode": "500001"
+      },
+      "contact": {
+        "phone": "+91-8765432105",
+        "emergencyContact": "+91-9876543214"
+      }
+    }
+  ],
+  "activities": [
+    {
+      "studentId": "STU20240001",
+      "title": "International Conference on AI",
+      "category": "Conference",
+      "description": "Presented a paper on novel neural network architectures at the IEEE International Conference on Artificial Intelligence.",
+      "date": "2023-10-15T00:00:00.000Z",
+      "credits": 15,
+      "status": "Approved",
+      "fileUrl": "https://example.com/certificates/ai-conference-jane.pdf",
+      "approvedBy": "FAC20240001",
+      "approvedAt": "2023-10-20T00:00:00.000Z",
+      "submittedAt": "2023-10-16T00:00:00.000Z"
+    },
+    {
+      "studentId": "STU20240001",
+      "title": "Web Development Bootcamp",
+      "category": "Workshop",
+      "description": "Completed a 4-week intensive workshop on MERN stack development conducted by Tech Academy.",
+      "date": "2023-07-22T00:00:00.000Z",
+      "credits": 10,
+      "status": "Approved",
+      "fileUrl": "https://example.com/certificates/mern-bootcamp-jane.pdf",
+      "approvedBy": "faculty_001",
+      "approvedAt": "2023-07-25T00:00:00.000Z",
+      "submittedAt": "2023-07-23T00:00:00.000Z"
+    },
+    {
+      "studentId": "STU20240002",
+      "title": "Google Cloud Certified",
+      "category": "Certification",
+      "description": "Associate Cloud Engineer certification from Google Cloud Platform.",
+      "date": "2024-01-05T00:00:00.000Z",
+      "credits": 20,
+      "status": "Approved",
+      "fileUrl": "https://example.com/certificates/gcp-arjun.pdf",
+      "approvedBy": "faculty_001",
+      "approvedAt": "2024-01-08T00:00:00.000Z",
+      "submittedAt": "2024-01-06T00:00:00.000Z"
+    },
+    {
+      "studentId": "STU20240002",
+      "title": "Summer Internship at TechCorp",
+      "category": "Internship",
+      "description": "Worked as a software developer intern on the core product team for 3 months.",
+      "date": "2023-08-30T00:00:00.000Z",
+      "credits": 40,
+      "status": "Approved",
+      "fileUrl": "https://example.com/certificates/techcorp-internship-arjun.pdf",
+      "approvedBy": "faculty_001",
+      "approvedAt": "2023-09-02T00:00:00.000Z",
+      "submittedAt": "2023-08-31T00:00:00.000Z"
+    },
+    {
+      "studentId": "STU20240003",
+      "title": "Hackathon: Code for Good",
+      "category": "Competition",
+      "description": "Participated in a 24-hour hackathon focused on social impact solutions. Team developed an app for elderly care.",
+      "date": "2023-11-12T00:00:00.000Z",
+      "credits": 10,
+      "status": "Pending",
+      "submittedAt": "2023-11-13T00:00:00.000Z"
+    },
+    {
+      "studentId": "STU20240003",
+      "title": "Robotics Club Secretary",
+      "category": "Club Activity",
+      "description": "Elected as the secretary for the academic year 2023-24. Organized 5 major events and workshops.",
+      "date": "2023-09-01T00:00:00.000Z",
+      "credits": 5,
+      "status": "Approved",
+      "approvedBy": "FAC20240002",
+      "approvedAt": "2023-09-05T00:00:00.000Z",
+      "submittedAt": "2023-09-02T00:00:00.000Z"
+    },
+    {
+      "studentId": "STU20240004",
+      "title": "Community Tree Plantation Drive",
+      "category": "Volunteering",
+      "description": "Participated in a local community service event to plant 500 trees in the city.",
+      "date": "2024-03-20T00:00:00.000Z",
+      "credits": 5,
+      "status": "Rejected",
+      "rejectionReason": "Uploaded incorrect documentation. Please submit proper certificate from organizing committee.",
+      "submittedAt": "2024-03-21T00:00:00.000Z"
+    },
+    {
+      "studentId": "STU20240005",
+      "title": "National Design Challenge",
+      "category": "Competition",
+      "description": "Submitted a project for the National Design Challenge organized by the Ministry of Education. Project focused on sustainable energy solutions.",
+      "date": "2024-02-18T00:00:00.000Z",
+      "credits": 15,
+      "status": "Pending",
+      "submittedAt": "2024-02-19T00:00:00.000Z"
+    }
+  ],
+  "classes": [
+    {
+      "courseCode": "CS450",
+      "courseName": "Advanced Algorithms",
+      "department": "Computer Science",
+      "semester": "Fall 2024",
+      "credits": 4,
+      "facultyId": "FAC20240001",
+      "enrolledStudents": ["STU20240001", "STU20240002"],
+      "maxCapacity": 50,
+      "schedule": {
+        "days": ["Monday", "Wednesday", "Friday"],
+        "startTime": "09:00",
+        "endTime": "10:30",
+        "room": "CS-101"
+      },
+      "syllabus": "Advanced sorting algorithms, graph algorithms, dynamic programming, complexity analysis"
+    },
+    {
+      "courseCode": "CS210",
+      "courseName": "Data Structures",
+      "department": "Computer Science",
+      "semester": "Fall 2024",
+      "credits": 3,
+      "facultyId": "FAC20240001",
+      "enrolledStudents": ["STU20240001", "STU20240002", "STU20240005"],
+      "maxCapacity": 60,
+      "schedule": {
+        "days": ["Tuesday", "Thursday"],
+        "startTime": "11:00",
+        "endTime": "12:30",
+        "room": "CS-102"
+      },
+      "syllabus": "Arrays, linked lists, stacks, queues, trees, graphs, hashing"
+    },
+    {
+      "courseCode": "EC301",
+      "courseName": "Digital Signal Processing",
+      "department": "Electronics and Communication",
+      "semester": "Fall 2024",
+      "credits": 4,
+      "facultyId": "FAC20240002",
+      "enrolledStudents": ["STU20240003"],
+      "maxCapacity": 40,
+      "schedule": {
+        "days": ["Monday", "Wednesday", "Friday"],
+        "startTime": "14:00",
+        "endTime": "15:30",
+        "room": "EC-201"
+      },
+      "syllabus": "Discrete-time signals, Z-transforms, digital filters, FFT algorithms"
+    }
+  ],
+  "placements": [
+    {
+      "companyName": "TechSolutions Inc.",
+      "jobDescription": "Software Developer role focusing on full-stack web development with modern technologies including React, Node.js, and cloud platforms.",
+      "recruitingBranches": ["Computer Science", "Information Technology"],
+      "vacancies": 5,
+      "requiredSkills": ["JavaScript", "React", "Node.js", "MongoDB", "AWS"],
+      "recruitmentProcess": "Online Test → Technical Interview → HR Interview",
+      "requiredCgpa": 7.5,
+      "backlogsAllowed": false,
+      "driveDate": "2024-04-15T00:00:00.000Z",
+      "applicationDeadline": "2024-04-10T00:00:00.000Z",
+      "packageOffered": {
+        "min": 600000,
+        "max": 800000
+      },
+      "jobLocation": ["Bangalore", "Mumbai"],
+      "eligibilityCriteria": ["No active backlogs", "Good communication skills", "Problem-solving aptitude"],
+      "companyWebsite": "https://techsolutions.com",
+      "contactPerson": {
+        "name": "Sarah Johnson",
+        "email": "sarah.johnson@techsolutions.com",
+        "phone": "+91-9876543220"
+      },
+      "appliedStudents": ["STU20240001", "STU20240002", "STU20240005"],
+      "selectedStudents": ["STU20240001"],
+      "status": "Active"
+    },
+    {
+      "companyName": "InnovateCore Technologies",
+      "jobDescription": "Electronics Engineer position for designing and developing embedded systems and IoT solutions.",
+      "recruitingBranches": ["Electronics and Communication", "Electrical Engineering"],
+      "vacancies": 3,
+      "requiredSkills": ["Embedded C", "Arduino", "Raspberry Pi", "PCB Design", "IoT Protocols"],
+      "recruitmentProcess": "Technical Test → Design Challenge → Technical Interview → Final Interview",
+      "requiredCgpa": 8.0,
+      "backlogsAllowed": true,
+      "driveDate": "2024-04-20T00:00:00.000Z",
+      "applicationDeadline": "2024-04-15T00:00:00.000Z",
+      "packageOffered": {
+        "min": 550000,
+        "max": 750000
+      },
+      "jobLocation": ["Pune", "Hyderabad"],
+      "eligibilityCriteria": ["Strong fundamentals in electronics", "Hands-on project experience", "Maximum 2 backlogs allowed"],
+      "companyWebsite": "https://innovatecore.com",
+      "contactPerson": {
+        "name": "Rajesh Kumar",
+        "email": "rajesh.kumar@innovatecore.com",
+        "phone": "+91-9876543221"
+      },
+      "appliedStudents": ["STU20240003"],
+      "selectedStudents": [],
+      "status": "Active"
+    }
+  ]
+}
