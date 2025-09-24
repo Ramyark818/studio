@@ -7,6 +7,7 @@ import {
   Briefcase,
   GraduationCap,
   LogOut,
+  User,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -30,6 +31,7 @@ const navItems = [
   { href: '/dashboard/admin/classes', label: 'Class Management', icon: BookCopy },
   { href: '/dashboard/admin/attendance', label: 'Faculty Attendance', icon: CalendarCheck },
   { href: '/dashboard/admin/placements', label: 'Placements', icon: Briefcase },
+  { href: '/dashboard/admin/profile', label: 'Profile', icon: User },
 ];
 
 export function AdminSidebar() {

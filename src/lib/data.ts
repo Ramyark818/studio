@@ -2,7 +2,7 @@ import type { User, Activity, PerformanceData, Portfolio, FacultyClass, FacultyP
 
 export const mockUser: User = {
   name: 'Jane Doe',
-  email: 'jane.doe@university.edu',
+  email: 'jane.doe@sankalan.com',
   avatarUrl: 'https://picsum.photos/seed/avatar1/200/200',
   course: 'B.Tech in Computer Science',
   department: 'School of Engineering',
@@ -132,7 +132,7 @@ export const mockFacultyProfile: FacultyProfile = {
   name: 'Dr. Alan Grant',
   title: 'Professor, Department of Computer Science',
   avatarUrl: 'https://picsum.photos/seed/faculty1/200/200',
-  email: 'alan.grant@university.edu',
+  email: 'alan.grant@sankalan.com',
   phone: '123-456-7890',
   office: 'Building 4, Room 301',
   expertise: ['Algorithms', 'Data Structures', 'Computational Theory', 'Machine Learning'],
@@ -144,6 +144,18 @@ export const mockFacultyProfile: FacultyProfile = {
     'Excellence in Teaching Award, 2021',
     'Best Paper Award, Int. Conference on Algorithms, 2020',
   ],
+};
+
+export const mockAdminProfile: FacultyProfile = {
+    name: 'Mr. John Doe',
+    title: 'System Administrator',
+    avatarUrl: 'https://picsum.photos/seed/admin1/200/200',
+    email: 'admin@sankalan.com',
+    phone: '987-654-3210',
+    office: 'Admin Block, Room 101',
+    expertise: ['System Administration', 'Network Security', 'Database Management'],
+    publications: [],
+    awards: ['Employee of the Year, 2022'],
 };
 
 export const mockClassStudents: ClassStudent[] = [
