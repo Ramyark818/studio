@@ -35,7 +35,10 @@ export default function AddClassDialog({ onAddClass }: AddClassDialogProps) {
         onAddClass(newClass);
         toast.success('New class added successfully!');
         setOpen(false);
-        e.currentTarget.reset();
+        const form = e.currentTarget;
+        if (form) {
+          form.reset();
+        }
     } else {
         toast.error('Please fill out all fields.');
     }

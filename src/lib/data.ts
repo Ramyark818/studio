@@ -96,97 +96,97 @@ export const mockPerformance: PerformanceData[] = [
 
 export const mockPortfolio: Portfolio = {
   user: {
-    name: 'Lakshminarayana BG',
-    avatarUrl: 'https://picsum.photos/seed/avatar2/200/200',
-    major: 'Electronics and Communication',
-    degree: 'Bachelor of Engineering',
+    name: 'Alex Johnson',
+    avatarUrl: 'https://picsum.photos/seed/student1/200/200',
+    major: 'Computer Science and Engineering',
+    degree: 'Bachelor of Technology',
   },
-  summary: "Pursuing a Bachelor's degree in Electronics and Communication at University BDT College of Engineering, with a solid grounding in emerging technologies. Demonstrates proficiency in web development, Industrial IoT, Cloud Computing and Generative AI, complemented by hands-on project experience. Committed to applying technical expertise to develop innovative solutions in fast-paced, technology-focused environments.",
+  summary: "Pursuing a Bachelor's degree in Computer Science and Engineering with a strong foundation in software development and emerging technologies. Demonstrates proficiency in full-stack development, machine learning, and cloud computing, complemented by hands-on project experience. Committed to applying technical expertise to develop innovative solutions in fast-paced, technology-focused environments.",
   education: [
       {
-          institution: "University BDT College of Engineering",
-          degree: "Bachelor of Engineering",
-          period: "December 2023 - present",
-          details: "Electronics and Communication - 8.033 CGPA"
+          institution: "Tech University Institute of Technology",
+          degree: "Bachelor of Technology",
+          period: "August 2022 - present",
+          details: "Computer Science and Engineering - 8.5 CGPA"
       },
       {
-          institution: "Government Polytechnic College, Harihar",
-          degree: "Diploma",
-          period: "December 2020 - August 2023",
-          details: "Electronics and Communication - 9.2 CGPA"
+          institution: "Central College of Engineering",
+          degree: "Higher Secondary",
+          period: "June 2020 - May 2022",
+          details: "Science Stream - 89.5%"
       },
       {
-          institution: "MKET's LK High School, Harihar",
-          degree: "SSLC",
-          period: "May 2017 - September 2020",
-          details: "92.6%"
+          institution: "Modern High School",
+          degree: "Secondary School",
+          period: "June 2018 - May 2020",
+          details: "88.2%"
       }
   ],
   contact: [
      {
       type: 'Email',
-      handle: 'lnbg720@gmail.com',
-      url: 'mailto:lnbg720@gmail.com',
+      handle: 'alex.johnson@email.com',
+      url: 'mailto:alex.johnson@email.com',
     },
     {
       type: 'Phone',
-      handle: '+91-7204000742',
-      url: 'tel:+917204000742',
+      handle: '+91-9876543210',
+      url: 'tel:+919876543210',
     },
     {
       type: 'Address',
-      handle: 'Harihar, Davangere - 577601',
+      handle: 'Tech City, State - 123456',
       url: '#',
     },
     {
       type: 'LinkedIn',
-      handle: 'in/lnbg',
-      url: 'https://linkedin.com/in/lnbg',
+      handle: 'in/alexjohnson',
+      url: 'https://linkedin.com/in/alexjohnson',
     },
     {
       type: 'GitHub',
-      handle: 'bgmanu2426',
-      url: 'https://github.com/bgmanu2426',
+      handle: 'alexjohnson-dev',
+      url: 'https://github.com/alexjohnson-dev',
     },
      {
       type: 'Website',
-      handle: 'https://lnbg.in',
-      url: 'https://lnbg.in',
+      handle: 'https://alexjohnson.dev',
+      url: 'https://alexjohnson.dev',
     },
     {
       type: 'Other',
-      handle: 'bgmanu',
+      handle: 'alexjohnson',
       url: '#',
     }
   ],
-  interests: ['Playing Chess', 'Playing video games or E-Sports'],
+  interests: ['Reading Tech Blogs', 'Playing Basketball', 'Photography', 'Hiking'],
   skills: [
     {
-        category: 'Backend Development',
-        skills: ['Nodejs', 'Expressjs', 'Flask', 'FastAPI', 'MySQL', 'MongoDB', 'Django', 'Redis', 'Bunjs']
+        category: 'Programming Languages',
+        skills: ['Java', 'Python', 'JavaScript', 'TypeScript', 'C++', 'SQL']
     },
     {
         category: 'Frontend Development',
-        skills: ['JavaScript', 'TypeScript', 'Reactjs', 'TailwindCSS', 'ShadCn', 'Nextjs']
+        skills: ['React', 'Vue.js', 'Angular', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS']
     },
     {
-        category: 'Generative AI',
-        skills: ['LangChain', 'LangGraph', 'LangFuse', 'MCP', 'OpenAI', 'QdrantDB', 'Neo4j', 'GuardRails']
+        category: 'Backend Development',
+        skills: ['Node.js', 'Express.js', 'Spring Boot', 'Django', 'Flask', 'REST APIs']
     },
     {
-        category: 'Industrial Internet of Things',
-        skills: ['Arduino', 'Espressif', 'Raspberry Pi', 'Network Protocols', 'AWS', 'Azure']
+        category: 'Database & Cloud',
+        skills: ['MySQL', 'MongoDB', 'PostgreSQL', 'AWS', 'Firebase', 'Docker', 'Git']
     }
   ],
-  awards: ["Pratibha Puraskara - 2021 (KAVMS)", "Pratibha Puraskara - 2023 (KAVMS)", "VTU Yukti (Quiz) - Winner (VTU Belagavi)"],
-  certifications: ["Generative AI using Python (ChaiCode, May 2025)", "Introduction To Industry 4.0 and Industrial Internet Of Things (NPTEL, May 2025)", "Geoprocessing using Python (Indian Institute of Remote Sensing - ISRO, August 2023)"],
-  projects: ['Smart Library Management System - Developed a Smart Library Management System with RFID authentication, MH-ET3 Live barcode scanning, and an intuitive web interface for streamlined inventory and resource management.', 'AI based SGPA and CGPA calculator - Developed an AI-powered web and mobile app for SGPA calculation under the VTU scheme, utilizing OCR for accurate text extraction and generating detailed, visually appealing reports.'],
+  awards: ["Dean's List Scholar - 2023", "Best Project Award - Annual Tech Fest 2024", "Programming Contest Winner - State Level 2023"],
+  certifications: ["AWS Cloud Practitioner (Amazon Web Services, 2024)", "Full Stack Web Development (freeCodeCamp, 2023)", "Machine Learning Fundamentals (Coursera, 2023)"],
+  projects: ['E-Commerce Web Application - Developed a full-stack e-commerce platform using React, Node.js, and MongoDB with features like user authentication, payment integration, and real-time inventory management.', 'Student Management System - Built a comprehensive student management system with Java Spring Boot backend and React frontend, including features for attendance tracking, grade management, and automated report generation.'],
   publications: [],
-  voluntaryWork: ['UBDT College of Engineering - Joint Secretary (Technical) (January 2025 - September 2025)'],
+  voluntaryWork: ['Tech Club Vice President (2023-2024)', 'Community Coding Workshop Instructor (2023)', 'College Fest Technical Coordinator (2024)'],
   languages: [
-      { name: 'Kannada', proficiency: 'Native or bilingual proficiency'},
-      { name: 'English', proficiency: 'Professional working proficiency'},
+      { name: 'English', proficiency: 'Native or bilingual proficiency'},
       { name: 'Hindi', proficiency: 'Professional working proficiency'},
+      { name: 'Spanish', proficiency: 'Elementary proficiency'},
   ]
 };
 

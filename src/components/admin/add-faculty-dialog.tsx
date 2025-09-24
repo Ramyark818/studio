@@ -51,7 +51,10 @@ export default function AddFacultyDialog({ onAddFaculty }: AddFacultyDialogProps
         const success = await onAddFaculty(newFacultyData);
         if (success) {
             setOpen(false); // Close popup immediately on success
-            e.currentTarget.reset();
+            const form = e.currentTarget;
+            if (form) {
+              form.reset();
+            }
         }
     } catch (error) {
         console.error('Error adding faculty:', error);

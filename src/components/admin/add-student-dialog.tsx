@@ -65,7 +65,10 @@ export default function AddStudentDialog({ onAddStudent }: AddStudentDialogProps
         const success = await onAddStudent(newStudentData);
         if (success) {
             setOpen(false); // Close popup immediately on success
-            e.currentTarget.reset();
+            const form = e.currentTarget;
+            if (form) {
+              form.reset();
+            }
         }
     } catch (error) {
         console.error('Error adding student:', error);
