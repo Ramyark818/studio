@@ -44,12 +44,17 @@ export default function PortfolioPage() {
       if (navigator.share) {
         await navigator.share(shareData);
       } else {
-        await navigator.clipboard.writeText(window.location.href);
-        toast.success('Portfolio link copied to clipboard!');
+        throw new Error('Web Share API not supported');
       }
     } catch (error) {
-      console.error('Error sharing:', error);
-      toast.error('Could not share portfolio.');
+      console.error('Sharing failed, falling back to clipboard:', error);
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        toast.success('Portfolio link copied to clipboard!');
+      } catch (copyError) {
+        console.error('Failed to copy to clipboard:', copyError);
+        toast.error('Could not share or copy the portfolio link.');
+      }
     }
   };
 
