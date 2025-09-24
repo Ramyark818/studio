@@ -11,7 +11,7 @@ import { getCareerSuggestions, type CareerSuggestion } from '@/ai/flows/career-g
 
 export default function CareerPage() {
   const [interests, setInterests] = useState<string[]>(mockPortfolio.interests);
-  const [skills, setSkills] = useState<string[]>(mockPortfolio.skills);
+  const [skills, setSkills] = useState<string[]>(mockPortfolio.skills.flatMap(cat => cat.skills));
   const [newInterest, setNewInterest] = useState('');
   const [newSkill, setNewSkill] = useState('');
   const [suggestions, setSuggestions] = useState<CareerSuggestion[]>([]);
