@@ -33,9 +33,11 @@ const portfolioSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   major: z.string().min(1, 'Major is required'),
   degree: z.string().min(1, 'Degree is required'),
+  summary: z.string().min(1, 'Summary is required'),
   email: z.string().email().optional().or(z.literal('')),
   phone: z.string().optional(),
   address: z.string().optional(),
+  website: z.string().url('Must be a valid URL').optional().or(z.literal('')),
   linkedin: z.string().url('Must be a valid URL').optional().or(z.literal('')),
   github: z.string().url('Must be a valid URL').optional().or(z.literal('')),
   interests: z.string(),
@@ -45,6 +47,7 @@ const portfolioSchema = z.object({
   projects: z.string(),
   publications: z.string(),
   voluntaryWork: z.string(),
+  languages: z.string(),
 });
 
 type PortfolioFormValues = z.infer<typeof portfolioSchema>;
@@ -62,19 +65,22 @@ export default function EditPortfolioDialog({
       name: portfolio.user.name,
       major: portfolio.user.major,
       degree: portfolio.user.degree,
+      summary: portfolio.summary,
       email: portfolio.contact.find((c) => c.type === 'Email')?.handle || '',
       phone: portfolio.contact.find((c) => c.type === 'Phone')?.handle || '',
       address: portfolio.contact.find((c) => c.type === 'Address')?.handle || '',
+      website: portfolio.contact.find(c => c.type === 'Website')?.url || '',
       linkedin:
         portfolio.contact.find((c) => c.type === 'LinkedIn')?.url || '',
       github: portfolio.contact.find((c) => c.type === 'GitHub')?.url || '',
       interests: portfolio.interests.join(', '),
-      skills: portfolio.skills.join(', '),
+      skills: portfolio.skills.flatMap(cat => cat.skills).join(', '),
       awards: portfolio.awards.join('\n'),
       certifications: portfolio.certifications.join('\n'),
       projects: portfolio.projects.join('\n'),
       publications: portfolio.publications.join('\n'),
       voluntaryWork: portfolio.voluntaryWork.join('\n'),
+      languages: portfolio.languages.map(l => `${l.name} (${l.proficiency})`).join('\n'),
     },
   });
 
@@ -102,6 +108,22 @@ export default function EditPortfolioDialog({
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <ScrollArea className="h-[60vh] pr-6">
               <div className="space-y-6">
+                <FormField
+                    control={form.control}
+                    name="summary"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Summary</FormLabel>
+                        <FormControl>
+                        <Textarea
+                            placeholder="A brief professional summary..."
+                            {...field}
+                        />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormField
                     control={form.control}
@@ -201,6 +223,22 @@ export default function EditPortfolioDialog({
                     </FormItem>
                     )}
                 />
+                 <FormField
+                    control={form.control}
+                    name="website"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Personal Website URL</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="https://your-website.com"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormField
                     control={form.control}
@@ -242,7 +280,7 @@ export default function EditPortfolioDialog({
                     <FormItem>
                       <FormLabel>Skills</FormLabel>
                       <FormControl>
-                        <Input
+                        <Textarea
                           placeholder="Enter skills separated by commas"
                           {...field}
                         />
@@ -256,10 +294,26 @@ export default function EditPortfolioDialog({
                   name="interests"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Interests</FormLabel>
+                      <FormLabel>Interests / Hobbies</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Enter interests separated by commas"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="languages"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Languages</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Enter each language on a new line, e.g., English (Professional)"
                           {...field}
                         />
                       </FormControl>
