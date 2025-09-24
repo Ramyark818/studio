@@ -14,55 +14,189 @@ async function seedDatabase() {
     
     console.log('🌱 Starting database seeding...');
     
-    // Clear existing data
+    // Clear existing data with proper error handling
     console.log('🧹 Clearing existing data...');
-    await User.deleteMany({});
-    await Student.deleteMany({});
-    await Faculty.deleteMany({});
-    await Activity.deleteMany({});
-    await Class.deleteMany({});
-    await Placement.deleteMany({});
+    try {
+      await Promise.all([
+        User.deleteMany({}),
+        Student.deleteMany({}),
+        Faculty.deleteMany({}),
+        Activity.deleteMany({}),
+        Class.deleteMany({}),
+        Placement.deleteMany({})
+      ]);
+      console.log('✅ Successfully cleared existing data');
+    } catch (clearError) {
+      console.log('⚠️ Warning: Some collections may not exist yet, continuing...');
+    }
     
-    // Seed Users
+    // Clean up problematic indexes
+    console.log('🧹 Cleaning up indexes...');
+    try {
+      const db = (await dbConnect()).connection.db;
+      
+      // Try to drop problematic username index if it exists
+      try {
+        await db.collection('users').dropIndex('username_1');
+        console.log('✅ Dropped username_1 index');
+      } catch (indexError) {
+        // Index doesn't exist, that's fine
+      }
+    } catch (indexCleanupError) {
+      console.log('⚠️ Warning: Could not clean indexes, continuing...');
+    }
+    
+    // Add a small delay to ensure cleanup is complete
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Seed Users with upsert logic
     console.log('👥 Seeding users...');
-    const usersWithHashedPasswords = await Promise.all(
-      demoData.users.map(async (user) => {
-        const { _id, ...userWithoutId } = user;
-        return {
-          ...userWithoutId,
-          password: await bcrypt.hash(user.password, 10)
-        };
-      })
-    );
+    const createdUsers = [];
     
-    const createdUsers = await User.insertMany(usersWithHashedPasswords);
-    console.log(`✅ Created ${createdUsers.length} users`);
+    for (const user of demoData.users) {
+      const { _id, ...userWithoutId } = user;
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      
+      try {
+        const existingUser = await User.findOne({ email: user.email });
+        if (existingUser) {
+          // Update existing user
+          await User.findOneAndUpdate(
+            { email: user.email },
+            { ...userWithoutId, password: hashedPassword },
+            { new: true }
+          );
+          createdUsers.push(existingUser);
+        } else {
+          // Create new user
+          const newUser = await User.create({
+            ...userWithoutId,
+            password: hashedPassword
+          });
+          createdUsers.push(newUser);
+        }
+      } catch (userError: any) {
+        if (userError.code === 11000) {
+          // Duplicate key error - find existing user
+          const existingUser = await User.findOne({ email: user.email });
+          if (existingUser) {
+            createdUsers.push(existingUser);
+          }
+        } else {
+          throw userError;
+        }
+      }
+    }
+    
+    console.log(`✅ Processed ${createdUsers.length} users`);
     
     // Seed Faculty
     console.log('👨‍🏫 Seeding faculty...');
-    const facultyData = demoData.faculty.map(faculty => {
-      const { _id, userId, ...facultyWithoutId } = faculty;
-      return {
-        ...facultyWithoutId,
-        userId: createdUsers.find(u => u.email === faculty.email)?._id
-      };
-    });
+    const createdFaculty = [];
     
-    const createdFaculty = await Faculty.insertMany(facultyData);
-    console.log(`✅ Created ${createdFaculty.length} faculty members`);
+    for (const faculty of demoData.faculty) {
+      const { _id, userId, ...facultyWithoutId } = faculty;
+      const facultyUserId = createdUsers.find(u => u.email === faculty.email)?._id;
+      
+      console.log(`Processing faculty: ${faculty.email}, found userId: ${facultyUserId}`);
+      
+      if (!facultyUserId) {
+        console.log(`Warning: No user found for faculty email: ${faculty.email}`);
+        console.log('Available users:', createdUsers.map(u => ({ email: u.email, id: u._id })));
+        continue; // Skip this faculty if no corresponding user found
+      }
+      
+      try {
+        const existingFaculty = await Faculty.findOne({ 
+          $or: [{ email: faculty.email }, { facultyId: faculty.facultyId }]
+        });
+        
+        if (existingFaculty) {
+          // Update existing faculty
+          const updatedFaculty = await Faculty.findOneAndUpdate(
+            { email: faculty.email },
+            { ...facultyWithoutId, userId: facultyUserId },
+            { new: true }
+          );
+          createdFaculty.push(updatedFaculty);
+        } else {
+          // Create new faculty
+          const newFaculty = await Faculty.create({
+            ...facultyWithoutId,
+            userId: facultyUserId
+          });
+          createdFaculty.push(newFaculty);
+        }
+      } catch (facultyError: any) {
+        if (facultyError.code === 11000) {
+          // Duplicate key error - find existing faculty
+          const existingFaculty = await Faculty.findOne({ 
+            $or: [{ email: faculty.email }, { facultyId: faculty.facultyId }]
+          });
+          if (existingFaculty) {
+            createdFaculty.push(existingFaculty);
+          }
+        } else {
+          console.error(`Error creating faculty ${faculty.email}:`, facultyError);
+          throw facultyError;
+        }
+      }
+    }
+    
+    console.log(`✅ Processed ${createdFaculty.length} faculty members`);
     
     // Seed Students
     console.log('👨‍🎓 Seeding students...');
-    const studentsData = demoData.students.map(student => {
-      const { _id, userId, ...studentWithoutId } = student;
-      return {
-        ...studentWithoutId,
-        userId: createdUsers.find(u => u.email === student.email)?._id
-      };
-    });
+    const createdStudents = [];
     
-    const createdStudents = await Student.insertMany(studentsData);
-    console.log(`✅ Created ${createdStudents.length} students`);
+    for (const student of demoData.students) {
+      const { _id, userId, ...studentWithoutId } = student;
+      const studentUserId = createdUsers.find(u => u.email === student.email)?._id;
+      
+      console.log(`Processing student: ${student.email}, found userId: ${studentUserId}`);
+      
+      if (!studentUserId) {
+        console.log(`Warning: No user found for student email: ${student.email}`);
+        continue; // Skip this student if no corresponding user found
+      }
+      
+      try {
+        const existingStudent = await Student.findOne({ 
+          $or: [{ email: student.email }, { studentId: student.studentId }]
+        });
+        
+        if (existingStudent) {
+          // Update existing student
+          const updatedStudent = await Student.findOneAndUpdate(
+            { email: student.email },
+            { ...studentWithoutId, userId: studentUserId },
+            { new: true }
+          );
+          createdStudents.push(updatedStudent);
+        } else {
+          // Create new student
+          const newStudent = await Student.create({
+            ...studentWithoutId,
+            userId: studentUserId
+          });
+          createdStudents.push(newStudent);
+        }
+      } catch (studentError: any) {
+        if (studentError.code === 11000) {
+          // Duplicate key error - find existing student
+          const existingStudent = await Student.findOne({ 
+            $or: [{ email: student.email }, { studentId: student.studentId }]
+          });
+          if (existingStudent) {
+            createdStudents.push(existingStudent);
+          }
+        } else {
+          throw studentError;
+        }
+      }
+    }
+    
+    console.log(`✅ Processed ${createdStudents.length} students`);
     
     // Seed Activities
     console.log('🎯 Seeding activities...');
@@ -73,10 +207,20 @@ async function seedDatabase() {
         studentId: createdStudents.find(s => s.studentId === activity.studentId)?._id,
         approvedBy: activity.approvedBy ? createdFaculty.find(f => f.facultyId === activity.approvedBy)?._id : undefined
       };
-    });
+    }).filter(activity => activity.studentId); // Only include activities with valid studentId
     
-    const createdActivities = await Activity.insertMany(activitiesData);
-    console.log(`✅ Created ${createdActivities.length} activities`);
+    let createdActivities = [];
+    try {
+      createdActivities = await Activity.insertMany(activitiesData, { ordered: false });
+    } catch (error: any) {
+      if (error.code === 11000) {
+        console.log('⚠️ Some activities already exist, continuing...');
+        createdActivities = await Activity.find({});
+      } else {
+        throw error;
+      }
+    }
+    console.log(`✅ Processed ${createdActivities.length} activities`);
     
     // Seed Classes
     console.log('📚 Seeding classes...');
@@ -89,10 +233,20 @@ async function seedDatabase() {
           createdStudents.find(s => s.studentId === studentId)?._id
         ).filter(Boolean)
       };
-    });
+    }).filter(classItem => classItem.facultyId); // Only include classes with valid facultyId
     
-    const createdClasses = await Class.insertMany(classesData);
-    console.log(`✅ Created ${createdClasses.length} classes`);
+    let createdClasses = [];
+    try {
+      createdClasses = await Class.insertMany(classesData, { ordered: false });
+    } catch (error: any) {
+      if (error.code === 11000) {
+        console.log('⚠️ Some classes already exist, continuing...');
+        createdClasses = await Class.find({});
+      } else {
+        throw error;
+      }
+    }
+    console.log(`✅ Processed ${createdClasses.length} classes`);
     
     // Seed Placements
     console.log('💼 Seeding placements...');
@@ -101,17 +255,27 @@ async function seedDatabase() {
       return {
         ...placementWithoutId,
         createdBy: createdUsers.find(u => u.email === 'admin@sankalan.com')?._id,
-        appliedStudents: placement.appliedStudents.map(studentId =>
+        appliedStudents: placement.appliedStudents?.map(studentId =>
           createdStudents.find(s => s.studentId === studentId)?._id
-        ).filter(Boolean),
-        selectedStudents: placement.selectedStudents.map(studentId =>
+        ).filter(Boolean) || [],
+        selectedStudents: placement.selectedStudents?.map(studentId =>
           createdStudents.find(s => s.studentId === studentId)?._id
-        ).filter(Boolean)
+        ).filter(Boolean) || []
       };
     });
     
-    const createdPlacements = await Placement.insertMany(placementsData);
-    console.log(`✅ Created ${createdPlacements.length} placements`);
+    let createdPlacements = [];
+    try {
+      createdPlacements = await Placement.insertMany(placementsData, { ordered: false });
+    } catch (error: any) {
+      if (error.code === 11000) {
+        console.log('⚠️ Some placements already exist, continuing...');
+        createdPlacements = await Placement.find({});
+      } else {
+        throw error;
+      }
+    }
+    console.log(`✅ Processed ${createdPlacements.length} placements`);
     
     console.log('🎉 Database seeding completed successfully!');
     console.log('\n📋 Summary:');
