@@ -119,6 +119,19 @@ class ApiClient {
     });
   }
 
+  async updateFaculty(id: string, facultyData: any) {
+    return this.request(`/faculty/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(facultyData),
+    });
+  }
+
+  async deleteFaculty(id: string) {
+    return this.request(`/faculty/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
   // Activities
   async getActivities(params?: { 
     page?: number; 
@@ -177,6 +190,19 @@ class ApiClient {
     });
   }
 
+  async updatePlacement(id: string, placementData: any) {
+    return this.request(`/placements/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(placementData),
+    });
+  }
+
+  async deletePlacement(id: string) {
+    return this.request(`/placements/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
   // Portfolio methods
   async getPortfolio(studentId?: string) {
     const url = studentId ? `/portfolio?studentId=${studentId}` : '/portfolio';
@@ -188,14 +214,6 @@ class ApiClient {
     return this.request('/portfolio', {
       method: 'PUT',
       body: JSON.stringify(data)
-    });
-  }
-
-  // Database seeding
-  async seedDatabase() {
-    return this.request('/seed', {
-      method: 'POST',
-      body: JSON.stringify({ confirmSeed: true }),
     });
   }
 }

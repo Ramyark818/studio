@@ -9,6 +9,8 @@ import AddStudentDialog from '@/components/admin/add-student-dialog';
 import AddFacultyDialog from '@/components/admin/add-faculty-dialog';
 import EditStudentDialog from '@/components/admin/edit-student-dialog';
 import EditFacultyDialog from '@/components/admin/edit-faculty-dialog';
+import DeleteStudentDialog from '@/components/admin/delete-student-dialog';
+import DeleteFacultyDialog from '@/components/admin/delete-faculty-dialog';
 import { Badge } from '@/components/ui/badge';
 import apiClient from '@/lib/api-client';
 import toast from 'react-hot-toast';
@@ -43,6 +45,12 @@ interface Faculty {
     expertise: string[];
     qualifications: string[];
     experience: number;
+    contact: {
+        phone: string;
+        office: string;
+    };
+    publications?: string[];
+    awards?: string[];
     joiningDate: string;
 }
 
@@ -166,6 +174,42 @@ export default function UserManagementPage() {
         }
     };
 
+    const handleDeleteStudent = async (studentId: string) => {
+        try {
+            const response = await apiClient.deleteStudent(studentId);
+            if (response.success) {
+                toast.success('Student deleted successfully!');
+                await fetchStudents(); // Refresh the list
+                return true;
+            } else {
+                toast.error(response.message || 'Failed to delete student');
+                return false;
+            }
+        } catch (error) {
+            console.error('Error deleting student:', error);
+            toast.error('Error deleting student');
+            return false;
+        }
+    };
+
+    const handleDeleteFaculty = async (facultyId: string) => {
+        try {
+            const response = await apiClient.deleteFaculty(facultyId);
+            if (response.success) {
+                toast.success('Faculty deleted successfully!');
+                await fetchFaculty(); // Refresh the list
+                return true;
+            } else {
+                toast.error(response.message || 'Failed to delete faculty');
+                return false;
+            }
+        } catch (error) {
+            console.error('Error deleting faculty:', error);
+            toast.error('Error deleting faculty');
+            return false;
+        }
+    };
+
     if (loading) {
         return (
             <div className="flex items-center justify-center h-64">
@@ -252,7 +296,10 @@ export default function UserManagementPage() {
                                         <TableCell>{student.tenthMarks}</TableCell>
                                         <TableCell>{student.twelfthMarks}</TableCell>
                                         <TableCell className="text-right">
-                                            <EditStudentDialog student={student} onUpdateStudent={handleUpdateStudent} />
+                                            <div className="flex gap-2 justify-end">
+                                                <EditStudentDialog student={student} onUpdateStudent={handleUpdateStudent} />
+                                                <DeleteStudentDialog student={student} onDeleteStudent={handleDeleteStudent} />
+                                            </div>
                                         </TableCell>
                                     </TableRow>
                                 ))
@@ -293,7 +340,10 @@ export default function UserManagementPage() {
                                         <TableCell className="whitespace-nowrap">{fac.name}</TableCell>
                                         <TableCell className="whitespace-nowrap">{fac.department}</TableCell>
                                         <TableCell className="text-right">
-                                            <EditFacultyDialog faculty={fac} onUpdateFaculty={handleUpdateFaculty} />
+                                            <div className="flex gap-2 justify-end">
+                                                <EditFacultyDialog faculty={fac} onUpdateFaculty={handleUpdateFaculty} />
+                                                <DeleteFacultyDialog faculty={fac} onDeleteFaculty={handleDeleteFaculty} />
+                                            </div>
                                         </TableCell>
                                     </TableRow>
                                 ))

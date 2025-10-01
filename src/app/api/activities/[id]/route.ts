@@ -3,14 +3,15 @@ import dbConnect from '@/lib/mongodb';
 import Activity from '@/models/Activity';
 import { successResponse, errorResponse, handleApiError } from '@/lib/api-response';
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
     
+    const { id } = await params;
     const body = await request.json();
     const { status, approvedBy, rejectionReason } = body;
     
-    const activity = await Activity.findById(params.id);
+    const activity = await Activity.findById(id);
     
     if (!activity) {
       return errorResponse('Activity not found', 404);
@@ -29,7 +30,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     }
     
     const updatedActivity = await Activity.findByIdAndUpdate(
-      params.id,
+      id,
       updateData,
       { new: true, runValidators: true }
     )
@@ -42,17 +43,19 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
     
-    const activity = await Activity.findById(params.id);
+    const { id } = await params;
+    
+    const activity = await Activity.findById(id);
     
     if (!activity) {
       return errorResponse('Activity not found', 404);
     }
     
-    await Activity.findByIdAndDelete(params.id);
+    await Activity.findByIdAndDelete(id);
     
     return successResponse(null, 'Activity deleted successfully');
   } catch (error) {

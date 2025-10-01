@@ -4,11 +4,13 @@ import Student from '@/models/Student';
 import User from '@/models/User';
 import { successResponse, errorResponse, handleApiError } from '@/lib/api-response';
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
     
-    const student = await Student.findById(params.id)
+    const { id } = await params;
+    
+    const student = await Student.findById(id)
       .populate('userId', 'name email avatarUrl');
     
     if (!student) {
@@ -21,14 +23,15 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
     
+    const { id } = await params;
     const body = await request.json();
     
     const student = await Student.findByIdAndUpdate(
-      params.id,
+      id,
       body,
       { new: true, runValidators: true }
     ).populate('userId', 'name email avatarUrl');
@@ -51,11 +54,13 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
     
-    const student = await Student.findById(params.id);
+    const { id } = await params;
+    
+    const student = await Student.findById(id);
     
     if (!student) {
       return errorResponse('Student not found', 404);
@@ -65,7 +70,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     await User.findByIdAndDelete(student.userId);
     
     // Delete student
-    await Student.findByIdAndDelete(params.id);
+    await Student.findByIdAndDelete(id);
     
     return successResponse(null, 'Student deleted successfully');
   } catch (error) {

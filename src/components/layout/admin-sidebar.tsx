@@ -8,7 +8,6 @@ import {
   GraduationCap,
   LogOut,
   User,
-  Database,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -24,7 +23,6 @@ import {
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import { Button } from '../ui/button';
 
 const navItems = [
   { href: '/dashboard/admin', label: 'Dashboard', icon: LayoutDashboard },
@@ -32,7 +30,6 @@ const navItems = [
   { href: '/dashboard/admin/classes', label: 'Class Management', icon: BookCopy },
   { href: '/dashboard/admin/attendance', label: 'Faculty Attendance', icon: CalendarCheck },
   { href: '/dashboard/admin/placements', label: 'Placements', icon: Briefcase },
-  { href: '/dashboard/admin/seed', label: 'Database Seed', icon: Database },
   { href: '/dashboard/admin/profile', label: 'Profile', icon: User },
 ];
 
