@@ -1,4 +1,3 @@
-
 'use client';
 import {
   Dialog,
@@ -18,28 +17,28 @@ import { useState } from 'react';
 import type { FacultyClass } from '@/lib/types';
 
 interface EditClassDialogProps {
-    classData: FacultyClass;
-    onUpdateClass: (updatedClass: FacultyClass) => void;
+  classData: FacultyClass;
+  onUpdateClass: (updatedClass: FacultyClass) => void;
 }
 
 export default function EditClassDialog({ classData, onUpdateClass }: EditClassDialogProps) {
   const [open, setOpen] = useState(false);
-  
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const updatedClass = {
-        ...classData,
-        courseName: formData.get('courseName') as string,
-        semester: formData.get('semester') as string,
+      ...classData,
+      courseName: formData.get('courseName') as string,
+      semester: formData.get('semester') as string,
     };
 
     if (updatedClass.courseName && updatedClass.semester) {
-        onUpdateClass(updatedClass);
-        toast.success('Class updated successfully!');
-        setOpen(false);
+      onUpdateClass(updatedClass);
+      toast.success('Class updated successfully!');
+      setOpen(false);
     } else {
-        toast.error('Please fill out all fields.');
+      toast.error('Please fill out all fields.');
     }
   };
 
@@ -64,23 +63,42 @@ export default function EditClassDialog({ classData, onUpdateClass }: EditClassD
               <Label htmlFor="courseCode" className="text-right">
                 Course Code
               </Label>
-              <Input id="courseCode" defaultValue={classData.courseCode} className="col-span-3" disabled />
+              <Input
+                id="courseCode"
+                defaultValue={classData.courseCode}
+                className="col-span-3"
+                disabled
+              />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="courseName" className="text-right">
                 Course Name
               </Label>
-              <Input id="courseName" name="courseName" defaultValue={classData.courseName} className="col-span-3" required />
+              <Input
+                id="courseName"
+                name="courseName"
+                defaultValue={classData.courseName}
+                className="col-span-3"
+                required
+              />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="semester" className="text-right">
                 Semester
               </Label>
-              <Input id="semester" name="semester" defaultValue={classData.semester} className="col-span-3" required />
+              <Input
+                id="semester"
+                name="semester"
+                defaultValue={classData.semester}
+                className="col-span-3"
+                required
+              />
             </div>
           </div>
           <DialogFooter>
-             <Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+            <Button type="button" variant="outline" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
             <Button type="submit">Save Changes</Button>
           </DialogFooter>
         </form>

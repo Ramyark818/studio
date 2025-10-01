@@ -13,7 +13,7 @@ import {
 } from 'recharts';
 import { mockFacultyClasses } from '@/lib/data';
 
-const data = mockFacultyClasses.map(cls => ({
+const data = mockFacultyClasses.map((cls) => ({
   name: cls.courseCode,
   attendance: Math.floor(Math.random() * (98 - 80 + 1)) + 80, // Random percentage between 80-98
 }));
@@ -28,10 +28,7 @@ export default function AttendanceChart() {
       <CardContent>
         <div className="h-[300px] w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={data}
-              margin={{ top: 5, right: 20, left: -10, bottom: 5 }}
-            >
+            <BarChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
               <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" fontSize={12} />
               <YAxis

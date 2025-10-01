@@ -31,12 +31,9 @@ class ApiClient {
     }
   }
 
-  private async request<T>(
-    endpoint: string,
-    options: RequestInit = {}
-  ): Promise<ApiResponse<T>> {
+  private async request<T>(endpoint: string, options: RequestInit = {}): Promise<ApiResponse<T>> {
     const url = `${this.baseUrl}${endpoint}`;
-    
+
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
       ...options.headers,
@@ -54,7 +51,7 @@ class ApiClient {
     try {
       const response = await fetch(url, config);
       const data = await response.json();
-      
+
       return data;
     } catch (error) {
       console.error('API request failed:', error);
@@ -76,7 +73,7 @@ class ApiClient {
     if (params?.page) queryParams.append('page', params.page.toString());
     if (params?.limit) queryParams.append('limit', params.limit.toString());
     if (params?.search) queryParams.append('search', params.search);
-    
+
     const query = queryParams.toString();
     return this.request(`/students${query ? `?${query}` : ''}`);
   }
@@ -107,7 +104,7 @@ class ApiClient {
     if (params?.page) queryParams.append('page', params.page.toString());
     if (params?.limit) queryParams.append('limit', params.limit.toString());
     if (params?.search) queryParams.append('search', params.search);
-    
+
     const query = queryParams.toString();
     return this.request(`/faculty${query ? `?${query}` : ''}`);
   }
@@ -133,11 +130,11 @@ class ApiClient {
   }
 
   // Activities
-  async getActivities(params?: { 
-    page?: number; 
-    limit?: number; 
-    studentId?: string; 
-    status?: string; 
+  async getActivities(params?: {
+    page?: number;
+    limit?: number;
+    studentId?: string;
+    status?: string;
     category?: string;
   }) {
     const queryParams = new URLSearchParams();
@@ -146,7 +143,7 @@ class ApiClient {
     if (params?.studentId) queryParams.append('studentId', params.studentId);
     if (params?.status) queryParams.append('status', params.status);
     if (params?.category) queryParams.append('category', params.category);
-    
+
     const query = queryParams.toString();
     return this.request(`/activities${query ? `?${query}` : ''}`);
   }
@@ -172,13 +169,18 @@ class ApiClient {
   }
 
   // Placements
-  async getPlacements(params?: { page?: number; limit?: number; status?: string; search?: string }) {
+  async getPlacements(params?: {
+    page?: number;
+    limit?: number;
+    status?: string;
+    search?: string;
+  }) {
     const queryParams = new URLSearchParams();
     if (params?.page) queryParams.append('page', params.page.toString());
     if (params?.limit) queryParams.append('limit', params.limit.toString());
     if (params?.status) queryParams.append('status', params.status);
     if (params?.search) queryParams.append('search', params.search);
-    
+
     const query = queryParams.toString();
     return this.request(`/placements${query ? `?${query}` : ''}`);
   }
@@ -213,7 +215,7 @@ class ApiClient {
     const data = studentId ? { ...portfolioData, studentId } : portfolioData;
     return this.request('/portfolio', {
       method: 'PUT',
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
   }
 }

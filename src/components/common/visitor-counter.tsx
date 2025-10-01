@@ -17,9 +17,5 @@ export default function VisitorCounter() {
     return new Intl.NumberFormat('en-IN').format(num);
   };
 
-  return (
-    <div className="text-sm text-gray-400">
-      Visitors: {formatCount(count)}
-    </div>
-  );
+  return <div className="text-sm text-gray-400">Visitors: {formatCount(count)}</div>;
 }

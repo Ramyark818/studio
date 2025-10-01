@@ -12,17 +12,17 @@ const routePermissions = {
   '/api/classes': ['admin'],
   '/api/placements': ['admin'],
   '/api/users': ['admin'],
-  
+
   // Faculty routes (accessible by admin and faculty)
   '/dashboard/faculty': ['admin', 'faculty'],
   '/api/faculty/profile': ['admin', 'faculty'],
   '/api/classes/faculty': ['admin', 'faculty'],
-  
+
   // Student routes (accessible by admin and student)
   '/dashboard/student': ['admin', 'student'],
   '/api/students/profile': ['admin', 'student'],
   '/api/portfolio': ['admin', 'student'],
-  
+
   // Public routes (no authentication required)
   '/': null,
   '/login': null,
@@ -30,18 +30,11 @@ const routePermissions = {
 } as const;
 
 // Public routes that don't require authentication
-const publicRoutes = [
-  '/',
-  '/login',
-  '/api/auth/login',
-  '/_next',
-  '/favicon.ico',
-  '/static',
-];
+const publicRoutes = ['/', '/login', '/api/auth/login', '/_next', '/favicon.ico', '/static'];
 
 // Check if a route is public
 function isPublicRoute(pathname: string): boolean {
-  return publicRoutes.some(route => pathname.startsWith(route));
+  return publicRoutes.some((route) => pathname.startsWith(route));
 }
 
 // Get required roles for a route
@@ -50,14 +43,14 @@ function getRequiredRoles(pathname: string): string[] | null {
   if (pathname in routePermissions) {
     return routePermissions[pathname as keyof typeof routePermissions];
   }
-  
+
   // Check if it starts with any protected route pattern
   for (const [route, roles] of Object.entries(routePermissions)) {
     if (pathname.startsWith(route) && roles) {
       return roles;
     }
   }
-  
+
   return null; // No specific permissions required
 }
 
@@ -77,86 +70,86 @@ function verifyToken(token: string): { userId: string; email: string; role: stri
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  
+
   // Skip middleware for public routes
   if (isPublicRoute(pathname)) {
     return NextResponse.next();
   }
-  
+
   // Get auth token from cookies or Authorization header
   const tokenFromCookie = request.cookies.get('authToken')?.value;
   const authHeader = request.headers.get('authorization');
   const tokenFromHeader = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null;
-  
+
   const token = tokenFromCookie || tokenFromHeader;
-  
+
   // Check if authentication is required
   const requiredRoles = getRequiredRoles(pathname);
-  
+
   // If no token is provided for protected routes
   if (!token && requiredRoles !== null) {
     // For API routes, return 401
     if (pathname.startsWith('/api/')) {
       return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Authentication required', 
-          code: 'UNAUTHORIZED' 
+        {
+          success: false,
+          message: 'Authentication required',
+          code: 'UNAUTHORIZED',
         },
         { status: 401 }
       );
     }
-    
+
     // For dashboard routes, redirect to login
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }
-  
+
   // If no specific roles required, allow access
   if (requiredRoles === null) {
     return NextResponse.next();
   }
-  
+
   // Verify token
   const user = verifyToken(token!);
-  
+
   if (!user) {
     // Invalid token
     if (pathname.startsWith('/api/')) {
       return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Invalid or expired token', 
-          code: 'INVALID_TOKEN' 
+        {
+          success: false,
+          message: 'Invalid or expired token',
+          code: 'INVALID_TOKEN',
         },
         { status: 401 }
       );
     }
-    
+
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }
-  
+
   // Check role permissions
   if (requiredRoles && !requiredRoles.includes(user.role)) {
     if (pathname.startsWith('/api/')) {
       return NextResponse.json(
-        { 
-          success: false, 
-          message: `Access denied. Required roles: ${requiredRoles.join(', ')}`, 
-          code: 'FORBIDDEN' 
+        {
+          success: false,
+          message: `Access denied. Required roles: ${requiredRoles.join(', ')}`,
+          code: 'FORBIDDEN',
         },
         { status: 403 }
       );
     }
-    
+
     // Redirect to appropriate dashboard based on user role
     const dashboardUrl = new URL(`/dashboard/${user.role}`, request.url);
     return NextResponse.redirect(dashboardUrl);
   }
-  
+
   // Add user info to request headers for API routes
   if (pathname.startsWith('/api/')) {
     const response = NextResponse.next();
@@ -165,7 +158,7 @@ export function middleware(request: NextRequest) {
     response.headers.set('x-user-role', user.role);
     return response;
   }
-  
+
   return NextResponse.next();
 }
 

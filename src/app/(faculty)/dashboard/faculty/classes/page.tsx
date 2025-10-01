@@ -2,7 +2,14 @@
 import Link from 'next/link';
 import PageHeader from '@/components/common/page-header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { mockFacultyClasses } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 
@@ -18,7 +25,9 @@ export default function FacultyClassesPage() {
       <Card>
         <CardHeader>
           <CardTitle>All Assigned Classes</CardTitle>
-          <CardDescription>Select a class to manage attendance and view student details.</CardDescription>
+          <CardDescription>
+            Select a class to manage attendance and view student details.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="rounded-lg border">
@@ -41,9 +50,7 @@ export default function FacultyClassesPage() {
                     <TableCell>{cls.semester}</TableCell>
                     <TableCell className="text-right">
                       <Button asChild size="sm">
-                        <Link href={`/dashboard/faculty/class/${cls.courseCode}`}>
-                          View Class
-                        </Link>
+                        <Link href={`/dashboard/faculty/class/${cls.courseCode}`}>View Class</Link>
                       </Button>
                     </TableCell>
                   </TableRow>

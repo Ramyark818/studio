@@ -10,24 +10,23 @@ import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 
 const CareerGuideInputSchema = z.object({
-  skills: z.array(z.string()).describe('A list of the user\'s professional skills.'),
-  interests: z.array(z.string()).describe('A list of the user\'s personal interests.'),
+  skills: z.array(z.string()).describe("A list of the user's professional skills."),
+  interests: z.array(z.string()).describe("A list of the user's personal interests."),
 });
 export type CareerGuideInput = z.infer<typeof CareerGuideInputSchema>;
 
 const CareerSuggestionSchema = z.object({
-    title: z.string().describe('The title of the suggested career path.'),
-    description: z.string().describe('A brief, one-sentence description of why this career is a good fit.'),
+  title: z.string().describe('The title of the suggested career path.'),
+  description: z
+    .string()
+    .describe('A brief, one-sentence description of why this career is a good fit.'),
 });
 export type CareerSuggestion = z.infer<typeof CareerSuggestionSchema>;
 
 const CareerGuideOutputSchema = z.object({
-  suggestions: z
-    .array(CareerSuggestionSchema)
-    .describe('A list of 3-5 career suggestions.'),
+  suggestions: z.array(CareerSuggestionSchema).describe('A list of 3-5 career suggestions.'),
 });
 export type CareerGuideOutput = z.infer<typeof CareerGuideOutputSchema>;
-
 
 export async function getCareerSuggestions(input: CareerGuideInput): Promise<CareerGuideOutput> {
   return careerGuideFlow(input);
@@ -60,7 +59,7 @@ const careerGuideFlow = ai.defineFlow(
   async (input) => {
     const { output } = await prompt(input);
     if (!output) {
-        return { suggestions: [] };
+      return { suggestions: [] };
     }
     return output;
   }

@@ -25,7 +25,10 @@ interface DeleteStudentDialogProps {
   onDeleteStudent: (studentId: string) => Promise<boolean>;
 }
 
-export default function DeleteStudentDialog({ student, onDeleteStudent }: DeleteStudentDialogProps) {
+export default function DeleteStudentDialog({
+  student,
+  onDeleteStudent,
+}: DeleteStudentDialogProps) {
   const [open, setOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -54,8 +57,9 @@ export default function DeleteStudentDialog({ student, onDeleteStudent }: Delete
         <AlertDialogHeader>
           <AlertDialogTitle>Delete Student</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to delete <strong>{student.name}</strong> (ID: {student.studentId})?
-            This action cannot be undone. This will permanently delete the student's account and all associated data.
+            Are you sure you want to delete <strong>{student.name}</strong> (ID: {student.studentId}
+            )? This action cannot be undone. This will permanently delete the student's account and
+            all associated data.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

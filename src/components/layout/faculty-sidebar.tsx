@@ -1,12 +1,5 @@
 'use client';
-import {
-  LayoutDashboard,
-  FileCheck2,
-  BookCopy,
-  User,
-  LogOut,
-  GraduationCap,
-} from 'lucide-react';
+import { LayoutDashboard, FileCheck2, BookCopy, User, LogOut, GraduationCap } from 'lucide-react';
 import {
   Sidebar,
   SidebarHeader,
@@ -39,7 +32,7 @@ export function FacultySidebar() {
       setOpenMobile(false);
     }
   };
-  
+
   const handleLogout = () => {
     toast.success('Logged out successfully!');
     router.push('/');
@@ -52,38 +45,42 @@ export function FacultySidebar() {
     <Sidebar>
       <SidebarHeader>
         <div className="flex items-center gap-2">
-            <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
-               <GraduationCap className="h-6 w-6" />
-            </div>
-          <span className="font-bold font-headline text-lg">SANKALAN Faculty</span>
+          <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
+            <GraduationCap className="h-6 w-6" />
+          </div>
+          <span className="font-headline text-lg font-bold">SANKALAN Faculty</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
           {navItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-               <SidebarMenuButton
-                asChild
-                isActive={item.href === '/dashboard/faculty' ? pathname === item.href : pathname.startsWith(item.href)}
-                icon={<item.icon />}
-                onClick={handleLinkClick}
-              >
-                <Link href={item.href}>
+              <Link href={item.href}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={
+                    item.href === '/dashboard/faculty'
+                      ? pathname === item.href
+                      : pathname.startsWith(item.href)
+                  }
+                  icon={<item.icon />}
+                  onClick={handleLinkClick}
+                >
                   {item.label}
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
       </SidebarContent>
-       <SidebarFooter>
+      <SidebarFooter>
         <SidebarSeparator />
-         <SidebarMenu>
-            <SidebarMenuItem>
-                <SidebarMenuButton onClick={handleLogout} icon={<LogOut />}>
-                    Log Out
-                </SidebarMenuButton>
-            </SidebarMenuItem>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton onClick={handleLogout} icon={<LogOut />}>
+              Log Out
+            </SidebarMenuButton>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>

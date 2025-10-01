@@ -1,4 +1,13 @@
-import type { User, Activity, PerformanceData, Portfolio, FacultyClass, FacultyProfile, ClassStudent, Placement } from './types';
+import type {
+  User,
+  Activity,
+  PerformanceData,
+  Portfolio,
+  FacultyClass,
+  FacultyProfile,
+  ClassStudent,
+  Placement,
+} from './types';
 
 export const mockUser: User = {
   name: 'Jane Doe',
@@ -72,7 +81,8 @@ export const mockActivities: Activity[] = [
     date: '2024-03-20',
     credits: 5,
     status: 'Rejected',
-    description: 'Participated in a local community service event. Uploaded incorrect documentation.',
+    description:
+      'Participated in a local community service event. Uploaded incorrect documentation.',
   },
   {
     id: 'act008',
@@ -81,7 +91,8 @@ export const mockActivities: Activity[] = [
     date: '2024-02-18',
     credits: 15,
     status: 'Pending',
-    description: 'Submitted a project for the National Design Challenge organized by the Ministry of Education.',
+    description:
+      'Submitted a project for the National Design Challenge organized by the Ministry of Education.',
   },
 ];
 
@@ -101,29 +112,30 @@ export const mockPortfolio: Portfolio = {
     major: 'Computer Science and Engineering',
     degree: 'Bachelor of Technology',
   },
-  summary: "Pursuing a Bachelor's degree in Computer Science and Engineering with a strong foundation in software development and emerging technologies. Demonstrates proficiency in full-stack development, machine learning, and cloud computing, complemented by hands-on project experience. Committed to applying technical expertise to develop innovative solutions in fast-paced, technology-focused environments.",
+  summary:
+    "Pursuing a Bachelor's degree in Computer Science and Engineering with a strong foundation in software development and emerging technologies. Demonstrates proficiency in full-stack development, machine learning, and cloud computing, complemented by hands-on project experience. Committed to applying technical expertise to develop innovative solutions in fast-paced, technology-focused environments.",
   education: [
-      {
-          institution: "Tech University Institute of Technology",
-          degree: "Bachelor of Technology",
-          period: "August 2022 - present",
-          details: "Computer Science and Engineering - 8.5 CGPA"
-      },
-      {
-          institution: "Central College of Engineering",
-          degree: "Higher Secondary",
-          period: "June 2020 - May 2022",
-          details: "Science Stream - 89.5%"
-      },
-      {
-          institution: "Modern High School",
-          degree: "Secondary School",
-          period: "June 2018 - May 2020",
-          details: "88.2%"
-      }
+    {
+      institution: 'Tech University Institute of Technology',
+      degree: 'Bachelor of Technology',
+      period: 'August 2022 - present',
+      details: 'Computer Science and Engineering - 8.5 CGPA',
+    },
+    {
+      institution: 'Central College of Engineering',
+      degree: 'Higher Secondary',
+      period: 'June 2020 - May 2022',
+      details: 'Science Stream - 89.5%',
+    },
+    {
+      institution: 'Modern High School',
+      degree: 'Secondary School',
+      period: 'June 2018 - May 2020',
+      details: '88.2%',
+    },
   ],
   contact: [
-     {
+    {
       type: 'Email',
       handle: 'alex.johnson@email.com',
       url: 'mailto:alex.johnson@email.com',
@@ -148,7 +160,7 @@ export const mockPortfolio: Portfolio = {
       handle: 'alexjohnson-dev',
       url: 'https://github.com/alexjohnson-dev',
     },
-     {
+    {
       type: 'Website',
       handle: 'https://alexjohnson.dev',
       url: 'https://alexjohnson.dev',
@@ -157,44 +169,79 @@ export const mockPortfolio: Portfolio = {
       type: 'Other',
       handle: 'alexjohnson',
       url: '#',
-    }
+    },
   ],
   interests: ['Reading Tech Blogs', 'Playing Basketball', 'Photography', 'Hiking'],
   skills: [
     {
-        category: 'Programming Languages',
-        skills: ['Java', 'Python', 'JavaScript', 'TypeScript', 'C++', 'SQL']
+      category: 'Programming Languages',
+      skills: ['Java', 'Python', 'JavaScript', 'TypeScript', 'C++', 'SQL'],
     },
     {
-        category: 'Frontend Development',
-        skills: ['React', 'Vue.js', 'Angular', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS']
+      category: 'Frontend Development',
+      skills: ['React', 'Vue.js', 'Angular', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS'],
     },
     {
-        category: 'Backend Development',
-        skills: ['Node.js', 'Express.js', 'Spring Boot', 'Django', 'Flask', 'REST APIs']
+      category: 'Backend Development',
+      skills: ['Node.js', 'Express.js', 'Spring Boot', 'Django', 'Flask', 'REST APIs'],
     },
     {
-        category: 'Database & Cloud',
-        skills: ['MySQL', 'MongoDB', 'PostgreSQL', 'AWS', 'Firebase', 'Docker', 'Git']
-    }
+      category: 'Database & Cloud',
+      skills: ['MySQL', 'MongoDB', 'PostgreSQL', 'AWS', 'Firebase', 'Docker', 'Git'],
+    },
   ],
-  awards: ["Dean's List Scholar - 2023", "Best Project Award - Annual Tech Fest 2024", "Programming Contest Winner - State Level 2023"],
-  certifications: ["AWS Cloud Practitioner (Amazon Web Services, 2024)", "Full Stack Web Development (freeCodeCamp, 2023)", "Machine Learning Fundamentals (Coursera, 2023)"],
-  projects: ['E-Commerce Web Application - Developed a full-stack e-commerce platform using React, Node.js, and MongoDB with features like user authentication, payment integration, and real-time inventory management.', 'Student Management System - Built a comprehensive student management system with Java Spring Boot backend and React frontend, including features for attendance tracking, grade management, and automated report generation.'],
+  awards: [
+    "Dean's List Scholar - 2023",
+    'Best Project Award - Annual Tech Fest 2024',
+    'Programming Contest Winner - State Level 2023',
+  ],
+  certifications: [
+    'AWS Cloud Practitioner (Amazon Web Services, 2024)',
+    'Full Stack Web Development (freeCodeCamp, 2023)',
+    'Machine Learning Fundamentals (Coursera, 2023)',
+  ],
+  projects: [
+    'E-Commerce Web Application - Developed a full-stack e-commerce platform using React, Node.js, and MongoDB with features like user authentication, payment integration, and real-time inventory management.',
+    'Student Management System - Built a comprehensive student management system with Java Spring Boot backend and React frontend, including features for attendance tracking, grade management, and automated report generation.',
+  ],
   publications: [],
-  voluntaryWork: ['Tech Club Vice President (2023-2024)', 'Community Coding Workshop Instructor (2023)', 'College Fest Technical Coordinator (2024)'],
+  voluntaryWork: [
+    'Tech Club Vice President (2023-2024)',
+    'Community Coding Workshop Instructor (2023)',
+    'College Fest Technical Coordinator (2024)',
+  ],
   languages: [
-      { name: 'English', proficiency: 'Native or bilingual proficiency'},
-      { name: 'Hindi', proficiency: 'Professional working proficiency'},
-      { name: 'Spanish', proficiency: 'Elementary proficiency'},
-  ]
+    { name: 'English', proficiency: 'Native or bilingual proficiency' },
+    { name: 'Hindi', proficiency: 'Professional working proficiency' },
+    { name: 'Spanish', proficiency: 'Elementary proficiency' },
+  ],
 };
 
 export const mockFacultyClasses: FacultyClass[] = [
-  { courseCode: 'CS450', courseName: 'Advanced Algorithms', enrolledStudents: 35, semester: 'Fall 2024' },
-  { courseCode: 'CS210', courseName: 'Data Structures', enrolledStudents: 42, semester: 'Fall 2024' },
-  { courseCode: 'CS555', courseName: 'Machine Learning', enrolledStudents: 20, semester: 'Fall 2024' },
-  { courseCode: 'CS101', courseName: 'Intro to Programming', enrolledStudents: 15, semester: 'Fall 2024' },
+  {
+    courseCode: 'CS450',
+    courseName: 'Advanced Algorithms',
+    enrolledStudents: 35,
+    semester: 'Fall 2024',
+  },
+  {
+    courseCode: 'CS210',
+    courseName: 'Data Structures',
+    enrolledStudents: 42,
+    semester: 'Fall 2024',
+  },
+  {
+    courseCode: 'CS555',
+    courseName: 'Machine Learning',
+    enrolledStudents: 20,
+    semester: 'Fall 2024',
+  },
+  {
+    courseCode: 'CS101',
+    courseName: 'Intro to Programming',
+    enrolledStudents: 15,
+    semester: 'Fall 2024',
+  },
 ];
 
 export const mockFacultyProfile: FacultyProfile = {
@@ -216,15 +263,15 @@ export const mockFacultyProfile: FacultyProfile = {
 };
 
 export const mockAdminProfile: FacultyProfile = {
-    name: 'Mr. John Doe',
-    title: 'System Administrator',
-    avatarUrl: 'https://picsum.photos/seed/admin1/200/200',
-    email: 'admin@sankalan.com',
-    phone: '987-654-3210',
-    office: 'Admin Block, Room 101',
-    expertise: ['System Administration', 'Network Security', 'Database Management'],
-    publications: [],
-    awards: ['Employee of the Year, 2022'],
+  name: 'Mr. John Doe',
+  title: 'System Administrator',
+  avatarUrl: 'https://picsum.photos/seed/admin1/200/200',
+  email: 'admin@sankalan.com',
+  phone: '987-654-3210',
+  office: 'Admin Block, Room 101',
+  expertise: ['System Administration', 'Network Security', 'Database Management'],
+  publications: [],
+  awards: ['Employee of the Year, 2022'],
 };
 
 export const mockClassStudents: ClassStudent[] = [
@@ -236,36 +283,36 @@ export const mockClassStudents: ClassStudent[] = [
 ];
 
 export const mockFacultyList = [
-    { id: 'FAC001', name: 'Dr. Alan Grant', department: 'Computer Science' },
-    { id: 'FAC002', name: 'Dr. Ellie Sattler', department: 'Mechanical Engineering' },
-    { id: 'FAC003', name: 'Dr. Ian Malcolm', department: 'Electrical Engineering' },
-    { id: 'FAC004', name: 'Dr. John Hammond', department: 'Civil Engineering' },
-    { id: 'FAC005', name: 'Dr. Henry Wu', department: 'Business' },
+  { id: 'FAC001', name: 'Dr. Alan Grant', department: 'Computer Science' },
+  { id: 'FAC002', name: 'Dr. Ellie Sattler', department: 'Mechanical Engineering' },
+  { id: 'FAC003', name: 'Dr. Ian Malcolm', department: 'Electrical Engineering' },
+  { id: 'FAC004', name: 'Dr. John Hammond', department: 'Civil Engineering' },
+  { id: 'FAC005', name: 'Dr. Henry Wu', department: 'Business' },
 ];
 
 export const mockPlacements: Placement[] = [
-    {
-      id: 'PLC001',
-      companyName: 'Tech Innovators Inc.',
-      jobDescription: 'Software Development Engineer',
-      recruitingBranches: 'CS, IT, ECE',
-      vacancies: 5,
-      requiredSkills: ['React', 'Node.js', 'Python'],
-      recruitmentProcess: 'Online Test, Technical Interview, HR Interview',
-      requiredCgpa: 7.5,
-      backlogsAllowed: false,
-      driveDate: '2024-10-15',
-    },
-    {
-      id: 'PLC002',
-      companyName: 'Data Solutions LLC',
-      jobDescription: 'Data Analyst',
-      recruitingBranches: 'All Branches',
-      vacancies: 3,
-      requiredSkills: ['SQL', 'Tableau', 'Statistics'],
-      recruitmentProcess: 'Aptitude Test, Group Discussion, Interview',
-      requiredCgpa: 6.5,
-      backlogsAllowed: true,
-      driveDate: '2024-10-20',
-    },
+  {
+    id: 'PLC001',
+    companyName: 'Tech Innovators Inc.',
+    jobDescription: 'Software Development Engineer',
+    recruitingBranches: 'CS, IT, ECE',
+    vacancies: 5,
+    requiredSkills: ['React', 'Node.js', 'Python'],
+    recruitmentProcess: 'Online Test, Technical Interview, HR Interview',
+    requiredCgpa: 7.5,
+    backlogsAllowed: false,
+    driveDate: '2024-10-15',
+  },
+  {
+    id: 'PLC002',
+    companyName: 'Data Solutions LLC',
+    jobDescription: 'Data Analyst',
+    recruitingBranches: 'All Branches',
+    vacancies: 3,
+    requiredSkills: ['SQL', 'Tableau', 'Statistics'],
+    recruitmentProcess: 'Aptitude Test, Group Discussion, Interview',
+    requiredCgpa: 6.5,
+    backlogsAllowed: true,
+    driveDate: '2024-10-20',
+  },
 ];

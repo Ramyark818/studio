@@ -1,4 +1,3 @@
-
 'use client';
 import {
   Dialog,
@@ -21,50 +20,60 @@ import { Checkbox } from '../ui/checkbox';
 import { ScrollArea } from '../ui/scroll-area';
 
 interface EditStudentDialogProps {
-    student: Student;
-    onUpdateStudent: (studentId: string, updatedData: any) => Promise<boolean>;
+  student: Student;
+  onUpdateStudent: (studentId: string, updatedData: any) => Promise<boolean>;
 }
 
 export default function EditStudentDialog({ student, onUpdateStudent }: EditStudentDialogProps) {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     const formData = new FormData(e.currentTarget);
     const updatedData = {
-        name: formData.get('name') as string,
-        course: formData.get('course') as string,
-        dateOfBirth: formData.get('dateOfBirth') as string,
-        feesPaid: formData.get('feesPaid') === 'on',
-        caste: formData.get('caste') as string,
-        gender: formData.get('gender') as 'Male' | 'Female' | 'Other',
-        documentsSubmitted: formData.get('documentsSubmitted') === 'on',
-        tenthMarks: formData.get('tenthMarks') as string,
-        twelfthMarks: formData.get('twelfthMarks') as string,
+      name: formData.get('name') as string,
+      course: formData.get('course') as string,
+      dateOfBirth: formData.get('dateOfBirth') as string,
+      feesPaid: formData.get('feesPaid') === 'on',
+      caste: formData.get('caste') as string,
+      gender: formData.get('gender') as 'Male' | 'Female' | 'Other',
+      documentsSubmitted: formData.get('documentsSubmitted') === 'on',
+      tenthMarks: formData.get('tenthMarks') as string,
+      twelfthMarks: formData.get('twelfthMarks') as string,
     };
 
     // Validate required fields
-    const requiredFields = ['name', 'course', 'dateOfBirth', 'caste', 'gender', 'tenthMarks', 'twelfthMarks'];
-    const missingFields = requiredFields.filter(field => !updatedData[field as keyof typeof updatedData]);
-    
+    const requiredFields = [
+      'name',
+      'course',
+      'dateOfBirth',
+      'caste',
+      'gender',
+      'tenthMarks',
+      'twelfthMarks',
+    ];
+    const missingFields = requiredFields.filter(
+      (field) => !updatedData[field as keyof typeof updatedData]
+    );
+
     if (missingFields.length > 0) {
-        toast.error('Please fill out all required fields.');
-        setIsLoading(false);
-        return;
+      toast.error('Please fill out all required fields.');
+      setIsLoading(false);
+      return;
     }
 
     try {
-        const success = await onUpdateStudent(student._id, updatedData);
-        if (success) {
-            setOpen(false); // Close popup immediately on success
-        }
+      const success = await onUpdateStudent(student._id, updatedData);
+      if (success) {
+        setOpen(false); // Close popup immediately on success
+      }
     } catch (error) {
-        console.error('Error updating student:', error);
+      console.error('Error updating student:', error);
     } finally {
-        setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -72,8 +81,8 @@ export default function EditStudentDialog({ student, onUpdateStudent }: EditStud
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm">
-            <FilePenLine className="mr-2 h-4 w-4" />
-            Edit
+          <FilePenLine className="mr-2 h-4 w-4" />
+          Edit
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-2xl">
@@ -84,68 +93,97 @@ export default function EditStudentDialog({ student, onUpdateStudent }: EditStud
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
-            <ScrollArea className="h-[60vh] pr-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
-                    <div className="space-y-2">
-                        <Label htmlFor="studentId">Student ID</Label>
-                        <Input id="studentId" defaultValue={student.studentId} disabled />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="name">Name</Label>
-                        <Input id="name" name="name" defaultValue={student.name} required />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="course">Course</Label>
-                        <Input id="course" name="course" defaultValue={student.course} required />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="dateOfBirth">Date of Birth</Label>
-                        <Input id="dateOfBirth" name="dateOfBirth" type="date" 
-                               defaultValue={student.dateOfBirth ? new Date(student.dateOfBirth).toISOString().split('T')[0] : ''} 
-                               required />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="caste">Caste</Label>
-                        <Input id="caste" name="caste" defaultValue={student.caste} required />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="gender">Gender</Label>
-                        <Select name="gender" defaultValue={student.gender} required>
-                        <SelectTrigger id="gender">
-                            <SelectValue placeholder="Select gender" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="Male">Male</SelectItem>
-                            <SelectItem value="Female">Female</SelectItem>
-                            <SelectItem value="Other">Other</SelectItem>
-                        </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="tenthMarks">10th Marks</Label>
-                        <Input id="tenthMarks" name="tenthMarks" defaultValue={student.tenthMarks} required />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="twelfthMarks">12th Marks</Label>
-                        <Input id="twelfthMarks" name="twelfthMarks" defaultValue={student.twelfthMarks} required />
-                    </div>
-                    <div className="flex items-center space-x-2 pt-4">
-                        <Checkbox id="feesPaid" name="feesPaid" defaultChecked={student.feesPaid} />
-                        <Label htmlFor="feesPaid">Fees Paid</Label>
-                    </div>
-                    <div className="flex items-center space-x-2 pt-4">
-                        <Checkbox id="documentsSubmitted" name="documentsSubmitted" defaultChecked={student.documentsSubmitted} />
-                        <Label htmlFor="documentsSubmitted">Documents Submitted</Label>
-                    </div>
-                </div>
-            </ScrollArea>
-            <DialogFooter className="pt-4">
-                <Button type="button" variant="outline" onClick={() => setOpen(false)} disabled={isLoading}>Cancel</Button>
-                <Button type="submit" disabled={isLoading}>
-                    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    Save Changes
-                </Button>
-            </DialogFooter>
+          <ScrollArea className="h-[60vh] pr-6">
+            <div className="grid grid-cols-1 gap-4 py-4 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="studentId">Student ID</Label>
+                <Input id="studentId" defaultValue={student.studentId} disabled />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="name">Name</Label>
+                <Input id="name" name="name" defaultValue={student.name} required />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="course">Course</Label>
+                <Input id="course" name="course" defaultValue={student.course} required />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="dateOfBirth">Date of Birth</Label>
+                <Input
+                  id="dateOfBirth"
+                  name="dateOfBirth"
+                  type="date"
+                  defaultValue={
+                    student.dateOfBirth
+                      ? new Date(student.dateOfBirth).toISOString().split('T')[0]
+                      : ''
+                  }
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="caste">Caste</Label>
+                <Input id="caste" name="caste" defaultValue={student.caste} required />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="gender">Gender</Label>
+                <Select name="gender" defaultValue={student.gender} required>
+                  <SelectTrigger id="gender">
+                    <SelectValue placeholder="Select gender" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Male">Male</SelectItem>
+                    <SelectItem value="Female">Female</SelectItem>
+                    <SelectItem value="Other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="tenthMarks">10th Marks</Label>
+                <Input
+                  id="tenthMarks"
+                  name="tenthMarks"
+                  defaultValue={student.tenthMarks}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="twelfthMarks">12th Marks</Label>
+                <Input
+                  id="twelfthMarks"
+                  name="twelfthMarks"
+                  defaultValue={student.twelfthMarks}
+                  required
+                />
+              </div>
+              <div className="flex items-center space-x-2 pt-4">
+                <Checkbox id="feesPaid" name="feesPaid" defaultChecked={student.feesPaid} />
+                <Label htmlFor="feesPaid">Fees Paid</Label>
+              </div>
+              <div className="flex items-center space-x-2 pt-4">
+                <Checkbox
+                  id="documentsSubmitted"
+                  name="documentsSubmitted"
+                  defaultChecked={student.documentsSubmitted}
+                />
+                <Label htmlFor="documentsSubmitted">Documents Submitted</Label>
+              </div>
+            </div>
+          </ScrollArea>
+          <DialogFooter className="pt-4">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setOpen(false)}
+              disabled={isLoading}
+            >
+              Cancel
+            </Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              Save Changes
+            </Button>
+          </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>

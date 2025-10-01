@@ -23,10 +23,7 @@ export default function PerformanceChart() {
       <CardContent>
         <div className="h-[300px] w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart
-              data={mockPerformance}
-              margin={{ top: 5, right: 20, left: -10, bottom: 5 }}
-            >
+            <LineChart data={mockPerformance} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
               <XAxis dataKey="semester" stroke="hsl(var(--muted-foreground))" fontSize={12} />
               <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} domain={[0, 10]} />

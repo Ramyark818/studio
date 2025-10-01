@@ -45,9 +45,7 @@ interface EditAdminProfileDialogProps {
   profile: FacultyProfile;
 }
 
-export default function EditAdminProfileDialog({
-  profile,
-}: EditAdminProfileDialogProps) {
+export default function EditAdminProfileDialog({ profile }: EditAdminProfileDialogProps) {
   const form = useForm<AdminProfileFormValues>({
     resolver: zodResolver(adminProfileSchema),
     defaultValues: {
@@ -85,7 +83,7 @@ export default function EditAdminProfileDialog({
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <ScrollArea className="h-[60vh] pr-6">
               <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <FormField
                     control={form.control}
                     name="name"
@@ -113,7 +111,7 @@ export default function EditAdminProfileDialog({
                     )}
                   />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <FormField
                     control={form.control}
                     name="email"
@@ -121,48 +119,39 @@ export default function EditAdminProfileDialog({
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="your.email@sankalan.com"
-                            {...field}
-                          />
+                          <Input placeholder="your.email@sankalan.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                   <FormField
+                  <FormField
                     control={form.control}
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Phone</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="Your phone number"
-                            {...field}
-                          />
+                          <Input placeholder="Your phone number" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                 <FormField
-                    control={form.control}
-                    name="office"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Office</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Building, Room"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                <FormField
+                  control={form.control}
+                  name="office"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Office</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Building, Room" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="expertise"
@@ -170,26 +159,20 @@ export default function EditAdminProfileDialog({
                     <FormItem>
                       <FormLabel>Areas of Expertise</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="Enter expertise areas separated by commas"
-                          {...field}
-                        />
+                        <Input placeholder="Enter expertise areas separated by commas" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                 <FormField
+                <FormField
                   control={form.control}
                   name="awards"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Awards and Recognitions</FormLabel>
                       <FormControl>
-                        <Textarea
-                          placeholder="Enter each award on a new line"
-                          {...field}
-                        />
+                        <Textarea placeholder="Enter each award on a new line" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

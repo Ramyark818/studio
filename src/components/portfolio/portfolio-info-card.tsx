@@ -31,7 +31,7 @@ const PortfolioInfoCard = <T extends any>({
         <ul className="space-y-3">
           {items.map((item, index) => (
             <li key={index} className="text-sm">
-                {renderItem ? renderItem(item) : <span>{item as ReactNode}</span>}
+              {renderItem ? renderItem(item) : <span>{item as ReactNode}</span>}
             </li>
           ))}
         </ul>

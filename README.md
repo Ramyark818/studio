@@ -12,6 +12,7 @@
 ### Problem Statement
 
 Educational institutions face significant challenges in:
+
 - Managing and tracking student activities across various categories
 - Generating compliance reports for accreditation bodies (NAAC, AICTE, NIRF)
 - Maintaining student portfolios and academic records
@@ -23,6 +24,7 @@ SANKALAN addresses these challenges by providing a unified digital ecosystem tha
 ## ✨ Key Features
 
 ### 🎓 Student Features
+
 - **Dashboard**: Personalized dashboard with CGPA tracking, activity credits, and attendance overview
 - **Activity Management**: Upload and track extracurricular activities (conferences, workshops, certifications, internships, competitions, volunteering, club activities)
 - **Portfolio Management**: Create and maintain comprehensive digital portfolios with education, skills, projects, certifications, and achievements
@@ -31,6 +33,7 @@ SANKALAN addresses these challenges by providing a unified digital ecosystem tha
 - **Resume Generator**: Automatically generate professional PDF resumes from portfolio data
 
 ### 👨‍🏫 Faculty Features
+
 - **Class Management**: Manage multiple classes with course codes, enrollment tracking, and student lists
 - **Activity Approval System**: Review and approve/reject student-submitted activities with feedback
 - **Attendance Tracking**: Record and monitor student attendance with detailed reports
@@ -39,6 +42,7 @@ SANKALAN addresses these challenges by providing a unified digital ecosystem tha
 - **Profile Management**: Maintain faculty profiles with expertise, publications, and awards
 
 ### 👔 Admin Features
+
 - **User Management**: Complete control over student and faculty accounts with CRUD operations
 - **Class Administration**: Create and manage classes, assign faculty, and track enrollments
 - **Compliance Reporting**: Generate NAAC, AICTE, and NIRF reports automatically
@@ -52,6 +56,7 @@ SANKALAN addresses these challenges by providing a unified digital ecosystem tha
 ### Tech Stack
 
 #### Frontend
+
 - **Framework**: Next.js 15.3.3 (React 18.3.1)
 - **Language**: TypeScript 5.0
 - **Styling**: Tailwind CSS 3.4.1 with custom animations
@@ -62,6 +67,7 @@ SANKALAN addresses these challenges by providing a unified digital ecosystem tha
 - **State Management**: React Context API
 
 #### Backend
+
 - **Runtime**: Node.js 20
 - **API Routes**: Next.js API Routes (serverless functions)
 - **Database**: MongoDB with Mongoose ODM
@@ -69,22 +75,25 @@ SANKALAN addresses these challenges by providing a unified digital ecosystem tha
 - **File Storage**: Firebase Storage (planned)
 
 #### AI Integration
+
 - **AI Platform**: Google GenKit AI Framework
 - **AI Model**: Google Gemini AI
-- **Features**: 
+- **Features**:
   - Student Assistant chatbot
   - Career guidance recommendations
   - Intelligent query resolution
 
 #### PDF Generation
+
 - **Library**: jsPDF with jsPDF-AutoTable
-- **Use Cases**: 
+- **Use Cases**:
   - Student resumes and portfolios
   - Compliance reports (NAAC, AICTE, NIRF)
   - Class attendance reports
   - Performance reports
 
 #### Deployment & DevOps
+
 - **Hosting**: Firebase App Hosting
 - **CI/CD**: GitHub Actions (integrated)
 - **Development Environment**: Firebase Studio (IDX)
@@ -114,28 +123,31 @@ The application uses MongoDB with the following collections:
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/Ramyark818/sankalan.git
    cd sankalan
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
    Create a `.env.local` file in the root directory:
+
    ```env
    # MongoDB
    MONGODB_URI=your_mongodb_connection_string
-   
+
    # JWT Secret
    JWT_SECRET=your_jwt_secret_key
-   
+
    # Google AI API Key
    GOOGLE_GENAI_API_KEY=your_google_ai_api_key
-   
+
    # Firebase (optional for deployment)
    NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
@@ -143,9 +155,11 @@ The application uses MongoDB with the following collections:
    ```
 
 4. **Run the development server**
+
    ```bash
    npm run dev
    ```
+
    The application will be available at `http://localhost:9002`
 
 5. **Seed the database (optional)**
@@ -217,6 +231,7 @@ sankalan/
 ## 👥 User Roles & Access
 
 ### Student Role
+
 - View personal dashboard with academic metrics
 - Submit and track activities
 - Create and manage portfolio
@@ -225,6 +240,7 @@ sankalan/
 - Generate resume from portfolio
 
 ### Faculty Role
+
 - View assigned classes
 - Approve/reject student activities
 - Manage attendance
@@ -233,6 +249,7 @@ sankalan/
 - Manage personal profile
 
 ### Admin Role
+
 - Manage all users (students and faculty)
 - Create and manage classes
 - Generate compliance reports
@@ -254,16 +271,19 @@ sankalan/
 SANKALAN generates reports compliant with:
 
 ### NAAC (National Assessment and Accreditation Council)
+
 - Student activity tracking by category
 - Credit accumulation reports
 - Participation metrics
 
 ### AICTE (All India Council for Technical Education)
+
 - Activity status and approval tracking
 - Category-wise student engagement
 - Compliance documentation
 
 ### NIRF (National Institutional Ranking Framework)
+
 - Aggregated activity statistics
 - Department-wise performance
 - Research and innovation metrics
@@ -271,6 +291,7 @@ SANKALAN generates reports compliant with:
 ## 🤖 AI Features
 
 ### Student Assistant
+
 - Powered by Google Gemini AI
 - Natural language query understanding
 - Real-time responses for:
@@ -281,6 +302,7 @@ SANKALAN generates reports compliant with:
   - General institutional information
 
 ### Career Guidance
+
 - Personalized job recommendations
 - Skills gap analysis
 - Interview preparation tips
@@ -298,17 +320,19 @@ SANKALAN generates reports compliant with:
 ## 🧪 Testing
 
 Currently, the project includes:
+
 - Type checking with TypeScript
 - ESLint for code quality
 - Manual testing procedures
 
-*Note: Comprehensive test suite implementation is planned for future releases.*
+_Note: Comprehensive test suite implementation is planned for future releases._
 
 ## 🚀 Deployment
 
 ### Firebase App Hosting
 
 1. **Configure Firebase**
+
    ```bash
    firebase init hosting
    ```
@@ -322,6 +346,7 @@ Currently, the project includes:
 The application is configured with `apphosting.yaml` for automatic deployment to Firebase App Hosting.
 
 ### Environment Variables
+
 Ensure all required environment variables are set in your Firebase project settings.
 
 ## 🛣️ Roadmap
@@ -352,6 +377,7 @@ This is a hackathon project. For any queries or contributions, please contact th
 ## 📞 Support
 
 For support, questions, or feedback:
+
 - Open an issue in the GitHub repository
 - Contact the development team
 

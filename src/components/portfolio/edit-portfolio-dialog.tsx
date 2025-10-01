@@ -75,48 +75,47 @@ export default function EditPortfolioDialog({
       email: portfolio.contact.find((c) => c.type === 'Email')?.handle || '',
       phone: portfolio.contact.find((c) => c.type === 'Phone')?.handle || '',
       address: portfolio.contact.find((c) => c.type === 'Address')?.handle || '',
-      website: portfolio.contact.find(c => c.type === 'Website')?.url || '',
-      linkedin:
-        portfolio.contact.find((c) => c.type === 'LinkedIn')?.url || '',
+      website: portfolio.contact.find((c) => c.type === 'Website')?.url || '',
+      linkedin: portfolio.contact.find((c) => c.type === 'LinkedIn')?.url || '',
       github: portfolio.contact.find((c) => c.type === 'GitHub')?.url || '',
       interests: portfolio.interests.join(', '),
-      skills: portfolio.skills.flatMap(cat => cat.skills).join(', '),
+      skills: portfolio.skills.flatMap((cat) => cat.skills).join(', '),
       awards: portfolio.awards.join('\n'),
       certifications: portfolio.certifications.join('\n'),
       projects: portfolio.projects.join('\n'),
       publications: portfolio.publications.join('\n'),
       voluntaryWork: portfolio.voluntaryWork.join('\n'),
-      languages: portfolio.languages.map(l => `${l.name} (${l.proficiency})`).join('\n'),
+      languages: portfolio.languages.map((l) => `${l.name} (${l.proficiency})`).join('\n'),
     },
   });
 
   const onSubmit = async (data: PortfolioFormValues) => {
     setIsLoading(true);
-    
+
     try {
       const token = authClient.getToken();
-      
+
       if (!token) {
         toast.error('Authentication required');
         setIsLoading(false);
         return;
       }
-      
+
       const response = await fetch('/api/portfolio', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(data),
       });
-      
+
       const result = await response.json();
-      
+
       if (result.success) {
         toast.success('Portfolio updated successfully!');
         setOpen(false); // Close popup immediately on success
-        
+
         // Notify parent component if callback provided
         if (onPortfolioUpdate) {
           onPortfolioUpdate(data);
@@ -152,22 +151,19 @@ export default function EditPortfolioDialog({
             <ScrollArea className="h-[60vh] pr-6">
               <div className="space-y-6">
                 <FormField
-                    control={form.control}
-                    name="summary"
-                    render={({ field }) => (
+                  control={form.control}
+                  name="summary"
+                  render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Summary</FormLabel>
-                        <FormControl>
-                        <Textarea
-                            placeholder="A brief professional summary..."
-                            {...field}
-                        />
-                        </FormControl>
-                        <FormMessage />
+                      <FormLabel>Summary</FormLabel>
+                      <FormControl>
+                        <Textarea placeholder="A brief professional summary..." {...field} />
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
-                    )}
+                  )}
                 />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <FormField
                     control={form.control}
                     name="name"
@@ -182,7 +178,7 @@ export default function EditPortfolioDialog({
                     )}
                   />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <FormField
                     control={form.control}
                     name="major"
@@ -190,10 +186,7 @@ export default function EditPortfolioDialog({
                       <FormItem>
                         <FormLabel>Major</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="e.g., Computer Science Major"
-                            {...field}
-                          />
+                          <Input placeholder="e.g., Computer Science Major" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -206,83 +199,68 @@ export default function EditPortfolioDialog({
                       <FormItem>
                         <FormLabel>Degree</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="e.g., Bachelor of Science..."
-                            {...field}
-                          />
+                          <Input placeholder="e.g., Bachelor of Science..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                            <Input
-                                placeholder="your.email@sankalan.com"
-                                {...field}
-                            />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="phone"
-                        render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Phone</FormLabel>
-                            <FormControl>
-                            <Input
-                                placeholder="+91-9876543210"
-                                {...field}
-                            />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                        )}
-                    />
-                </div>
-                 <FormField
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <FormField
                     control={form.control}
-                    name="address"
-                    render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Address</FormLabel>
-                        <FormControl>
-                        <Input
-                            placeholder="123 University Ave, Tech City"
-                            {...field}
-                        />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
-                 <FormField
-                    control={form.control}
-                    name="website"
+                    name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Personal Website URL</FormLabel>
+                        <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="https://your-website.com"
-                            {...field}
-                          />
+                          <Input placeholder="your.email@sankalan.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone</FormLabel>
+                        <FormControl>
+                          <Input placeholder="+91-9876543210" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <FormField
+                  control={form.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Address</FormLabel>
+                      <FormControl>
+                        <Input placeholder="123 University Ave, Tech City" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="website"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Personal Website URL</FormLabel>
+                      <FormControl>
+                        <Input placeholder="https://your-website.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <FormField
                     control={form.control}
                     name="linkedin"
@@ -290,10 +268,7 @@ export default function EditPortfolioDialog({
                       <FormItem>
                         <FormLabel>LinkedIn URL</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="https://linkedin.com/in/..."
-                            {...field}
-                          />
+                          <Input placeholder="https://linkedin.com/in/..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -306,10 +281,7 @@ export default function EditPortfolioDialog({
                       <FormItem>
                         <FormLabel>GitHub URL</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="https://github.com/..."
-                            {...field}
-                          />
+                          <Input placeholder="https://github.com/..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -323,10 +295,7 @@ export default function EditPortfolioDialog({
                     <FormItem>
                       <FormLabel>Skills</FormLabel>
                       <FormControl>
-                        <Textarea
-                          placeholder="Enter skills separated by commas"
-                          {...field}
-                        />
+                        <Textarea placeholder="Enter skills separated by commas" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -339,10 +308,7 @@ export default function EditPortfolioDialog({
                     <FormItem>
                       <FormLabel>Interests / Hobbies</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="Enter interests separated by commas"
-                          {...field}
-                        />
+                        <Input placeholder="Enter interests separated by commas" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -364,17 +330,14 @@ export default function EditPortfolioDialog({
                     </FormItem>
                   )}
                 />
-                 <FormField
+                <FormField
                   control={form.control}
                   name="certifications"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Certifications</FormLabel>
                       <FormControl>
-                        <Textarea
-                          placeholder="Enter each certification on a new line"
-                          {...field}
-                        />
+                        <Textarea placeholder="Enter each certification on a new line" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -387,10 +350,7 @@ export default function EditPortfolioDialog({
                     <FormItem>
                       <FormLabel>Awards</FormLabel>
                       <FormControl>
-                        <Textarea
-                          placeholder="Enter each award on a new line"
-                          {...field}
-                        />
+                        <Textarea placeholder="Enter each award on a new line" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -403,32 +363,26 @@ export default function EditPortfolioDialog({
                     <FormItem>
                       <FormLabel>Projects</FormLabel>
                       <FormControl>
-                        <Textarea
-                          placeholder="Enter each project on a new line"
-                          {...field}
-                        />
+                        <Textarea placeholder="Enter each project on a new line" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                 <FormField
+                <FormField
                   control={form.control}
                   name="publications"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Publications</FormLabel>
                       <FormControl>
-                        <Textarea
-                          placeholder="Enter each publication on a new line"
-                          {...field}
-                        />
+                        <Textarea placeholder="Enter each publication on a new line" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                 <FormField
+                <FormField
                   control={form.control}
                   name="voluntaryWork"
                   render={({ field }) => (
@@ -447,9 +401,9 @@ export default function EditPortfolioDialog({
               </div>
             </ScrollArea>
             <DialogFooter className="pt-6">
-              <Button 
-                type="button" 
-                variant="outline" 
+              <Button
+                type="button"
+                variant="outline"
                 onClick={() => setOpen(false)}
                 disabled={isLoading}
               >

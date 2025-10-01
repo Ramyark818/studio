@@ -13,11 +13,11 @@ import {
 } from 'recharts';
 
 const data = [
-    { name: 'CompSci', attendance: 92 },
-    { name: 'MechEng', attendance: 85 },
-    { name: 'ElecEng', attendance: 95 },
-    { name: 'CivilEng', attendance: 88 },
-    { name: 'Business', attendance: 91 },
+  { name: 'CompSci', attendance: 92 },
+  { name: 'MechEng', attendance: 85 },
+  { name: 'ElecEng', attendance: 95 },
+  { name: 'CivilEng', attendance: 88 },
+  { name: 'Business', attendance: 91 },
 ];
 
 export default function FacultyAttendanceChart() {
@@ -30,10 +30,7 @@ export default function FacultyAttendanceChart() {
       <CardContent>
         <div className="h-[300px] w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={data}
-              margin={{ top: 5, right: 20, left: -10, bottom: 5 }}
-            >
+            <BarChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
               <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" fontSize={12} />
               <YAxis

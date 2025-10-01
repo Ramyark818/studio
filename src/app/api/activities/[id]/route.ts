@@ -6,19 +6,19 @@ import { successResponse, errorResponse, handleApiError } from '@/lib/api-respon
 export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
-    
+
     const { id } = await params;
     const body = await request.json();
     const { status, approvedBy, rejectionReason } = body;
-    
+
     const activity = await Activity.findById(id);
-    
+
     if (!activity) {
       return errorResponse('Activity not found', 404);
     }
-    
+
     const updateData: any = { ...body };
-    
+
     if (status === 'Approved') {
       updateData.approvedBy = approvedBy;
       updateData.approvedAt = new Date();
@@ -28,35 +28,37 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       updateData.approvedBy = undefined;
       updateData.approvedAt = undefined;
     }
-    
-    const updatedActivity = await Activity.findByIdAndUpdate(
-      id,
-      updateData,
-      { new: true, runValidators: true }
-    )
+
+    const updatedActivity = await Activity.findByIdAndUpdate(id, updateData, {
+      new: true,
+      runValidators: true,
+    })
       .populate('studentId', 'name studentId email')
       .populate('approvedBy', 'name facultyId');
-    
+
     return successResponse(updatedActivity, 'Activity updated successfully');
   } catch (error) {
     return handleApiError(error);
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     await dbConnect();
-    
+
     const { id } = await params;
-    
+
     const activity = await Activity.findById(id);
-    
+
     if (!activity) {
       return errorResponse('Activity not found', 404);
     }
-    
+
     await Activity.findByIdAndDelete(id);
-    
+
     return successResponse(null, 'Activity deleted successfully');
   } catch (error) {
     return handleApiError(error);

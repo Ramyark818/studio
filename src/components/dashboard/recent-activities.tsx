@@ -28,7 +28,9 @@ export default function RecentActivities() {
           <CardDescription>A summary of your latest submissions.</CardDescription>
         </div>
         <Button asChild variant="ghost" size="sm">
-            <Link href="/dashboard/activities">View All <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          <Link href="/dashboard/activities">
+            View All <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </Button>
       </CardHeader>
       <CardContent>

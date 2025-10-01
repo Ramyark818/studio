@@ -11,7 +11,7 @@ import { getCareerSuggestions, type CareerSuggestion } from '@/ai/flows/career-g
 
 export default function CareerPage() {
   const [interests, setInterests] = useState<string[]>(mockPortfolio.interests);
-  const [skills, setSkills] = useState<string[]>(mockPortfolio.skills.flatMap(cat => cat.skills));
+  const [skills, setSkills] = useState<string[]>(mockPortfolio.skills.flatMap((cat) => cat.skills));
   const [newInterest, setNewInterest] = useState('');
   const [newSkill, setNewSkill] = useState('');
   const [suggestions, setSuggestions] = useState<CareerSuggestion[]>([]);
@@ -48,22 +48,26 @@ export default function CareerPage() {
         title="AI Career Guide"
         description="Get personalized career suggestions based on your interests and skills."
       />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle>Your Skills & Interests</CardTitle>
             <CardDescription>
-              Your skills and interests from your profile are pre-filled. Add or remove them to tailor your results.
+              Your skills and interests from your profile are pre-filled. Add or remove them to
+              tailor your results.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
-              <h3 className="text-sm font-medium mb-2">Your Interests</h3>
-              <div className="flex flex-wrap gap-2 mb-2">
+              <h3 className="mb-2 text-sm font-medium">Your Interests</h3>
+              <div className="mb-2 flex flex-wrap gap-2">
                 {interests.map((interest, index) => (
                   <Badge key={index} variant="secondary" className="flex items-center gap-1.5">
                     {interest}
-                    <button onClick={() => handleRemoveItem(index, setInterests)} className="hover:text-destructive">
+                    <button
+                      onClick={() => handleRemoveItem(index, setInterests)}
+                      className="hover:text-destructive"
+                    >
                       <X className="h-3 w-3" />
                     </button>
                   </Badge>
@@ -74,20 +78,29 @@ export default function CareerPage() {
                   value={newInterest}
                   onChange={(e) => setNewInterest(e.target.value)}
                   placeholder="Add an interest..."
-                  onKeyDown={(e) => e.key === 'Enter' && handleAddItem(newInterest, setInterests, setNewInterest)}
+                  onKeyDown={(e) =>
+                    e.key === 'Enter' && handleAddItem(newInterest, setInterests, setNewInterest)
+                  }
                 />
-                <Button size="icon" variant="outline" onClick={() => handleAddItem(newInterest, setInterests, setNewInterest)}>
+                <Button
+                  size="icon"
+                  variant="outline"
+                  onClick={() => handleAddItem(newInterest, setInterests, setNewInterest)}
+                >
                   <Plus className="h-4 w-4" />
                 </Button>
               </div>
             </div>
             <div>
-              <h3 className="text-sm font-medium mb-2">Your Skills</h3>
-              <div className="flex flex-wrap gap-2 mb-2">
+              <h3 className="mb-2 text-sm font-medium">Your Skills</h3>
+              <div className="mb-2 flex flex-wrap gap-2">
                 {skills.map((skill, index) => (
                   <Badge key={index} className="flex items-center gap-1.5">
                     {skill}
-                    <button onClick={() => handleRemoveItem(index, setSkills)} className="hover:text-destructive-foreground/80">
+                    <button
+                      onClick={() => handleRemoveItem(index, setSkills)}
+                      className="hover:text-destructive-foreground/80"
+                    >
                       <X className="h-3 w-3" />
                     </button>
                   </Badge>
@@ -98,9 +111,15 @@ export default function CareerPage() {
                   value={newSkill}
                   onChange={(e) => setNewSkill(e.target.value)}
                   placeholder="Add a skill..."
-                  onKeyDown={(e) => e.key === 'Enter' && handleAddItem(newSkill, setSkills, setNewSkill)}
+                  onKeyDown={(e) =>
+                    e.key === 'Enter' && handleAddItem(newSkill, setSkills, setNewSkill)
+                  }
                 />
-                <Button size="icon" variant="outline" onClick={() => handleAddItem(newSkill, setSkills, setNewSkill)}>
+                <Button
+                  size="icon"
+                  variant="outline"
+                  onClick={() => handleAddItem(newSkill, setSkills, setNewSkill)}
+                >
                   <Plus className="h-4 w-4" />
                 </Button>
               </div>
@@ -125,20 +144,22 @@ export default function CareerPage() {
           </CardHeader>
           <CardContent>
             {isPending ? (
-              <div className="flex flex-col items-center justify-center h-64 text-center">
-                <LoaderCircle className="h-12 w-12 text-primary animate-spin mb-4" />
+              <div className="flex h-64 flex-col items-center justify-center text-center">
+                <LoaderCircle className="mb-4 h-12 w-12 animate-spin text-primary" />
                 <p className="text-muted-foreground">Generating your personalized career path...</p>
               </div>
             ) : suggestions.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-64 text-center">
-                <Wand2 className="h-12 w-12 text-muted-foreground mb-4" />
-                <p className="text-muted-foreground">Review your skills and interests to get started.</p>
+              <div className="flex h-64 flex-col items-center justify-center text-center">
+                <Wand2 className="mb-4 h-12 w-12 text-muted-foreground" />
+                <p className="text-muted-foreground">
+                  Review your skills and interests to get started.
+                </p>
               </div>
             ) : (
               <div className="space-y-4">
                 {suggestions.map((suggestion, index) => (
-                  <div key={index} className="p-4 rounded-lg border bg-muted/50">
-                    <h3 className="font-semibold flex items-center gap-2 mb-1">
+                  <div key={index} className="rounded-lg border bg-muted/50 p-4">
+                    <h3 className="mb-1 flex items-center gap-2 font-semibold">
                       <Lightbulb className="h-5 w-5 text-primary" />
                       {suggestion.title}
                     </h3>

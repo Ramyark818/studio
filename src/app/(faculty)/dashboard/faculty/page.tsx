@@ -3,7 +3,14 @@ import Link from 'next/link';
 import PageHeader from '@/components/common/page-header';
 import OverviewCard from '@/components/dashboard/overview-card';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { mockFacultyClasses } from '@/lib/data';
 import { Book, Users, Percent, BarChart } from 'lucide-react';
 import AttendanceChart from '@/components/faculty/attendance-chart';
@@ -15,26 +22,45 @@ export default function FacultyDashboardPage() {
 
   return (
     <>
-      <PageHeader
-        title="Faculty Dashboard"
-        description="Your teaching and student overview."
-      />
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
-        <OverviewCard icon={Book} title="Classes Taught" value={facultyClasses.length} description="Current Semester" />
-        <OverviewCard icon={Users} title="Total Students" value={totalStudents} description="Across all classes" />
-        <OverviewCard icon={Percent} title="Avg. Attendance" value="88%" description="Across all classes" />
-        <OverviewCard icon={BarChart} title="Avg. Score" value="76/100" description="Across all classes" />
+      <PageHeader title="Faculty Dashboard" description="Your teaching and student overview." />
+      <div className="mb-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <OverviewCard
+          icon={Book}
+          title="Classes Taught"
+          value={facultyClasses.length}
+          description="Current Semester"
+        />
+        <OverviewCard
+          icon={Users}
+          title="Total Students"
+          value={totalStudents}
+          description="Across all classes"
+        />
+        <OverviewCard
+          icon={Percent}
+          title="Avg. Attendance"
+          value="88%"
+          description="Across all classes"
+        />
+        <OverviewCard
+          icon={BarChart}
+          title="Avg. Score"
+          value="76/100"
+          description="Across all classes"
+        />
       </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+
+      <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <AttendanceChart />
         <MarksDistributionChart />
       </div>
-      
+
       <Card>
         <CardHeader>
           <CardTitle>My Classes</CardTitle>
-          <CardDescription>A list of your currently assigned classes. Click a class to view details.</CardDescription>
+          <CardDescription>
+            A list of your currently assigned classes. Click a class to view details.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
@@ -48,12 +74,12 @@ export default function FacultyDashboardPage() {
             </TableHeader>
             <TableBody>
               {facultyClasses.map((cls) => (
-                 <TableRow key={cls.courseCode}>
-                   <TableCell className="font-medium">{cls.courseCode}</TableCell>
-                   <TableCell>{cls.courseName}</TableCell>
-                   <TableCell>{cls.enrolledStudents}</TableCell>
-                   <TableCell>{cls.semester}</TableCell>
-                 </TableRow>
+                <TableRow key={cls.courseCode}>
+                  <TableCell className="font-medium">{cls.courseCode}</TableCell>
+                  <TableCell>{cls.courseName}</TableCell>
+                  <TableCell>{cls.enrolledStudents}</TableCell>
+                  <TableCell>{cls.semester}</TableCell>
+                </TableRow>
               ))}
             </TableBody>
           </Table>

@@ -25,7 +25,10 @@ interface DeleteFacultyDialogProps {
   onDeleteFaculty: (facultyId: string) => Promise<boolean>;
 }
 
-export default function DeleteFacultyDialog({ faculty, onDeleteFaculty }: DeleteFacultyDialogProps) {
+export default function DeleteFacultyDialog({
+  faculty,
+  onDeleteFaculty,
+}: DeleteFacultyDialogProps) {
   const [open, setOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -54,8 +57,9 @@ export default function DeleteFacultyDialog({ faculty, onDeleteFaculty }: Delete
         <AlertDialogHeader>
           <AlertDialogTitle>Delete Faculty Member</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to delete <strong>{faculty.name}</strong> (ID: {faculty.facultyId})?
-            This action cannot be undone. This will permanently delete the faculty member's account and all associated data.
+            Are you sure you want to delete <strong>{faculty.name}</strong> (ID: {faculty.facultyId}
+            )? This action cannot be undone. This will permanently delete the faculty member's
+            account and all associated data.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

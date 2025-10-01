@@ -92,10 +92,7 @@
         "phone": "+91-9876543211",
         "office": "EC-201"
       },
-      "publications": [
-        "Advanced VLSI Design Techniques",
-        "IoT Applications in Smart Cities"
-      ],
+      "publications": ["Advanced VLSI Design Techniques", "IoT Applications in Smart Cities"],
       "awards": ["Innovation Award 2023"],
       "joiningDate": "2016-08-15T00:00:00.000Z"
     }
@@ -404,7 +401,11 @@
         "max": 800000
       },
       "jobLocation": ["Bangalore", "Mumbai"],
-      "eligibilityCriteria": ["No active backlogs", "Good communication skills", "Problem-solving aptitude"],
+      "eligibilityCriteria": [
+        "No active backlogs",
+        "Good communication skills",
+        "Problem-solving aptitude"
+      ],
       "companyWebsite": "https://techsolutions.com",
       "contactPerson": {
         "name": "Sarah Johnson",
@@ -431,7 +432,11 @@
         "max": 750000
       },
       "jobLocation": ["Pune", "Hyderabad"],
-      "eligibilityCriteria": ["Strong fundamentals in electronics", "Hands-on project experience", "Maximum 2 backlogs allowed"],
+      "eligibilityCriteria": [
+        "Strong fundamentals in electronics",
+        "Hands-on project experience",
+        "Maximum 2 backlogs allowed"
+      ],
       "companyWebsite": "https://innovatecore.com",
       "contactPerson": {
         "name": "Rajesh Kumar",

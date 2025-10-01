@@ -7,9 +7,7 @@ import { BadgeCheck, BarChart3, Star, TrendingUp } from 'lucide-react';
 
 export default function DashboardPage() {
   const lastCgpa =
-    mockPerformance.length > 0
-      ? mockPerformance[mockPerformance.length - 1].cgpa
-      : 0;
+    mockPerformance.length > 0 ? mockPerformance[mockPerformance.length - 1].cgpa : 0;
   const totalCredits = mockActivities
     .filter((a) => a.status === 'Approved')
     .reduce((sum, a) => sum + a.credits, 0);
@@ -20,7 +18,7 @@ export default function DashboardPage() {
         title="Welcome, Jane!"
         description="Here's a snapshot of your academic journey and achievements."
       />
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
+      <div className="mb-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <OverviewCard
           icon={Star}
           title="Current CGPA"
@@ -46,7 +44,7 @@ export default function DashboardPage() {
           description="Total activities submitted"
         />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
         <PerformanceChart />
         <RecentActivities />
       </div>

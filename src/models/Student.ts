@@ -1,10 +1,11 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IStudent extends Document {
-  userId: mongoose.Types.ObjectId;
   studentId: string;
   name: string;
   email: string;
+  password: string;
+  role: 'student';
   course: string;
   department: string;
   dateOfBirth: Date;
@@ -17,6 +18,7 @@ export interface IStudent extends Document {
   cgpa?: number;
   semester?: string;
   enrollmentYear: number;
+  avatarUrl?: string;
   address?: {
     street: string;
     city: string;
@@ -31,89 +33,99 @@ export interface IStudent extends Document {
   updatedAt: Date;
 }
 
-const StudentSchema: Schema = new Schema({
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+const StudentSchema: Schema = new Schema(
+  {
+    studentId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      default: 'student',
+      immutable: true,
+    },
+    course: {
+      type: String,
+      required: true,
+    },
+    department: {
+      type: String,
+      required: true,
+    },
+    dateOfBirth: {
+      type: Date,
+      required: true,
+    },
+    gender: {
+      type: String,
+      enum: ['Male', 'Female', 'Other'],
+      required: true,
+    },
+    feesPaid: {
+      type: Boolean,
+      default: false,
+    },
+    caste: {
+      type: String,
+      required: true,
+    },
+    documentsSubmitted: {
+      type: Boolean,
+      default: false,
+    },
+    tenthMarks: {
+      type: String,
+      required: true,
+    },
+    twelfthMarks: {
+      type: String,
+      required: true,
+    },
+    cgpa: {
+      type: Number,
+      min: 0,
+      max: 10,
+    },
+    semester: {
+      type: String,
+    },
+    enrollmentYear: {
+      type: Number,
+      required: true,
+    },
+    avatarUrl: {
+      type: String,
+    },
+    address: {
+      street: String,
+      city: String,
+      state: String,
+      zipCode: String,
+    },
+    contact: {
+      phone: String,
+      emergencyContact: String,
+    },
   },
-  studentId: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true
-  },
-  course: {
-    type: String,
-    required: true
-  },
-  department: {
-    type: String,
-    required: true
-  },
-  dateOfBirth: {
-    type: Date,
-    required: true
-  },
-  gender: {
-    type: String,
-    enum: ['Male', 'Female', 'Other'],
-    required: true
-  },
-  feesPaid: {
-    type: Boolean,
-    default: false
-  },
-  caste: {
-    type: String,
-    required: true
-  },
-  documentsSubmitted: {
-    type: Boolean,
-    default: false
-  },
-  tenthMarks: {
-    type: String,
-    required: true
-  },
-  twelfthMarks: {
-    type: String,
-    required: true
-  },
-  cgpa: {
-    type: Number,
-    min: 0,
-    max: 10
-  },
-  semester: {
-    type: String
-  },
-  enrollmentYear: {
-    type: Number,
-    required: true
-  },
-  address: {
-    street: String,
-    city: String,
-    state: String,
-    zipCode: String
-  },
-  contact: {
-    phone: String,
-    emergencyContact: String
+  {
+    timestamps: true,
   }
-}, {
-  timestamps: true
-});
+);
 
 export default mongoose.models.Student || mongoose.model<IStudent>('Student', StudentSchema);

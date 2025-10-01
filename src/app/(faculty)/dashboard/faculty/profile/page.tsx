@@ -11,27 +11,27 @@ export default function FacultyProfilePage() {
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row justify-between items-start mb-6 gap-4">
+      <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row">
         <div>
-          <h1 className="text-3xl font-bold font-headline tracking-tight">
-            Faculty Profile
-          </h1>
-          <p className="text-muted-foreground">
-            Your professional and academic information.
-          </p>
+          <h1 className="font-headline text-3xl font-bold tracking-tight">Faculty Profile</h1>
+          <p className="text-muted-foreground">Your professional and academic information.</p>
         </div>
         <EditFacultyProfileDialog profile={profile} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-1 space-y-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="space-y-6 lg:col-span-1">
           <Card>
             <CardContent className="p-6 text-center">
-              <Avatar className="h-32 w-32 mx-auto mb-4 border-4 border-primary">
-                <AvatarImage src={profile.avatarUrl} alt={profile.name} data-ai-hint="man portrait" />
+              <Avatar className="mx-auto mb-4 h-32 w-32 border-4 border-primary">
+                <AvatarImage
+                  src={profile.avatarUrl}
+                  alt={profile.name}
+                  data-ai-hint="man portrait"
+                />
                 <AvatarFallback className="text-5xl">{profile.name.charAt(0)}</AvatarFallback>
               </Avatar>
-              <h2 className="text-2xl font-bold font-headline">{profile.name}</h2>
+              <h2 className="font-headline text-2xl font-bold">{profile.name}</h2>
               <p className="text-muted-foreground">{profile.title}</p>
             </CardContent>
           </Card>
@@ -55,7 +55,7 @@ export default function FacultyProfilePage() {
             </CardContent>
           </Card>
         </div>
-        <div className="lg:col-span-2 space-y-6">
+        <div className="space-y-6 lg:col-span-2">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -65,7 +65,9 @@ export default function FacultyProfilePage() {
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               {profile.expertise.map((item) => (
-                <Badge key={item} variant="secondary">{item}</Badge>
+                <Badge key={item} variant="secondary">
+                  {item}
+                </Badge>
               ))}
             </CardContent>
           </Card>
@@ -77,7 +79,7 @@ export default function FacultyProfilePage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2 list-disc list-inside">
+              <ul className="list-inside list-disc space-y-2">
                 {profile.publications.map((item, index) => (
                   <li key={index}>{item}</li>
                 ))}
@@ -92,7 +94,7 @@ export default function FacultyProfilePage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2 list-disc list-inside">
+              <ul className="list-inside list-disc space-y-2">
                 {profile.awards.map((item, index) => (
                   <li key={index}>{item}</li>
                 ))}

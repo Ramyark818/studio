@@ -1,6 +1,6 @@
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
 import './globals.css';
-import { Toaster } from "react-hot-toast";
+import { Toaster } from 'react-hot-toast';
 import { Inter } from 'next/font/google';
 
 export const metadata: Metadata = {
@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 };
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
-
 
 export default function RootLayout({
   children,

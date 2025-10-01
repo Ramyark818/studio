@@ -1,4 +1,3 @@
-
 'use client';
 
 import {
@@ -37,17 +36,14 @@ export function Header() {
         )}
         <div className={cn('flex items-center gap-2', !isMobile && 'hidden')}>
           <GraduationCap className="h-6 w-6 text-primary" />
-          <span className="font-bold font-headline text-lg">SANKALAN</span>
+          <span className="font-headline text-lg font-bold">SANKALAN</span>
         </div>
       </div>
 
       <div className="flex items-center gap-2">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="relative h-10 w-10 rounded-full"
-            >
+            <Button variant="ghost" className="relative h-10 w-10 rounded-full">
               <Avatar className="h-10 w-10">
                 <AvatarImage src={user.avatarUrl} alt={user.name} data-ai-hint="woman portrait" />
                 <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
@@ -58,9 +54,7 @@ export function Header() {
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
                 <p className="text-sm font-medium leading-none">{user.name}</p>
-                <p className="text-xs leading-none text-muted-foreground">
-                  {user.email}
-                </p>
+                <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />

@@ -5,7 +5,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import toast from 'react-hot-toast';
 import { UploadCloud } from 'lucide-react';
@@ -16,7 +22,7 @@ export default function UploadPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.success("Your document has been sent for faculty approval.");
+    toast.success('Your document has been sent for faculty approval.');
     // Reset form logic
     const form = e.currentTarget;
     if (form) {
@@ -33,7 +39,6 @@ export default function UploadPage() {
     }
   };
 
-
   return (
     <>
       <PageHeader
@@ -44,12 +49,13 @@ export default function UploadPage() {
         <CardHeader>
           <CardTitle className="font-headline">Submit Document for Faculty Approval</CardTitle>
           <CardDescription>
-            Upload supporting documents for your experiences, achievements, or other records to be officially approved and added to your portfolio.
+            Upload supporting documents for your experiences, achievements, or other records to be
+            officially approved and added to your portfolio.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="document-type">Document Type</Label>
                 <Select>
@@ -76,22 +82,26 @@ export default function UploadPage() {
             <div className="space-y-2">
               <Label htmlFor="file-upload">File</Label>
               <Label htmlFor="file-upload" className="cursor-pointer">
-                <div className="flex items-center gap-2 p-2 rounded-md border border-input bg-muted/50 hover:bg-muted">
+                <div className="flex items-center gap-2 rounded-md border border-input bg-muted/50 p-2 hover:bg-muted">
                   <UploadCloud className="h-5 w-5 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">
-                      {fileName || 'Choose File'}
-                  </span>
-                  <Input id="file-upload" type="file" className="sr-only" onChange={handleFileChange} />
+                  <span className="text-sm text-muted-foreground">{fileName || 'Choose File'}</span>
+                  <Input
+                    id="file-upload"
+                    type="file"
+                    className="sr-only"
+                    onChange={handleFileChange}
+                  />
                 </div>
               </Label>
             </div>
             <div className="space-y-2">
               <Label htmlFor="comments">Comments (Optional)</Label>
-              <Textarea id="comments" placeholder="Add any relevant notes for the faculty reviewer..." />
+              <Textarea
+                id="comments"
+                placeholder="Add any relevant notes for the faculty reviewer..."
+              />
             </div>
-            <Button type="submit">
-              Submit for Approval
-            </Button>
+            <Button type="submit">Submit for Approval</Button>
           </form>
         </CardContent>
       </Card>

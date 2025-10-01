@@ -1,4 +1,3 @@
-
 'use client';
 import {
   Dialog,
@@ -17,7 +16,7 @@ import toast from 'react-hot-toast';
 import { useState } from 'react';
 
 interface AddClassDialogProps {
-    onAddClass: (newClass: { courseCode: string; courseName: string; semester: string }) => void;
+  onAddClass: (newClass: { courseCode: string; courseName: string; semester: string }) => void;
 }
 
 export default function AddClassDialog({ onAddClass }: AddClassDialogProps) {
@@ -26,21 +25,21 @@ export default function AddClassDialog({ onAddClass }: AddClassDialogProps) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const newClass = {
-        courseCode: formData.get('courseCode') as string,
-        courseName: formData.get('courseName') as string,
-        semester: formData.get('semester') as string,
+      courseCode: formData.get('courseCode') as string,
+      courseName: formData.get('courseName') as string,
+      semester: formData.get('semester') as string,
     };
 
     if (newClass.courseCode && newClass.courseName && newClass.semester) {
-        onAddClass(newClass);
-        toast.success('New class added successfully!');
-        setOpen(false);
-        const form = e.currentTarget;
-        if (form) {
-          form.reset();
-        }
+      onAddClass(newClass);
+      toast.success('New class added successfully!');
+      setOpen(false);
+      const form = e.currentTarget;
+      if (form) {
+        form.reset();
+      }
     } else {
-        toast.error('Please fill out all fields.');
+      toast.error('Please fill out all fields.');
     }
   };
 
@@ -65,23 +64,43 @@ export default function AddClassDialog({ onAddClass }: AddClassDialogProps) {
               <Label htmlFor="courseCode" className="text-right">
                 Course Code
               </Label>
-              <Input id="courseCode" name="courseCode" placeholder="e.g., CS501" className="col-span-3" required />
+              <Input
+                id="courseCode"
+                name="courseCode"
+                placeholder="e.g., CS501"
+                className="col-span-3"
+                required
+              />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="courseName" className="text-right">
                 Course Name
               </Label>
-              <Input id="courseName" name="courseName" placeholder="e.g., Advanced AI" className="col-span-3" required />
+              <Input
+                id="courseName"
+                name="courseName"
+                placeholder="e.g., Advanced AI"
+                className="col-span-3"
+                required
+              />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="semester" className="text-right">
                 Semester
               </Label>
-              <Input id="semester" name="semester" placeholder="e.g., Fall 2024" className="col-span-3" required />
+              <Input
+                id="semester"
+                name="semester"
+                placeholder="e.g., Fall 2024"
+                className="col-span-3"
+                required
+              />
             </div>
           </div>
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+            <Button type="button" variant="outline" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
             <Button type="submit">Save Class</Button>
           </DialogFooter>
         </form>

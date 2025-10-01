@@ -56,25 +56,27 @@ export function AdminSidebar() {
     <Sidebar>
       <SidebarHeader>
         <div className="flex items-center gap-2">
-            <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
-               <GraduationCap className="h-6 w-6" />
-            </div>
-          <span className="font-bold font-headline text-lg">Admin Panel</span>
+          <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
+            <GraduationCap className="h-6 w-6" />
+          </div>
+          <span className="font-headline text-lg font-bold">Admin Panel</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
           {navItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-               <SidebarMenuButton
+              <SidebarMenuButton
                 asChild
-                isActive={item.href === '/dashboard/admin' ? pathname === item.href : pathname.startsWith(item.href)}
+                isActive={
+                  item.href === '/dashboard/admin'
+                    ? pathname === item.href
+                    : pathname.startsWith(item.href)
+                }
                 icon={<item.icon />}
                 onClick={handleLinkClick}
               >
-                <Link href={item.href}>
-                  {item.label}
-                </Link>
+                <Link href={item.href}>{item.label}</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
@@ -82,12 +84,12 @@ export function AdminSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <SidebarSeparator />
-         <SidebarMenu>
-            <SidebarMenuItem>
-                <SidebarMenuButton onClick={handleLogout} icon={<LogOut />}>
-                    Log Out
-                </SidebarMenuButton>
-            </SidebarMenuItem>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton onClick={handleLogout} icon={<LogOut />}>
+              Log Out
+            </SidebarMenuButton>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>

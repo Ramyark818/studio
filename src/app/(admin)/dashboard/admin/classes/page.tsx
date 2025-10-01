@@ -1,9 +1,15 @@
-
 'use client';
 import { useState } from 'react';
 import PageHeader from '@/components/common/page-header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { mockFacultyClasses } from '@/lib/data';
 import AddClassDialog from '@/components/admin/add-class-dialog';
 import type { FacultyClass } from '@/lib/types';
@@ -11,13 +17,15 @@ import EditClassDialog from '@/components/admin/edit-class-dialog';
 
 export default function ClassManagementPage() {
   const [classes, setClasses] = useState<FacultyClass[]>(mockFacultyClasses);
-  
+
   const handleAddClass = (newClass: Omit<FacultyClass, 'enrolledStudents'>) => {
-    setClasses(prev => [...prev, { ...newClass, enrolledStudents: 0 }]);
+    setClasses((prev) => [...prev, { ...newClass, enrolledStudents: 0 }]);
   };
 
   const handleUpdateClass = (updatedClass: FacultyClass) => {
-    setClasses(prev => prev.map(c => c.courseCode === updatedClass.courseCode ? updatedClass : c));
+    setClasses((prev) =>
+      prev.map((c) => (c.courseCode === updatedClass.courseCode ? updatedClass : c))
+    );
   };
 
   return (
@@ -47,7 +55,7 @@ export default function ClassManagementPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {classes.map(cls => (
+                {classes.map((cls) => (
                   <TableRow key={cls.courseCode}>
                     <TableCell>{cls.courseCode}</TableCell>
                     <TableCell>{cls.courseName}</TableCell>
